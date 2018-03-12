@@ -7,6 +7,17 @@
  *
  * SWORD plugin settings
  *}
+ 
+ <script src="{$pluginJavaScriptURL}/SwordSettingsFormHandler.js"></script>
+ 
+ <script type="text/javascript">
+	$(function() {ldelim}
+		$('#swordSettingsForm').pkpHandler(
+			'$.pkp.plugins.sword.js.SwordSettingsFormHandler'
+		);
+	{rdelim});
+</script>
+
 <form class="pkp_form" id="swordSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="generic" plugin=sword verb="save"}">
 	{csrf}
 	
@@ -18,5 +29,9 @@
 			{fbvElement type="checkbox" id="allowAuthorSpecify" value="1" checked=$allowAuthorSpecify label="plugins.generic.sword.settings.allowAuthorSpecify"}
 		{/fbvFormSection}
 	{/fbvFormArea}
+
+	{url|assign:swordDepositPointsGridUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler" op="fetchGrid" escape=false}
+	{load_url_in_div id="swordDepositPointsGridContainer" url=$swordDepositPointsGridUrl}
+
 	{fbvFormButtons id="swordSettingsFormSubmit" submitText="common.save" hideCancel=true}
 </form>

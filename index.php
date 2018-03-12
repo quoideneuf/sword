@@ -1,4 +1,3 @@
-
 <?php
 /**
  * @defgroup plugins_generic_sword

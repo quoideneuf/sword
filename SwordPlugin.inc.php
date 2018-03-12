@@ -22,14 +22,36 @@ class SwordPlugin extends GenericPlugin {
 	 * @param $path string
 	 * @return boolean
 	 */
-	function register($category, $path) {
+	public function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackSwordSettingsTab'));
+				HookRegistry::register('LoadHandler', array($this, 'callbackSwordLoadHandler'));
+				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackSettingsTab'));
+				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			}
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @see PKPPageRouter::route()
+	 */
+	public function callbackSwordLoadHandler($hookName, $args) {
+		// Check the page.
+		$page = $args[0];
+		if ($page !== 'sword') return;
+
+		// Check the operation.
+		$op = $args[1];
+
+		if ($op == 'swordSettings') { // settings tab
+			define('HANDLER_CLASS', 'SwordSettingsTabHandler');
+			$args[2] = $this->getPluginPath() . '/' . 'SwordSettingsTabHandler.inc.php';
+		}
+		else {
+			// TODO
+		}
 	}
 
 	/**
@@ -38,11 +60,27 @@ class SwordPlugin extends GenericPlugin {
 	 * @param $args array Hook parameters
 	 * @return boolean Hook handling status
 	 */
-	public function callbackSwordSettingsTab($hookName, $args) {
+	public function callbackSettingsTab($hookName, $args) {
 		$output =& $args[2];
 		$request =& Registry::get('request');
 		$dispatcher = $request->getDispatcher();
-		$output .= '<li><a name="sword" href="' . $dispatcher->url($request, ROUTE_PAGE, null, 'sword', 'settings') . '">' . __('plugins.generic.sword.settings') . '</a></li>';
+		$tabLabel = __('plugins.generic.sword.displayName') . ' ' . __('plugins.generic.sword.settings');
+		$output .= '<li><a name="swordSettings" id="swordSettings" href="' . $dispatcher->url($request, ROUTE_PAGE, null, 'sword', 'swordSettings') . '">' . $tabLabel . '</a></li>';
+		return false;
+	}
+
+	/**
+	 * Permit requests to SWORD deposit points grid handler
+	 * @param $hookName string The name of the hook being invoked
+	 * @param $args array The parameters to the invoked hook
+	 */
+	function setupGridHandler($hookName, $params) {
+		$component = $params[0];
+		if ($component == 'plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler') {
+			import($component);
+			SwordDepositPointsGridHandler::setPlugin($this);
+			return true;
+		}
 		return false;
 	}
 
@@ -68,31 +106,19 @@ class SwordPlugin extends GenericPlugin {
 	function getActions($request, $verb) {
 		$router = $request->getRouter();
 		$dispatcher = $request->getDispatcher();
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
+		import('lib.pkp.classes.linkAction.request.RedirectAction');
 		return array_merge(
 			// Settings
 			$this->getEnabled()?array(
 				new LinkAction(
-					'settings',
-					new AjaxModal(
-						$router->url($request, null, null, 'manage', null, array('verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic')),
-						$this->getDisplayName()
-						),
-					__('manager.plugins.settings'),
-					null
-				),
-			):array(),
-			// Deposit points
-			$this->getEnabled()?array(
-				new LinkAction(
-					'depositPoints',
+					'swordSettings',
 					new RedirectAction($dispatcher->url(
 						$request, ROUTE_PAGE,
 						null, 'management', 'settings', 'website',
 						array('uid' => uniqid()),
-						'depositPoints'
+						'swordSettings'
 						)),
-					__('plugins.generic.sword.settings.depositPoints'),
+					__('manager.plugins.settings'),
 					null
 					),
 			):array(),
@@ -105,18 +131,6 @@ class SwordPlugin extends GenericPlugin {
 	 */
 	function manage($args, $request) {
 		switch ($request->getUserVar('verb')) {
-			case 'settings':
-				$this->import('SwordSettingsForm');
-				$settingsForm = new SwordSettingsForm($this, $request->getContext());
-				$settingsForm->initData();
-				return new JSONMessage(true, $settingsForm->fetch($request));
-			case 'depositPoints':
-				$this->import('DepositPointsForm');
-				AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON,  LOCALE_COMPONENT_PKP_MANAGER);
-				$templateMgr = TemplateManager::getManager($request);
-				$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
-				$depositPointsForm = new DepositPointsForm($this, $request->getContext());
-				return new JSONMessage(true, $depositPointsForm->fetch($request));
 		}
 		return parent::manage($args, $request);
 	}
@@ -128,6 +142,15 @@ class SwordPlugin extends GenericPlugin {
 	 */
 	function getTemplatePath() {
 		return parent::getTemplatePath() . 'templates/';
+	}
+
+	/**
+	 * Get plugin JS URL
+	 *
+	 * @return string Public plugin JS URL
+	 */
+	function getJsUrl($request) {
+		return $request->getBaseUrl() . '/' . $this->getPluginPath() . '/js';
 	}
 }
 

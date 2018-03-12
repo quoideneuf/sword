@@ -32,4 +32,13 @@ class SwordSettingsForm extends Form {
 		$this->_context = $context;
 		parent::__construct($plugin->getTemplatePath() . 'settingsForm.tpl');
 	}
+
+	/**
+	 * @see Form::fetch()
+	 */
+	function fetch($request) {
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('pluginJavaScriptURL', $this->_plugin->getJsUrl($request));
+		return parent::fetch($request);
+	}
 }

@@ -11,10 +11,10 @@
   * Plugin version information.
   -->
 <version>
-	<application>exampleGenericPlugin</application>
+	<application>sword</application>
 	<type>plugins.generic</type>
 	<release>1.0.0.0</release>
-	<date>2014-07-09</date>
+	<date>2018-03-01</date>
 	<lazy-load>1</lazy-load>
-	<class>ExampleGenericPlugin</class>
+	<class>SwordPlugin</class>
 </version>

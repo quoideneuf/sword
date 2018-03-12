@@ -17,4 +17,8 @@
 	<message key="plugins.generic.sword.settings">Settings</message>
 	<message key="plugins.generic.sword.settings.allowAuthorSpecify">Allow the author to specify a deposit point</message>
 	<message key="plugins.generic.sword.settings.depositPoints">Deposit Points</message>
+	<message key="plugins.generic.sword.depositPoints.name">Name</message>
+	<message key="plugins.importexport.sword.depositUrl">Deposit Point URL</message>
+	<message key="plugins.generic.sword.depositPoints.create">Create Deposit Point</message>
+	<message key="plugins.generic.sword.manager.noneCreated">None</message>
 </locale>
