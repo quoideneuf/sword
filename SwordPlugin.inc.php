@@ -25,6 +25,10 @@ class SwordPlugin extends GenericPlugin {
 	public function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
+				$this->import('classes.DepositPointDAO');
+				$depositPointDao = new DepositPointDAO($this);
+				DAORegistry::registerDAO('DepositPointDAO', $depositPointDao);
+
 				HookRegistry::register('LoadHandler', array($this, 'callbackSwordLoadHandler'));
 				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackSettingsTab'));
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
@@ -74,7 +78,7 @@ class SwordPlugin extends GenericPlugin {
 	 * @param $hookName string The name of the hook being invoked
 	 * @param $args array The parameters to the invoked hook
 	 */
-	function setupGridHandler($hookName, $params) {
+	public function setupGridHandler($hookName, $params) {
 		$component = $params[0];
 		if ($component == 'plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler') {
 			import($component);
@@ -88,7 +92,7 @@ class SwordPlugin extends GenericPlugin {
 	 * Get the display name of this plugin
 	 * @return string
 	 */
-	function getDisplayName() {
+	public function getDisplayName() {
 		return __('plugins.generic.sword.displayName');
 	}
 
@@ -96,14 +100,14 @@ class SwordPlugin extends GenericPlugin {
 	 * Get the description of this plugin
 	 * @return string
 	 */
-	function getDescription() {
+	public function getDescription() {
 		return __('plugins.generic.sword.description');
 	}
 
 	/**
 	 * @see Plugin::getActions()
 	 */
-	function getActions($request, $verb) {
+	public function getActions($request, $verb) {
 		$router = $request->getRouter();
 		$dispatcher = $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
@@ -129,7 +133,7 @@ class SwordPlugin extends GenericPlugin {
 	/**
 	 * @see Plugin::manage()
 	 */
-	function manage($args, $request) {
+	public function manage($args, $request) {
 		switch ($request->getUserVar('verb')) {
 		}
 		return parent::manage($args, $request);
@@ -140,7 +144,7 @@ class SwordPlugin extends GenericPlugin {
 	 *
 	 * @return string Plugin template path
 	 */
-	function getTemplatePath() {
+	public function getTemplatePath() {
 		return parent::getTemplatePath() . 'templates/';
 	}
 
@@ -149,8 +153,24 @@ class SwordPlugin extends GenericPlugin {
 	 *
 	 * @return string Public plugin JS URL
 	 */
-	function getJsUrl($request) {
+	public function getJsUrl($request) {
 		return $request->getBaseUrl() . '/' . $this->getPluginPath() . '/js';
+	}
+
+	public function getTypeMap() {
+		return array(
+			'SWORD_DEPOSIT_TYPE_AUTOMATIC' 		=> __('plugins.generic.sword.depositPoints.type.automatic'),
+			'SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION' 	=> __('plugins.generic.sword.depositPoints.type.optionalSelection'),
+			'SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED' 	=> __('plugins.generic.sword.depositPoints.type.optionalFixed'),
+			'SWORD_DEPOSIT_TYPE_MANAGER' 		=> __('plugins.generic.sword.depositPoints.type.manager'),
+		);
+	}
+
+	/**
+	 * Get the filename of the ADODB schema for this plugin.
+	 */
+	public function getInstallSchemaFile() {
+		return $this->getPluginPath() . '/' . 'schema.xml';
 	}
 }
 

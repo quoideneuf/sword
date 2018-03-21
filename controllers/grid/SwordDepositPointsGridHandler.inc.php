@@ -36,7 +36,7 @@ class SwordDepositPointsGridHandler extends GridHandler {
 		parent::__construct();
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
-			array('index', 'fetchGrid', 'fetchRow', 'addDepositPoints', 'editDepositPoints', 'updateDepositPoints', 'delete')
+			array('index', 'fetchGrid', 'fetchRow', 'addDepositPoint', 'editDepositPoint', 'updateDepositPoint', 'delete')
 		);
 	}
 
@@ -51,14 +51,20 @@ class SwordDepositPointsGridHandler extends GridHandler {
 		$this->setTitle('plugins.generic.sword.settings.depositPoints');
 		$this->setEmptyRowText('plugins.generic.sword.manager.noneCreated');
 		
+		// Get the pages and add the data to the grid
+		self::$plugin->import('classes.DepositPoint');
+		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
+		$depositPoints = $depositPointDao->getByContextId($context->getId());
+		$this->setGridDataElements($depositPoints);
+
 		// Add grid-level actions
 		$router = $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
 			new LinkAction(
-				'addDepositPoints',
+				'addDepositPoint',
 				new AjaxModal(
-					$router->url($request, null, null, 'addDepositPoints'),
+					$router->url($request, null, null, 'addDepositPoint'),
 					__('plugins.generic.sword.depositPoints.create'),
 					'modal_add_item'
 					),
@@ -76,12 +82,26 @@ class SwordDepositPointsGridHandler extends GridHandler {
 			'controllers/grid/gridCell.tpl',
 			$cellProvider
 		));
+		$this->addColumn(new GridColumn(
+			'url',
+			'plugins.importexport.sword.depositUrl',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
+		$this->addColumn(new GridColumn(
+			'type',
+			'common.type',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
 	}
 	
 	/**
 	 * @copydoc Gridhandler::getRowInstance()
 	 */
-	function getRowInstance() {
+	public function getRowInstance() {
 		return new SwordDepositPointsGridRow();
 	}
 
@@ -90,7 +110,7 @@ class SwordDepositPointsGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index($args, $request) {
+	public function index($args, $request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$dispatcher = $request->getDispatcher();
 		return $templateMgr->fetchAjax(
@@ -99,7 +119,73 @@ class SwordDepositPointsGridHandler extends GridHandler {
 				$request, ROUTE_COMPONENT, null,
 				'plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler',
 				'fetchGrid'
-				)
-			);
+			)
+		);
+	}
+
+	/**
+	 * An action to add a new deposit point
+	 * @param $args array Arguments to the request
+	 * @param $request PKPRequest Request object
+	 */
+	public function addDepositPoint($args, $request) {
+		return $this->editDepositPoint($args, $request);
+	}
+
+	/**
+	 * An action to edit a deposit point
+	 * @param $args array Arguments to the request
+	 * @param $request PKPRequest Request object
+	 * @return string Serialized JSON object
+	 */
+	public function editDepositPoint($args, $request) {
+		$depositPointId = $request->getUserVar('depositPointId');
+		$context = $request->getContext();
+		$this->setupTemplate($request);
+		self::$plugin->import('controllers.grid.form.SwordDepositPointForm');
+		$swordDepositPointForm = new SwordDepositPointForm(self::$plugin, $context->getId(), $depositPointId);
+		$swordDepositPointForm->initData();
+		return new JSONMessage(true, $swordDepositPointForm->fetch($request));
+	}
+
+	/**
+	 * Update deposit point
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	public function updateDepositPoint($args, $request) {
+		$depositPointId = $request->getUserVar('depositPointId');
+		$context = $request->getContext();
+		$this->setupTemplate($request);
+
+		self::$plugin->import('controllers.grid.form.SwordDepositPointForm');
+		$swordDepositPointForm = new SwordDepositPointForm(self::$plugin, $context->getId(), $depositPointId);
+		$swordDepositPointForm->readInputData($request);
+
+		if ($swordDepositPointForm->validate()) {
+			$swordDepositPointForm->execute();
+			return DAO::getDataChangedEvent();
+		} else {
+			// Present any errors
+			$json = new JSONMessage(true, $swordDepositPointForm->fetch($request));
+			return $json->getString();
+		}
+	}
+
+	/**
+	 * Delete a deposit point entry
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	public function delete($args, $request) {
+		$depositPointId = $request->getUserVar('depositPointId');
+		$context = $request->getContext();
+
+		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
+		$depositPointDao->deleteById($depositPointId, $context->getId());
+
+		return DAO::getDataChangedEvent();
 	}
 }

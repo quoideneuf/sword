@@ -21,4 +21,17 @@
 	<message key="plugins.importexport.sword.depositUrl">Deposit Point URL</message>
 	<message key="plugins.generic.sword.depositPoints.create">Create Deposit Point</message>
 	<message key="plugins.generic.sword.manager.noneCreated">None</message>
+	<message key="plugins.generic.sword.depositPoints.name">Name</message>
+	<message key="plugins.importexport.sword.depositUrl">Deposit Point URL</message>
+	<message key="plugins.generic.sword.depositPoints.type.automatic">Automatic</message>
+	<message key="plugins.generic.sword.depositPoints.type.optionalSelection">Optional; Flexible</message>
+	<message key="plugins.generic.sword.depositPoints.type.optionalFixed">Optional; Fixed</message>
+	<message key="plugins.generic.sword.depositPoints.type.manager">Manager Only</message>
+	<message key="plugins.generic.sword.depositPoints.type.description"><![CDATA[<h4>Deposit Point Types:</h4>
+<p><strong>Automatic</strong>: The deposit occurs automatically. The full SWORD deposit point is specified. A username and password must be specified. Deposit occurs after notifying the author of acceptance.<br />
+<strong>Optional; Flexible</strong>: The author can choose whether or not to deposit. The specified URL indicates a service document, and the author may choose which specific deposit point to use from that document. Deposit occurs after notifying the author of acceptance.<br />
+<strong>Optional; Fixed</strong>: The author can choose whether or not to deposit. The URL specifies the specific SWORD deposit point. Deposit occurs after notifying the author of acceptance.<br />
+<strong>Manager Only</strong>: Only the Journal Manager may use this deposit point. The URL indicates a service document. Deposit is manually performed by the Journal Manager using the Import/Export interface in Journal Management.
+</p>]]></message>
+	<message key="plugins.generic.sword.depositPoints.required.field">This field is required.</message>
 </locale>
