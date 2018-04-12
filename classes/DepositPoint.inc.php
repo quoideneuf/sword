@@ -13,12 +13,6 @@
  * @brief Deposit point entity.
  */
 
-define('SWORD_DEPOSIT_TYPE_AUTOMATIC',		0);
-define('SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION',	1);
-define('SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED',	2);
-define('SWORD_DEPOSIT_TYPE_MANAGER',		3);
-
-
 class DepositPoint extends DataObject {
 	/**
 	 * Get the ID of the deposit point.

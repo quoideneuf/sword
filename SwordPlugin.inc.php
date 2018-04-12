@@ -15,6 +15,11 @@
 
 import('lib.pkp.classes.plugins.GenericPlugin');
 
+define('SWORD_DEPOSIT_TYPE_AUTOMATIC',		1);
+define('SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION',	2);
+define('SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED',	3);
+define('SWORD_DEPOSIT_TYPE_MANAGER',		4);
+
 class SwordPlugin extends GenericPlugin {
 	/**
 	 * Register the plugin, if enabled
@@ -24,6 +29,7 @@ class SwordPlugin extends GenericPlugin {
 	 */
 	public function register($category, $path) {
 		if (parent::register($category, $path)) {
+			HookRegistry::register('PluginRegistry::loadCategory', array(&$this, 'callbackLoadCategory'));
 			if ($this->getEnabled()) {
 				$this->import('classes.DepositPointDAO');
 				$depositPointDao = new DepositPointDAO($this);
@@ -34,6 +40,19 @@ class SwordPlugin extends GenericPlugin {
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 			}
 			return true;
+		}
+		return false;
+	}
+
+	public function callbackLoadCategory($hookName, $args) {
+		$category =& $args[0];
+		$plugins =& $args[1];
+		switch ($category) {
+			case 'importexport':
+				$this->import('SwordImportExportPlugin');
+				$importExportPlugin = new SwordImportExportPlugin($this);
+				$plugins[$importExportPlugin->getSeq()][$importExportPlugin->getPluginPath()] =& $importExportPlugin;
+				break;
 		}
 		return false;
 	}
@@ -159,10 +178,10 @@ class SwordPlugin extends GenericPlugin {
 
 	public function getTypeMap() {
 		return array(
-			'SWORD_DEPOSIT_TYPE_AUTOMATIC' 		=> __('plugins.generic.sword.depositPoints.type.automatic'),
-			'SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION' 	=> __('plugins.generic.sword.depositPoints.type.optionalSelection'),
-			'SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED' 	=> __('plugins.generic.sword.depositPoints.type.optionalFixed'),
-			'SWORD_DEPOSIT_TYPE_MANAGER' 		=> __('plugins.generic.sword.depositPoints.type.manager'),
+			SWORD_DEPOSIT_TYPE_AUTOMATIC 		=> __('plugins.generic.sword.depositPoints.type.automatic'),
+			SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION 	=> __('plugins.generic.sword.depositPoints.type.optionalSelection'),
+			SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED 	=> __('plugins.generic.sword.depositPoints.type.optionalFixed'),
+			SWORD_DEPOSIT_TYPE_MANAGER		=> __('plugins.generic.sword.depositPoints.type.manager'),
 		);
 	}
 

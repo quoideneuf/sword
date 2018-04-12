@@ -34,11 +34,39 @@ class SwordSettingsForm extends Form {
 	}
 
 	/**
+	 * Initialize plugin settings form
+	 *
+	 * @return void
+	 */
+	function initData() {
+		$this->setData('allowAuthorSpecify', $this->_plugin->getSetting($this->_context->getId(), 'allowAuthorSpecify'));
+	}
+
+	/**
+	 * Assign form data to user-submitted data
+	 *
+	 * @return void
+	 */
+	public function readInputData() {
+		$this->readUserVars(
+			array('allowAuthorSpecify')
+		);
+	}
+
+	/**
 	 * @see Form::fetch()
 	 */
-	function fetch($request) {
+	public function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign('pluginJavaScriptURL', $this->_plugin->getJsUrl($request));
 		return parent::fetch($request);
+	}
+
+	/**
+	 * Save form.
+	 */
+	public function execute() {
+		$allowAuthorSpecify = intval($this->getData('allowAuthorSpecify'));
+		$this->_plugin->updateSetting($this->_context->getId(), 'allowAuthorSpecify', $allowAuthorSpecify);
 	}
 }

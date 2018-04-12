@@ -44,7 +44,6 @@
 		<field name="sword_password" type="C2" size="2047">
 			<NOTNULL/>
 		</field>
-		<field name="recent_items" type="I2"/>
 		<descr>Deposit points.</descr>
 		<index name="deposit_points_context_id">
 			<col>context_id</col>

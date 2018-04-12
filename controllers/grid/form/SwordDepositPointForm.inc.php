@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @file controllers/grid/form/SwordDepositPointForm.inc.php
  *
@@ -15,6 +15,8 @@
 
 import('lib.pkp.classes.form.Form');
 
+define('SWORD_PASSWORD_SLUG', '******');
+
 class SwordDepositPointForm extends Form {
 	/** @var int Context ID */
 	protected $_contextId;
@@ -24,6 +26,9 @@ class SwordDepositPointForm extends Form {
 
 	/** @var SwordPlugin SWORD plugin */
 	protected $_plugin;
+
+	/** @var int Selected deposit point type */
+	protected $selectedType = null;
 
 	/**
 	 * Constructor
@@ -36,7 +41,7 @@ class SwordDepositPointForm extends Form {
 		$this->_contextId = $contextId;
 		$this->_depositPointId = $depositPointId;
 		$this->_plugin = $swordPlugin;
-		
+
 		// Add form checks
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
@@ -56,9 +61,10 @@ class SwordDepositPointForm extends Form {
 			$depositPoint = $depositPointDao->getById($this->_depositPointId, $this->_contextId);
 			$this->setData('swordUrl', $depositPoint->getSwordUrl());
 			$this->setData('name', $depositPoint->getName(AppLocale::getLocale()));
-			$this->setData('type', $depositPoint->getType());
+			$this->selectedType = $depositPoint->getType();
+			$this->setData('type', $this->selectedType);
 			$this->setData('swordUsername', $depositPoint->getSwordUsername());
-			$this->setData('swordPassword', 'secret');
+			$this->setData('swordPassword', SWORD_PASSWORD_SLUG);
 		}
 	}
 
@@ -75,7 +81,7 @@ class SwordDepositPointForm extends Form {
 				'depositPointType'
 			)
 		);
-		
+
 		$this->setData('name', $request->getUserVar('name')[AppLocale::getLocale()]);
 	}
 
@@ -89,8 +95,8 @@ class SwordDepositPointForm extends Form {
 			'depositPointId'		=> $this->_depositPointId,
 			'formLocale' 		=> AppLocale::getLocale(),
 			'depositPointTypes'	=> $this->_plugin->getTypeMap(),
+			'selectedType'		=> $this->selectedType,
 		));
-		
 		return parent::fetch($request);
 	}
 
@@ -102,23 +108,30 @@ class SwordDepositPointForm extends Form {
 		
 		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 		$plugin->import('classes.DepositPoint');
-		
+
 		$depositPoint = null;
 		if (isset($this->_depositPointId)) {
 			$depositPoint = $depositPointDao->getById($this->_depositPointId, $this->_contextId);
 		}
-		
+
 		if (is_null($depositPoint)) {
 			$depositPoint = new DepositPoint();
 		}
-		
+
 		$depositPoint->setContextId($this->_contextId);
 		$depositPoint->setName($this->getData('name'), AppLocale::getLocale());
 		$depositPoint->setType($this->getData('depositPointType'));
 		$depositPoint->setSwordUrl($this->getData('swordUrl'));
 		$depositPoint->setSwordUsername($this->getData('swordUsername'));
-		$depositPoint->setSwordPassword($this->getData('swordPassword'));		// TODO save password only if changed.
-		
+
+		$swordPassword = $this->getData('swordPassword');
+		if (($swordPassword == SWORD_PASSWORD_SLUG) && !empty($depositPoint->getId())) {
+			$depositPoint->setSwordPassword($depositPoint->getSwordPassword());
+		}
+		else {
+			$depositPoint->setSwordPassword($swordPassword);
+		}
+
 		// Update or insert deposit point
 		if ($depositPoint->getId() != null) {
 			$depositPointDao->updateObject($depositPoint);

@@ -34,4 +34,11 @@
 <strong>Manager Only</strong>: Only the Journal Manager may use this deposit point. The URL indicates a service document. Deposit is manually performed by the Journal Manager using the Import/Export interface in Journal Management.
 </p>]]></message>
 	<message key="plugins.generic.sword.depositPoints.required.field">This field is required.</message>
+	<message key="plugins.importexport.sword.displayName">SWORD Import/Export Deposit Plugin</message>
+	<message key="plugins.importexport.sword.description">Deposit articles in remote repositories using the SWORD deposit protocol</message>
+	<message key="plugins.importexport.sword.deposit">Deposit</message>
+	<message key="plugins.importexport.sword.depositPoint">Deposit Point</message>
+	<message key="plugins.importexport.sword.depositGalleys">Deposit Galleys</message>
+	<message key="plugins.importexport.sword.depositEditorial">Deposit Most Recent Editorial File</message>
+	<message key="plugins.importexport.sword.depositPoint.addRemove">Add/Remove</message>
 </locale>

@@ -45,7 +45,7 @@
 		{/fbvFormSection}
 		
 		{fbvFormSection title="common.type"}
-			{fbvElement type="select" id="depositPointType" from=$depositPointTypes selected=$depositPointTypeSelected translate=false}
+			{fbvElement type="select" id="depositPointType" from=$depositPointTypes selected=$selectedType translate=false}
 		{/fbvFormSection}
 		
 		{fbvFormSection description="plugins.generic.sword.depositPoints.type.description"}{/fbvFormSection}

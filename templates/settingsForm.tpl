@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="swordSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="generic" plugin=sword verb="save"}">
+<form class="pkp_form" id="swordSettingsForm" method="post" action="{url router=$smarty.const.ROUTE_PAGE op="swordSettings" save=true}">
 	{csrf}
 	
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="swordSettingsFormNotification"}

@@ -43,6 +43,10 @@ class SwordSettingsTabHandler extends Handler {
 		$this->_plugin->import('SwordSettingsForm');
 		$form = new SwordSettingsForm($this->_plugin, $context);
 		if ($request->getUserVar('save')) {
+			$form->readInputData();
+			if ($form->validate()) {
+				$form->execute();
+			}
 		} else {
 			$form->initData();
 		}
