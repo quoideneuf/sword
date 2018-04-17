@@ -20,6 +20,8 @@ define('SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION',	2);
 define('SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED',	3);
 define('SWORD_DEPOSIT_TYPE_MANAGER',		4);
 
+define('SWORD_PASSWORD_SLUG', '******');
+
 class SwordPlugin extends GenericPlugin {
 	/**
 	 * Register the plugin, if enabled
@@ -73,7 +75,15 @@ class SwordPlugin extends GenericPlugin {
 			$args[2] = $this->getPluginPath() . '/' . 'SwordSettingsTabHandler.inc.php';
 		}
 		else {
-			// TODO
+			$publicOps = array(
+				'depositPoints',
+				'performDeposit',
+			);
+
+			if (!in_array($op, $publicOps)) return;
+
+			define('HANDLER_CLASS', 'SwordHandler');
+			$args[2] = $this->getPluginPath() . '/' . 'SwordHandler.inc.php';
 		}
 	}
 
@@ -102,6 +112,11 @@ class SwordPlugin extends GenericPlugin {
 		if ($component == 'plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler') {
 			import($component);
 			SwordDepositPointsGridHandler::setPlugin($this);
+			return true;
+		}
+		if ($component == 'plugins.generic.sword.controllers.grid.SubmissionListGridHandler') {
+			import($component);
+			SubmissionListGridHandler::setPlugin($this);
 			return true;
 		}
 		return false;

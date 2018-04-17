@@ -110,6 +110,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				);
 				$templateMgr->assign('swordSettingsPageUrl', $settingUrl);
 				$templateMgr->assign('depositPoints', $depositPointsData);
+				$templateMgr->assign('pluginJavaScriptURL', $this->getSwordPlugin()->getJsUrl($request));
 				$templateMgr->display($this->getTemplatePath() . 'articles.tpl');
 				break;
 			default:

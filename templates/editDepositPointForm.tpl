@@ -41,7 +41,7 @@
 		{/fbvFormSection}
 		
 		{fbvFormSection for="swordPassword" title="user.password"}
-			{fbvElement type="text" id="swordPassword" value=$swordPassword|escape}
+			{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword|escape}
 		{/fbvFormSection}
 		
 		{fbvFormSection title="common.type"}

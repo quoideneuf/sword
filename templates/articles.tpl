@@ -9,11 +9,12 @@
  *}
  {include file="common/header.tpl" pageTitle="plugins.importexport.sword.displayName"}
  
+ <script src="{$pluginJavaScriptURL}/SwordDepositPointsFormHandler.js"></script>
  <script type="text/javascript">
 	$(function() {ldelim}
 		$('#importExportTabs').pkpHandler('$.pkp.controllers.TabHandler');
 		$('#articlesForm').pkpHandler(
-			'$.pkp.controllers.form.AjaxFormHandler'
+			'$.pkp.plugins.sword.js.SwordDepositPointsFormHandler',
 		);
 	{rdelim});
 </script>
@@ -23,22 +24,25 @@
 		<li><a href="#importExportDeposits-tab">{translate key="plugins.importexport.sword.displayName"}</a></li>
 	</ul>
 	<div id="importExportDeposits-tab">
-		<form id="articlesForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler" op="updateDepositPoint" existingPageName=$blockName escape=false}">
+		<form id="articlesForm" class="pkp_form" method="post" 
+			action="{url router=$smarty.const.ROUTE_PAGE page="sword" op="performDeposit" save=true}"
+			data-depositpointurl="{url router=$smarty.const.ROUTE_PAGE page='sword' op="depositPoints"}">
 			{csrf}
 			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="ArticlesNotification"}
 			{fbvFormSection}
 				{fbvFormSection title="plugins.importexport.sword.depositPoint"}
 					{fbvElement type="select" id="depositPoint" from=$depositPoints selected=$selectedDepositPoint translate=false}
 					<a href="{$swordSettingsPageUrl}">{translate key="plugins.importexport.sword.depositPoint.addRemove"}</a>
+					<span id="depositPointsSpinner" class="pkp_spinner"></span>
 				{/fbvFormSection}
 				{fbvFormSection for="swordUsername" title="user.username"}
 					{fbvElement type="text" id="swordUsername" value=$swordUsername|escape}
 				{/fbvFormSection}
 				{fbvFormSection for="swordPassword" title="user.password"}
-					{fbvElement type="text" id="swordPassword" value=$swordPassword|escape}
+					{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword|escape}
 				{/fbvFormSection}
 				{fbvFormSection title="plugins.importexport.sword.depositPoint"}
-					{fbvElement type="select" id="swordDepositPoint" from=$swordDepositPoints selected=$swordDepositPoint translate=false}
+					{fbvElement type="select" id="swordDepositPoints" translate=false}
 					{fbvElement type="button" label="common.refresh" id="refreshBtn" inline=true}
 				{/fbvFormSection}
 			{/fbvFormSection}
@@ -46,7 +50,9 @@
 				{fbvElement type="checkbox" id="depositGalleys" value="1" checked=$depositGalleys label="plugins.importexport.sword.depositGalleys"}
 				{fbvElement type="checkbox" id="depositEditorial" value="1" checked=$depositEditorial label="plugins.importexport.sword.depositEditorial"}
 			{/fbvFormSection}
-			{fbvElement type="button" label="plugins.importexport.sword.deposit" id="depositBtn" inline=true}
+			{url|assign:submissionListGridUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.submissionListGridHandler" op="fetchGrid" escape=false}
+			{load_url_in_div id="submissionListGridContainer" url=$submissionListGridUrl}
+			{fbvElement type="submit" label="plugins.importexport.sword.deposit" id="depositBtn" inline=true}
 			{fbvElement type="button" label="common.selectAll" id="selectAllBtn" inline=true}
 		</form>
 	</div>

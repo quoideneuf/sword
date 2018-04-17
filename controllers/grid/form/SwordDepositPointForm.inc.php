@@ -15,8 +15,6 @@
 
 import('lib.pkp.classes.form.Form');
 
-define('SWORD_PASSWORD_SLUG', '******');
-
 class SwordDepositPointForm extends Form {
 	/** @var int Context ID */
 	protected $_contextId;
