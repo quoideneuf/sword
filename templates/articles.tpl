@@ -25,7 +25,7 @@
 	</ul>
 	<div id="importExportDeposits-tab">
 		<form id="articlesForm" class="pkp_form" method="post" 
-			action="{url router=$smarty.const.ROUTE_PAGE page="sword" op="performManagerOnlyDeposit" save=true}"
+			action="{plugin_url path="deposit"}"
 			data-depositpointurl="{url router=$smarty.const.ROUTE_PAGE page='sword' op="depositPoints"}">
 			{csrf}
 			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="ArticlesNotification"}

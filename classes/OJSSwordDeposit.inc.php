@@ -57,7 +57,6 @@ class OJSSwordDeposit {
 		);
 
 		$journalDao = DAORegistry::getDAO('JournalDAO');
-		error_log('$article->getContextId() => '.$article->getContextId());
 		$this->_context = $journalDao->getById($article->getContextId());
 
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
@@ -109,6 +108,7 @@ class OJSSwordDeposit {
 
 	/**
 	 * Add a file to a package. Used internally.
+	 * @param $submissionFile SubmissionFile
 	 */
 	public function _addFile($submissionFile) {
 		$targetFilename = $this->_outPath . '/files/' . $submissionFile->getLocalizedName();
@@ -121,7 +121,7 @@ class OJSSwordDeposit {
 	 */
 	public function addGalleys() {
 		foreach ($this->_article->getGalleys() as $galley) {
-			$this->_addFile($galley);
+			$this->_addFile($galley->getFile());
 		}
 	}
 
@@ -131,19 +131,32 @@ class OJSSwordDeposit {
 	 */
 	public function addEditorial() {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+		$submissionFiles = $submissionFileDao->getBySubmissionId($this->_article->getId());
+		// getBySubmission orders results by id ASC, let's reverse the array to have recent files first
+		$submissionFiles = array_reverse($submissionFiles, true);
+		$files = array();
+		foreach ($submissionFiles as $submissionFile) {
+			$fileStage = $submissionFile->getFileStage();
+			if (!isset($files[$fileStage])) {
+				$files[$fileStage] = array();
+			}
+			$files[$fileStage][] = $submissionFile;
+		}
 		// Move through stages in reverse order and try to use them.
-		foreach (array('SUBMISSION_FILE_PRODUCTION_READY', 'SUBMISSION_FILE_COPYEDIT', 'SUBMISSION_FILE_REVIEW_FILE','SUBMISSION_FILE_SUBMISSION') as $subFileStage) {
-			$submissionFiles = $submissionFileDao->getLatestRevisions($this->_article->getId(), $subFileStage);
-			var_dump($submissionFiles);
-			if (!is_null($submissionFiles) && count($submissionFiles)) {
-				// TODO : what to do with other files when nultiple files are returned
-				$submissionFile = array_shift($submissionFiles);
-				var_dump($submissionFile);
-				$this->_addFile($submissionFile);
+		$stages = array(
+			SUBMISSION_FILE_PRODUCTION_READY,
+			SUBMISSION_FILE_COPYEDIT,
+			SUBMISSION_FILE_REVIEW_FILE,
+			SUBMISSION_FILE_SUBMISSION
+		);
+		$mostRecentEditorialFile = null;
+		foreach ($stages as $subFileStage) {
+			if (isset($files[$subFileStage])) {
+				$mostRecentEditorialFile = array_shift($files[$subFileStage]);
+				$this->_addFile($mostRecentEditorialFile);
 				return true;
 			}
 		}
-
 		// TODO when the above didn't work, SWORD plugin for OJS2 was trying "the editor version"
 		// how does it apply to OJS3? (I found no SectionEditorSubmissionDAO in the code base)
 		return false;
@@ -164,7 +177,6 @@ class OJSSwordDeposit {
 	 */
 	public function deposit($url, $username, $password) {
 		$client = new SWORDAPPClient();
-		error_log(print_r([$url, $username, $password, $this->_outPath],true));
 		$response = $client->deposit(
 			$url, $username, $password,
 			'',

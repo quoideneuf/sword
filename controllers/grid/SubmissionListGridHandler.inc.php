@@ -49,7 +49,7 @@ class SubmissionListGridHandler extends GridHandler {
 		$context = $request->getContext();
 		
 		// Set the grid details.
-		$this->setTitle('plugins.generic.sword.settings.depositPoints');
+		$this->setTitle('navigation.submissions');
 		$this->setEmptyRowText('plugins.generic.sword.manager.noneCreated');
 		
 		$articlesList = array();

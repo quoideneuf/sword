@@ -99,7 +99,9 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				$depositPoints = $depositPointDao->getByContextId($context->getId());
 				$depositPointsData = array('' => __('common.select'));
 				while ($depositPoint = $depositPoints->next()) {
-					$depositPointsData[$depositPoint->getId()] = $depositPoint->getLocalizedName();
+					if ($depositPoint->getType() == SWORD_DEPOSIT_TYPE_MANAGER) {
+						$depositPointsData[$depositPoint->getId()] = $depositPoint->getLocalizedName();
+					}
 				}
 				$dispatcher = $request->getDispatcher();
 				$settingUrl = $dispatcher->url(
@@ -108,10 +110,104 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					array(),
 					'swordSettings'
 				);
+				foreach (array('selectedDepositPoint', 'depositEditorial', 'depositGalleys') as $var) {
+					$templateMgr->assign($var, $request->getUserVar($var));
+				}
 				$templateMgr->assign('swordSettingsPageUrl', $settingUrl);
 				$templateMgr->assign('depositPoints', $depositPointsData);
 				$templateMgr->assign('pluginJavaScriptURL', $this->getSwordPlugin()->getJsUrl($request));
 				$templateMgr->display($this->getTemplatePath() . 'articles.tpl');
+				break;
+
+			case 'deposit':
+				$context = $request->getContext();
+				$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
+				$this->getSwordPlugin()->import('classes.OJSSwordDeposit');
+
+				$depositPointId = $request->getUserVar('depositPoint');
+				$password = $request->getUserVar('swordPassword');
+				if ($password == SWORD_PASSWORD_SLUG) {
+					$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
+					$depositPoint = $depositPointDao->getById($depositPointId, $context->getId());
+					if ($depositPoint) {
+						$password = $depositPoint->getSwordPassword();
+					}
+				}
+
+				$swordDepositPoint = $request->getUserVar('swordDepositPoint');
+				$depositEditorial = $request->getUserVar('depositEditorial');
+				$depositGalleys = $request->getUserVar('depositGalleys');
+				$username = $request->getUserVar('swordUsername');
+				$depositIds = array();
+
+				$backLink = $request->url(
+					null, null, null,
+					array('plugin', $this->getName()),
+					array(
+						'selectedDepositPoint' => $depositPointId,
+						'depositEditorial' => $depositEditorial,
+						'depositGalleys' => $depositGalleys,
+					)
+				);
+
+				$errors = array();
+				// select at least one article
+				$articleIds = $request->getUserVar('articleId');
+				if (empty($articleIds)) {
+					$errors[] = array(
+						'title' => __('plugins.importexport.sword.requiredFieldErrorTitle'),
+						'message' => __('plugins.importexport.sword.requiredFieldErrorMessage'),
+					);
+				}
+				else {
+					foreach ($articleIds as $articleId) {
+						$publishedArticle = $publishedArticleDao->getByArticleId($articleId);
+						try {
+							$deposit = new OJSSwordDeposit($publishedArticle);
+							$deposit->setMetadata($request);
+							if ($depositGalleys) $deposit->addGalleys();
+							if ($depositEditorial) {
+								$result = $deposit->addEditorial();
+							}
+							$deposit->createPackage();
+							$response = $deposit->deposit($swordDepositPoint, $username, $password);
+							$deposit->cleanup();
+							$depositIds[] = $response->sac_id;
+						}
+						catch (Exception $e) {
+							$errors[] = array(
+								'title' => $publishedArticle->getLocalizedTitle(),
+								'message' => $e->getMessage(),
+							);
+						}
+					}
+				}
+
+				if (!empty($errors)) {
+					$errorMessage = '<dl>';
+					foreach ($errors as $error) {
+						$errorMessage .= "<dt>{$error['title']}</dt>";
+						$errorMessage .= "<dd>{$error['message']}</dd>";
+					}
+					$errorMessage .= '</dl>';
+					$templateMgr->assign(array(
+						'title' => __('plugins.importexport.sword.depositFailed'),
+						'messageTranslated' => $errorMessage,
+						'backLink' => $backLink,
+						'backLinkLabel' => 'common.back'
+					));
+				}
+				else {
+					$templateMgr->assign(array(
+						'title' => __('plugins.importexport.sword.depositSuccessful'),
+						'message' => 'plugins.importexport.sword.depositSuccessfulDescription',
+						'backLink' => $backLink,
+						'backLinkLabel' => 'common.continue'
+					));
+				}
+				$messageTemplateFile = $this->getSwordPlugin()->getTemplatePath() . 'message.tpl';
+				$output = $templateMgr->fetch($messageTemplateFile);
+				return new JSONMessage(true, $output);
 				break;
 			default:
 				$dispatcher = $request->getDispatcher();

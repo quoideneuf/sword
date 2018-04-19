@@ -33,6 +33,10 @@
 		$form.find('select#depositPoint').change(this.callbackWrapper(this.loadDepositPointsDetails));
 		$form.find('button#refreshBtn').click(this.callbackWrapper(this.loadDepositPointsDetails));
 		$form.find('button#selectAllBtn').click(this.callbackWrapper(this.selectAllSubmissions));
+		// fill form if dropdown is set on page load
+		if ($('select#depositPoint').val() != "") {
+			this.loadDepositPointsDetails();
+		}
 		
 	};
 	$.pkp.classes.Helper.inherits(
