@@ -97,7 +97,7 @@ class SWORDAPPClient {
 
         // Parse the result
         $sac_dresponse = new SWORDAPPEntry($sac_status, $sac_resp);
-
+        error_log($sac_resp);
         // Was it a successful result?
         if (($sac_status >= 200) && ($sac_status < 300)) {
             try {

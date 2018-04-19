@@ -23,37 +23,27 @@ class SubmissionListGridCellProvider extends GridCellProvider {
 	 * @return array
 	 */
 	public function getTemplateVarsFromRowColumn($row, $column) {
-		$submission = $row->getData();
+		$publishedArticle = $row->getData();
 		switch ($column->getId()) {
 			case 'id':
 				return array(
-					'id' => $submission->getId(), 
-					'name' => 'submissions[]',
-					'value' => $submission->getId(),
+					'id' => $publishedArticle->getId(), 
+					'name' => 'articleId[]',
+					'value' => $publishedArticle->getId(),
 					'checked' => false,
 				);
 			case 'issue':
-				$issue = '';
-				$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-				$publishedArticle = $publishedArticleDao->getPublishedArticleByBestArticleId(
-					(int) $submission->getContextId(),
-					$submission->getId(),
+				$issueDao = DAORegistry::getDAO('IssueDAO');
+				$issue = $issueDao->getById(
+					$publishedArticle->getIssueId(),
+					$publishedArticle->getJournalId(),
 					true
 				);
-				if ($publishedArticle) {
-					$issueDao = DAORegistry::getDAO('IssueDAO');
-					$issueObject = $issueDao->getById(
-						$publishedArticle->getIssueId(),
-						$publishedArticle->getJournalId(),
-						true
-					);
-					$issue = $issueObject->getIssueIdentification();
-				}
-				return array('label' => $issue);
+				return array('label' => $issue->getIssueIdentification());
 			case 'title':
-				return array('label' => $submission->getLocalizedTitle());
+				return array('label' => $publishedArticle->getLocalizedTitle());
 			case 'authors':
-				return array('label' => $submission->getAuthorString());
+				return array('label' => $publishedArticle->getAuthorString());
 		}
 		return parent::getTemplateVarsFromRowColumn($row, $column);
 	}

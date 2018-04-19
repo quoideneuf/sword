@@ -52,11 +52,13 @@ class SubmissionListGridHandler extends GridHandler {
 		$this->setTitle('plugins.generic.sword.settings.depositPoints');
 		$this->setEmptyRowText('plugins.generic.sword.manager.noneCreated');
 		
-		// Get the pages and add the data to the grid
-		import('classes.core.ServicesContainer');
-		$submissionService = ServicesContainer::instance()->get('submission');
-		$submissions = $submissionService->getSubmissions($context->getId());
-		$this->setGridDataElements($submissions);
+		$articlesList = array();
+		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+		$publishedArticles = $publishedArticleDao->getPublishedArticlesByJournalId($context->getId());
+		while ($publishedArticle = $publishedArticles->next()) {
+			$articlesList[] = $publishedArticle;
+		}
+		$this->setGridDataElements($articlesList);
 
 		// Columns
 		$cellProvider = new SubmissionListGridCellProvider();
@@ -66,7 +68,7 @@ class SubmissionListGridHandler extends GridHandler {
 			null,
 			'controllers/grid/common/cell/selectStatusCell.tpl',
 			$cellProvider
-			));
+		));
 		$this->addColumn(new GridColumn(
 			'issue',
 			'issue.issue',

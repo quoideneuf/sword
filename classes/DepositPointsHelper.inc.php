@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DepositPointsHelper
- * @ingroup plugins_generic_sword
+ * @ingroup plugins_generic_sword_classes
  *
  * @brief Deposit points Helper class
  *

@@ -25,7 +25,7 @@
 	</ul>
 	<div id="importExportDeposits-tab">
 		<form id="articlesForm" class="pkp_form" method="post" 
-			action="{url router=$smarty.const.ROUTE_PAGE page="sword" op="performDeposit" save=true}"
+			action="{url router=$smarty.const.ROUTE_PAGE page="sword" op="performManagerOnlyDeposit" save=true}"
 			data-depositpointurl="{url router=$smarty.const.ROUTE_PAGE page='sword' op="depositPoints"}">
 			{csrf}
 			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="ArticlesNotification"}
@@ -42,7 +42,7 @@
 					{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword|escape}
 				{/fbvFormSection}
 				{fbvFormSection title="plugins.importexport.sword.depositPoint"}
-					{fbvElement type="select" id="swordDepositPoints" translate=false}
+					{fbvElement type="select" id="swordDepositPoint" translate=false}
 					{fbvElement type="button" label="common.refresh" id="refreshBtn" inline=true}
 				{/fbvFormSection}
 			{/fbvFormSection}

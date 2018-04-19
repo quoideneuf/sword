@@ -77,7 +77,7 @@ class SwordPlugin extends GenericPlugin {
 		else {
 			$publicOps = array(
 				'depositPoints',
-				'performDeposit',
+				'performManagerOnlyDeposit',
 			);
 
 			if (!in_array($op, $publicOps)) return;

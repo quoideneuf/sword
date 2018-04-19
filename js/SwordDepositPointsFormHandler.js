@@ -52,7 +52,7 @@
 			if (!selectedDepositPoint) return; 		// stop if no deposit point is selected
 			$('input[name=swordUsername]').val('');
 			$('input[name=swordPassword]').val('');
-			$('#swordDepositPoints').find('option').remove();
+			$('#swordDepositPoint').find('option').remove();
 			$('span#depositPointsSpinner').addClass('is_visible');
 			var url = $select.closest('form').data('depositpointurl');
 			$.get(url, {'depositPointId':selectedDepositPoint}, function(data) {
@@ -62,7 +62,7 @@
 				for (dp in content.depositPoints) {
 					var value = dp;
 					var label = content.depositPoints[dp];
-					$("select#swordDepositPoints").append('<option value="'+value+'">'+label+'</option>');
+					$("select#swordDepositPoint").append('<option value="'+value+'">'+label+'</option>');
 					$('span#depositPointsSpinner').removeClass('is_visible');
 				}
 			}, 'json');

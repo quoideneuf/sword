@@ -25,7 +25,7 @@ class SwordHandler extends Handler {
 		$this->_parentPlugin = PluginRegistry::getPlugin('generic', 'swordplugin');
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),		// TODO validate with Alec which role to use
-			array('depositPoints','performDeposit')
+			array('depositPoints','performManagerOnlyDeposit')
 		);
 	}
 
@@ -82,7 +82,56 @@ class SwordHandler extends Handler {
 	 *
 	 * @return JSONMessage
 	 */
-	public function performDeposit($args, $request) {
-		//error_log(print_r($request->getUserVars(),true));
+	public function performManagerOnlyDeposit($args, $request) {
+// 		error_log(print_r($request->getUserVar('submissions'),true));
+
+		// TODO Validate form. (use Form instead?)
+		
+		$context = $request->getContext();
+		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
+		$this->getSwordPlugin()->import('classes.OJSSwordDeposit');
+
+		$depositPointId = $request->getUserVar('depositPoint');
+		
+		$password = $request->getUserVar('swordPassword');
+		if ($password == SWORD_PASSWORD_SLUG) {
+			$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
+			$depositPoint = $depositPointDao->getById($depositPointId, $context->getId());
+			if ($depositPoint) {
+				$password = $depositPoint->getSwordPassword();
+			}
+			else {
+				// TODO add notification
+				return new JSONMessage(false);
+			}
+		}
+
+		$swordDepositPoint = $request->getUserVar('swordDepositPoint');
+		$depositEditorial = $request->getUserVar('depositEditorial');
+		$depositGalleys = $request->getUserVar('depositGalleys');
+		$username = $request->getUserVar('swordUsername');
+		$depositIds = array();
+
+		foreach ($request->getUserVar('articleId') as $articleId) {
+			error_log('processing submission #'.$articleId);
+			try {
+				$publishedArticle = $publishedArticleDao->getByArticleId($articleId);
+				$deposit = new OJSSwordDeposit($publishedArticle);
+				$deposit->setMetadata($request);
+// 				if ($depositGalleys) $deposit->addGalleys();
+				if ($depositEditorial) {
+					$result = $deposit->addEditorial();
+					var_dump($result);
+				}
+				$deposit->createPackage();
+				$response = $deposit->deposit($swordDepositPoint, $username, $password);
+				$deposit->cleanup();
+				$depositIds[] = $response->sac_id;
+			
+			}
+			catch (Exception $e) {
+				error_log((string)$e);
+			}
+		}
 	}
 }
