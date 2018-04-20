@@ -222,12 +222,15 @@ class DepositPointDAO extends DAO {
 	 * Retrieve deposit points matching a particular context ID.
 	 * @param $contextId int
 	 * @param $rangeInfo object DBRangeInfo object describing range of results to return
+	 * @param $type int limit results to a specific type
 	 * @return object DAOResultFactory containing matching DepositPoints
 	 */
-	public function getByContextId($contextId, $rangeInfo = null) {
+	public function getByContextId($contextId, $rangeInfo = null, $type = null) {
+		$params = array((int) $contextId);
+		if ($type) $params[] = (int) $type;
 		$result = $this->retrieveRange(
-			'SELECT * FROM deposit_points WHERE context_id = ? ORDER BY seq ASC',
-			$contextId,
+			'SELECT * FROM deposit_points WHERE context_id = ? '.($type?' AND type = ?':'').' ORDER BY seq ASC',
+			$params,
 			$rangeInfo
 		);
 		

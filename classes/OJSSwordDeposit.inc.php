@@ -42,6 +42,8 @@ class OJSSwordDeposit {
 	 * @param $article Article
 	 */
 	public function __construct($article) {
+		$this->_article = $article;
+
 		// Create a directory for deposit contents
 		$this->_outPath = tempnam('/tmp', 'sword');
 		unlink($this->_outPath);

@@ -96,12 +96,10 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 			case '':
 				$this->getSwordPlugin()->import('classes.DepositPoint');
 				$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
-				$depositPoints = $depositPointDao->getByContextId($context->getId());
+				$depositPoints = $depositPointDao->getByContextId($context->getId(), null, SWORD_DEPOSIT_TYPE_MANAGER);
 				$depositPointsData = array('' => __('common.select'));
 				while ($depositPoint = $depositPoints->next()) {
-					if ($depositPoint->getType() == SWORD_DEPOSIT_TYPE_MANAGER) {
-						$depositPointsData[$depositPoint->getId()] = $depositPoint->getLocalizedName();
-					}
+					$depositPointsData[$depositPoint->getId()] = $depositPoint->getLocalizedName();
 				}
 				$dispatcher = $request->getDispatcher();
 				$settingUrl = $dispatcher->url(
@@ -166,9 +164,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							$deposit = new OJSSwordDeposit($publishedArticle);
 							$deposit->setMetadata($request);
 							if ($depositGalleys) $deposit->addGalleys();
-							if ($depositEditorial) {
-								$result = $deposit->addEditorial();
-							}
+							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
 							$response = $deposit->deposit($swordDepositPoint, $username, $password);
 							$deposit->cleanup();

@@ -40,12 +40,99 @@ class SwordPlugin extends GenericPlugin {
 				HookRegistry::register('LoadHandler', array($this, 'callbackSwordLoadHandler'));
 				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackSettingsTab'));
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
+				HookRegistry::register('EditorAction::recordDecision', array($this, 'callbackAuthorDeposits'));
 			}
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Performs automatic deposit on accept decision
+	 * @param $hookName string
+	 * @param $args array
+	 */
+	public function callbackAuthorDeposits($hookName, $args) {
+		$submission =& $args[0];
+		$editorDecision =& $args[1];
+		$decision = $editorDecision['decision'];
+
+		// Determine if the decision was an "Accept"
+		if ($decision != SUBMISSION_EDITOR_DECISION_ACCEPT) return false;
+
+		// Perform Automatic deposits
+		$request =& Registry::get('request');
+		$context = $request->getContext();
+		$dispatcher = $request->getDispatcher();
+		$this->import('classes.OJSSwordDeposit');
+		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
+		$depositPoints = $depositPointDao->getByContextId($context->getId());
+		$sendDepositNotification = $this->getSetting($context->getId(), 'allowAuthorSpecify') ? true : false;
+		while ($depositPoint = $depositPoints->next()) {
+			$depositType = $depositPoint->getType();
+			if (($depositType == SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION) 
+				|| $depositType == SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED) {
+				$sendDepositNotification = true;
+			}
+			if ($depositType != SWORD_DEPOSIT_TYPE_AUTOMATIC) 
+				continue;
+
+			try {
+				$deposit = new OJSSwordDeposit($submission);
+				$deposit->setMetadata($request);
+				$deposit->addEditorial();
+				$deposit->createPackage();
+				$deposit->deposit(
+					$depositPoint->getSwordUrl(), 
+					$depositPoint->getSwordUsername(), 
+					$depositPoint->getSwordPassword()
+				);
+				$deposit->cleanup();
+			}
+			catch (Exception $e) {
+				error_log($e->getMessage());	// TODO more action required?
+			}
+
+			$user = $request->getUser();
+			$params = array(
+				'itemTitle' => $submission->getLocalizedTitle(), 
+				'repositoryName' => $depositPoint->getLocalizedName()
+			);
+			$notificationMgr = new NotificationManager();
+			$notificationMgr->createTrivialNotification(
+				$user->getId(),
+				NOTIFICATION_TYPE_SUCCESS,
+				array('contents' => __('plugins.generic.sword.automaticDepositComplete', $params))
+			);
+		}
+
+		if ($sendDepositNotification) {
+			// TODO how to get submission user ? 
+			$submittingUser = $submission->getPrimaryAuthor();
+			$contactName = $context->getSetting('contactName');
+			$contactEmail = $context->getSetting('contactEmail');
+			import('classes.mail.ArticleMailTemplate');
+			$mail = new ArticleMailTemplate($submission, 'SWORD_DEPOSIT_NOTIFICATION', null, $context, true);
+			$mail->setFrom($contactEmail, $contactName);
+			$mail->addRecipient($submittingUser->getEmail(), $submittingUser->getFullName());
+
+			$mail->assignParams(array(
+				'journalName' => $context->getLocalizedName(),
+				'articleTitle' => $submission->getLocalizedTitle(),
+				'swordDepositUrl' => $dispatcher->url(
+					$request, ROUTE_PAGE, null, 'sword', 'index', $submission->getId()
+				)
+			));
+
+			$mail->send($request);
+		}
+
+		return false;
+	}
+
+	/**
+	 * @copy PluginRegistry::loadCategory()
+	 */
 	public function callbackLoadCategory($hookName, $args) {
 		$category =& $args[0];
 		$plugins =& $args[1];
