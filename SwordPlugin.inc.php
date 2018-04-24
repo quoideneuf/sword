@@ -62,6 +62,7 @@ class SwordPlugin extends GenericPlugin {
 
 		// Perform Automatic deposits
 		$request =& Registry::get('request');
+		$user = $request->getUser();
 		$context = $request->getContext();
 		$dispatcher = $request->getDispatcher();
 		$this->import('classes.OJSSwordDeposit');
@@ -90,7 +91,13 @@ class SwordPlugin extends GenericPlugin {
 				$deposit->cleanup();
 			}
 			catch (Exception $e) {
-				error_log($e->getMessage());	// TODO more action required?
+				$contents = __('plugins.importexport.sword.depositFailed') . ': ' . $e->getMessage();
+				$notificationManager->createTrivialNotification(
+					$user->getId(),
+					NOTIFICATION_TYPE_ERROR,
+					array('contents' => $contents)
+				);
+				error_log($e->getTraceAsString());
 			}
 
 			$user = $request->getUser();
@@ -107,8 +114,7 @@ class SwordPlugin extends GenericPlugin {
 		}
 
 		if ($sendDepositNotification) {
-			// TODO how to get submission user ? 
-			$submittingUser = $submission->getPrimaryAuthor();
+			$submittingUser = $submission->getPrimaryAuthor();  // TODO how to get submission user ?
 			$contactName = $context->getSetting('contactName');
 			$contactEmail = $context->getSetting('contactEmail');
 			import('classes.mail.ArticleMailTemplate');
@@ -165,6 +171,7 @@ class SwordPlugin extends GenericPlugin {
 			$publicOps = array(
 				'depositPoints',
 				'performManagerOnlyDeposit',
+				'index',
 			);
 
 			if (!in_array($op, $publicOps)) return;

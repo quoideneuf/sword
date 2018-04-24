@@ -23,7 +23,7 @@ class DepositPointsHelper {
 	 * @param $password string
 	 * @return array|null
 	 */
-	public static function loadDepositPointsFromServer($url, $username, $password) {
+	public static function loadCollectionsFromServer($url, $username, $password) {
 		if (empty($url) OR empty($username) OR empty($password)) {
 			return null;
 		}

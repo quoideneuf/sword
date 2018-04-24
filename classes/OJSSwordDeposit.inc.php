@@ -39,10 +39,10 @@ class OJSSwordDeposit {
 	/**
 	 * Constructor.
 	 * Create a SWORD deposit object for an OJS article.
-	 * @param $article Article
+	 * @param $submission Submission
 	 */
-	public function __construct($article) {
-		$this->_article = $article;
+	public function __construct($submission) {
+		$this->_article = $submission;
 
 		// Create a directory for deposit contents
 		$this->_outPath = tempnam('/tmp', 'sword');
@@ -59,13 +59,13 @@ class OJSSwordDeposit {
 		);
 
 		$journalDao = DAORegistry::getDAO('JournalDAO');
-		$this->_context = $journalDao->getById($article->getContextId());
+		$this->_context = $journalDao->getById($submission->getContextId());
 
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
-		$this->_section = $sectionDao->getById($article->getSectionId());
+		$this->_section = $sectionDao->getById($submission->getSectionId());
 
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getByArticleId($article->getId());
+		$publishedArticle = $publishedArticleDao->getByArticleId($submission->getId());
 
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		if ($publishedArticle) {

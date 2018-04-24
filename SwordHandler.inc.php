@@ -24,8 +24,12 @@ class SwordHandler extends Handler {
 		// set reference to markup plugin
 		$this->_parentPlugin = PluginRegistry::getPlugin('generic', 'swordplugin');
 		$this->addRoleAssignment(
-			array(ROLE_ID_MANAGER),		// TODO validate with Alec which role to use
+			array(ROLE_ID_MANAGER),
 			array('depositPoints','performManagerOnlyDeposit')
+		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_MANAGER, ROLE_ID_AUTHOR),
+			array('index')
 		);
 	}
 
@@ -63,7 +67,7 @@ class SwordHandler extends Handler {
 		}
 
 		$this->getSwordPlugin()->import('classes.DepositPointsHelper');
-		$depositPoints = DepositPointsHelper::loadDepositPointsFromServer(
+		$collections = DepositPointsHelper::loadCollectionsFromServer(
 			$depositPoint->getSwordUrl(),
 			$depositPoint->getSwordUsername(),
 			$depositPoint->getSwordPassword()
@@ -71,7 +75,48 @@ class SwordHandler extends Handler {
 		return new JSONMessage(true, array(
 			'username' => $depositPoint->getSwordUsername(),
 			'password' => SWORD_PASSWORD_SLUG,
-			'depositPoints' => $depositPoints,
+			'depositPoints' => $collections,
 		));
+	}
+
+	/**
+	 * Returns deposit point details
+	 * @param $args array
+	 * @param $request PKPRequest
+	 *
+	 * @return JSONMessage
+	 */
+	public function index($args, $request) {
+		$context = $request->getContext();
+		$user = $request->getUser();
+		$articleId = (int) array_shift($args);
+		$save = array_shift($args) == 'save';
+
+		$submissionDao = Application::getSubmissionDAO();
+		$submission = $submissionDao->getById($articleId);
+
+		if (!$submission || !$user || !$context ||
+			($submission->getPrimaryAuthor()->getEmail() != $user->getEmail()) ||	// TODO is this the best way to port ($article->getUserId() != $user->getId()) to OJS3?
+			($submission->getContextId() != $context->getId())) {
+				$request->redirect(null, 'index');
+		}
+
+		$swordPlugin = $this->getSwordPlugin();
+		$swordPlugin->import('AuthorDepositForm');
+		$authorDepositForm = new AuthorDepositForm($swordPlugin, $context, $submission);
+
+		if ($save) {
+			$authorDepositForm->readInputData();
+			if ($authorDepositForm->validate()) {
+				$authorDepositForm->execute($request);
+				$request->redirect(null, 'submissions');
+			} else {
+				$authorDepositForm->initData();
+				$authorDepositForm->display();
+			}
+		} else {
+			$authorDepositForm->initData();
+			$authorDepositForm->display();
+		}
 	}
 }

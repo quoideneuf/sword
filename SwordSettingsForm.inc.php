@@ -18,7 +18,7 @@ import('lib.pkp.classes.form.Form');
 class SwordSettingsForm extends Form {
 	/** @var $_context Context */
 	protected $_context = null;
-	
+
 	/** @var $_plugin SwordPlugin */
 	protected $_plugin = null;
 	
@@ -38,7 +38,7 @@ class SwordSettingsForm extends Form {
 	 *
 	 * @return void
 	 */
-	function initData() {
+	public function initData() {
 		$this->setData('allowAuthorSpecify', $this->_plugin->getSetting($this->_context->getId(), 'allowAuthorSpecify'));
 	}
 
@@ -54,7 +54,7 @@ class SwordSettingsForm extends Form {
 	}
 
 	/**
-	 * @see Form::fetch()
+	 * @copy Form::fetch()
 	 */
 	public function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);

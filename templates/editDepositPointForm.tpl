@@ -33,15 +33,15 @@
 		{/fbvFormSection}
 		
 		{fbvFormSection for="swordUrl" title="plugins.importexport.sword.depositUrl"}
-			{fbvElement type="text" id="swordUrl" value=$swordUrl|escape}
+			{fbvElement type="text" id="swordUrl" value=$swordUrl}
 		{/fbvFormSection}
 		
 		{fbvFormSection for="swordUsername" title="user.username"}
-			{fbvElement type="text" id="swordUsername" value=$swordUsername|escape}
+			{fbvElement type="text" id="swordUsername" value=$swordUsername}
 		{/fbvFormSection}
 		
 		{fbvFormSection for="swordPassword" title="user.password"}
-			{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword|escape}
+			{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword}
 		{/fbvFormSection}
 		
 		{fbvFormSection title="common.type"}
