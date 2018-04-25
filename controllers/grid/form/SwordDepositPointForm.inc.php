@@ -34,7 +34,7 @@ class SwordDepositPointForm extends Form {
 	 * @param $contextId int Context ID
 	 * @param $depositPointId int Deposit Point (if any)
 	 */
-	function __construct(SwordPlugin $swordPlugin, $contextId, $depositPointId = null) {
+	public function __construct(SwordPlugin $swordPlugin, $contextId, $depositPointId = null) {
 		parent::__construct($swordPlugin->getTemplatePath() . 'editDepositPointForm.tpl');
 		$this->_contextId = $contextId;
 		$this->_depositPointId = $depositPointId;
@@ -53,7 +53,7 @@ class SwordDepositPointForm extends Form {
 	/**
 	 * Initialize form data.
 	 */
-	function initData() {
+	public function initData() {
 		if ($this->_depositPointId) {
 			$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 			$depositPoint = $depositPointDao->getById($this->_depositPointId, $this->_contextId);
@@ -79,7 +79,6 @@ class SwordDepositPointForm extends Form {
 				'depositPointType'
 			)
 		);
-
 		$this->setData('name', $request->getUserVar('name')[AppLocale::getLocale()]);
 	}
 
@@ -87,7 +86,7 @@ class SwordDepositPointForm extends Form {
 	 * Fetch the form.
 	 * @copydoc Form::fetch()
 	 */
-	function fetch($request) {
+	public function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
 			'depositPointId'		=> $this->_depositPointId,
@@ -111,7 +110,6 @@ class SwordDepositPointForm extends Form {
 		if (isset($this->_depositPointId)) {
 			$depositPoint = $depositPointDao->getById($this->_depositPointId, $this->_contextId);
 		}
-
 		if (is_null($depositPoint)) {
 			$depositPoint = new DepositPoint();
 		}
@@ -129,7 +127,6 @@ class SwordDepositPointForm extends Form {
 		else {
 			$depositPoint->setSwordPassword($swordPassword);
 		}
-
 		// Update or insert deposit point
 		if ($depositPoint->getId() != null) {
 			$depositPointDao->updateObject($depositPoint);

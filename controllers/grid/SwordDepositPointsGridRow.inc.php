@@ -18,7 +18,7 @@ class SwordDepositPointsGridRow extends GridRow {
 	/**
 	 * @copydoc GridRow::initialize()
 	 */
-	function initialize($request, $template = null) {
+	public function initialize($request, $template = null) {
 		parent::initialize($request, $template);
 		$depositPointId = $this->getId();
 

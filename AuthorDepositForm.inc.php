@@ -70,7 +70,7 @@ class AuthorDepositForm extends Form {
 	}
 
 	/**
-	 * @copy Form::display()
+	 * @copydoc Form::display()
 	 */
 	public function display() {
 		$request = Application::getRequest();
@@ -183,7 +183,7 @@ class AuthorDepositForm extends Form {
 		while ($depositPoint = $depositPoints->next()) {
 			if (!in_array($depositPoint->getType(), array(SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION, SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED)))
 				continue;
-			
+
 			$list[$depositPoint->getId()]['name'] = $depositPoint->getLocalizedName();
 			$list[$depositPoint->getId()]['url'] = $depositPoint->getSwordUrl();
 			$list[$depositPoint->getId()]['type'] = $depositPoint->getType();

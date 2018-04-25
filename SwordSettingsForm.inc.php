@@ -54,7 +54,7 @@ class SwordSettingsForm extends Form {
 	}
 
 	/**
-	 * @copy Form::fetch()
+	 * @copydoc Form::fetch()
 	 */
 	public function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);

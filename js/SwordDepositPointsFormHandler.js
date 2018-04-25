@@ -11,12 +11,12 @@
  * @brief SWORD plugin deposit points form handler.
  */
 (function($) {
-	
+
 	/** @type {Object} */
 	$.pkp.plugins.sword =
 			$.pkp.plugins.sword ||
 			{ js: { } };
-			
+
 	/**
 	 * @constructor
 	 *
@@ -37,7 +37,7 @@
 		if ($('select#depositPoint').val() != "") {
 			this.loadDepositPointsDetails();
 		}
-		
+
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.plugins.sword.js.SwordDepositPointsFormHandler,

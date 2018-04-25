@@ -137,7 +137,7 @@ class SwordPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copy PluginRegistry::loadCategory()
+	 * @copydoc PluginRegistry::loadCategory()
 	 */
 	public function callbackLoadCategory($hookName, $args) {
 		$category =& $args[0];

@@ -18,28 +18,27 @@ import('classes.handler.Handler');
 class SwordSettingsTabHandler extends Handler {
 	/** @var SwordPlugin Reference to SWORD plugin */
 	protected $_plugin = null;
-	
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->_plugin = PluginRegistry::getPlugin('generic', 'swordplugin');
-		
+
 		$this->addRoleAssignment(
 			array(ROLE_ID_MANAGER),
 			array('swordSettings')
 		);
 	}
-	
-	
+
 	public function swordSettings($args, $request) {
 		$context = $request->getContext();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON,  LOCALE_COMPONENT_PKP_MANAGER);
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
-		
+
 		$this->_plugin->import('SwordSettingsForm');
 		$form = new SwordSettingsForm($this->_plugin, $context);
 		if ($request->getUserVar('save')) {
@@ -50,7 +49,6 @@ class SwordSettingsTabHandler extends Handler {
 		} else {
 			$form->initData();
 		}
-		
 		return new JSONMessage(true, $form->fetch($request));
 	}
 }

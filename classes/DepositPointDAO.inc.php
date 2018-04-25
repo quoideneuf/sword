@@ -32,7 +32,7 @@ class DepositPointDAO extends DAO {
 	 * Instantiate a new data object.
 	 * @return DepositPoint
 	 */
-	function newDataObject() {
+	public function newDataObject() {
 		$this->_plugin->import('classes.DepositPoint');
 		return new DepositPoint();
 	}
@@ -246,7 +246,6 @@ class DepositPointDAO extends DAO {
 			'SELECT deposit_point_id FROM deposit_points WHERE context_id = ? ORDER BY seq',
 			$contextId
 		);
-		
 		for ($i=1; !$result->EOF; $i++) {
 			list($depositPointId) = $result->fields;
 			$this->update(
