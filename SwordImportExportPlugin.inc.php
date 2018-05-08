@@ -107,10 +107,10 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					array(),
 					'swordSettings'
 				);
-				foreach (array('selectedDepositPoint', 'depositEditorial', 'depositGalleys') as $var) {
-					$templateMgr->assign($var, $request->getUserVar($var));
-				}
 				$templateMgr->assign(array(
+					'selectedDepositPoint' 	=> $request->getUserVar('selectedDepositPoint'),
+					'depositEditorial' 	=> $request->getUserVar('depositEditorial'),
+					'depositGalleys' 	=> $request->getUserVar('depositGalleys'),
 					'swordSettingsPageUrl' 	=> $settingUrl,
 					'depositPoints' 	=> $depositPointsData,
 					'pluginJavaScriptURL' 	=> $this->getSwordPlugin()->getJsUrl($request),
