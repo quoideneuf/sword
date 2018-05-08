@@ -109,7 +109,7 @@ class DepositPointDAO extends DAO {
 				$depositPoint->getSwordUsername(),
 				$depositPoint->getSwordPassword(),
 			)
-			);
+		);
 		$depositPoint->setId($this->getInsertId());
 		
 		$this->updateLocaleFields($depositPoint);
