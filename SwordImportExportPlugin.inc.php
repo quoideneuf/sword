@@ -183,8 +183,8 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				if (!empty($errors)) {
 					$errorMessage = '<dl>';
 					foreach ($errors as $error) {
-						$errorMessage .= "<dt>{$error['title']}</dt>";
-						$errorMessage .= "<dd>{$error['message']}</dd>";
+						$errorMessage .= "<dt>" . htmlentities($error['title']) . "</dt>";
+						$errorMessage .= "<dd>" . htmlentities($error['message']) . "</dd>";
 					}
 					$errorMessage .= '</dl>';
 					$templateMgr->assign(array(
