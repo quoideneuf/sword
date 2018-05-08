@@ -48,9 +48,7 @@ class AuthorDepositForm extends Form {
 	}
 
 	/**
-	 * Assign form data to user-submitted data
-	 *
-	 * @return void
+	 * @copydoc Form::readInputData()
 	 */
 	public function readInputData() {
 		$this->readUserVars(array(
