@@ -90,7 +90,6 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 		parent::display($args, $request);
 		$templateMgr = TemplateManager::getManager($request);
 		$context = $request->getContext();
-		$journal = $request->getJournal();
 		switch (array_shift($args)) {
 			case 'index':
 			case '':
