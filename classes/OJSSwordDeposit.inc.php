@@ -159,8 +159,6 @@ class OJSSwordDeposit {
 				return true;
 			}
 		}
-		// TODO when the above didn't work, SWORD plugin for OJS2 was trying "the editor version"
-		// how does it apply to OJS3? (I found no SectionEditorSubmissionDAO in the code base)
 		return false;
 	}
 
