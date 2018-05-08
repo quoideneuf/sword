@@ -139,7 +139,7 @@ class DepositPoint extends DataObject {
 
 	/**
 	 * Get deposit point type
-	 * @return int
+	 * @return int SWORD_DEPOSIT_TYPE_...
 	 */
 	public function getType() {
 		return $this->getData('type');
@@ -147,7 +147,7 @@ class DepositPoint extends DataObject {
 
 	/**
 	 * Set deposit point type
-	 * @param $type int
+	 * @param $type int SWORD_DEPOSIT_TYPE_...
 	 */
 	public function setType($type) {
 		return $this->setData('type', $type);
