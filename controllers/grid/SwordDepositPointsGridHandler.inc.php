@@ -168,8 +168,7 @@ class SwordDepositPointsGridHandler extends GridHandler {
 			return DAO::getDataChangedEvent();
 		} else {
 			// Present any errors
-			$json = new JSONMessage(true, $swordDepositPointForm->fetch($request));
-			return $json->getString();
+			return new JSONMessage(true, $swordDepositPointForm->fetch($request));
 		}
 	}
 
