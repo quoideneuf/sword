@@ -110,13 +110,9 @@ class SwordHandler extends Handler {
 			if ($authorDepositForm->validate()) {
 				$authorDepositForm->execute($request);
 				$request->redirect(null, 'submissions');
-			} else {
-				$authorDepositForm->initData();
-				$authorDepositForm->display();
 			}
-		} else {
-			$authorDepositForm->initData();
-			$authorDepositForm->display();
 		}
+		$authorDepositForm->initData();
+		$authorDepositForm->display();
 	}
 }
