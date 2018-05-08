@@ -33,6 +33,13 @@ class SwordSettingsTabHandler extends Handler {
 		);
 	}
 
+	/**
+	 * SWORD plugin settings page
+	 * @param $args array
+	 * @param $request PKPRequest
+	 *
+	 * @return JSONMessage
+	 */
 	public function swordSettings($args, $request) {
 		$context = $request->getContext();
 		AppLocale::requireComponents(LOCALE_COMPONENT_APP_COMMON,  LOCALE_COMPONENT_PKP_MANAGER);
