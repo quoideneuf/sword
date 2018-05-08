@@ -259,15 +259,6 @@ class SwordPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @see Plugin::manage()
-	 */
-	public function manage($args, $request) {
-		switch ($request->getUserVar('verb')) {
-		}
-		return parent::manage($args, $request);
-	}
-
-	/**
 	 * Override the builtin to get the correct template path.
 	 *
 	 * @return string Plugin template path
