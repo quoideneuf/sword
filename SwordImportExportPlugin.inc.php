@@ -216,7 +216,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	 * @copydoc PKPImportExportPlugin::executeCLI()
 	 */
 	public function executeCLI($scriptName, &$args) {
-		throw new Exception('import/export tasks using the command-line not yet implemented!');
+		throw new Exception('SWORD plugin command-line import/export not yet implemented!');
 	}
 
 	/**
