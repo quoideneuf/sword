@@ -48,14 +48,6 @@ class AuthorDepositForm extends Form {
 	}
 
 	/**
-	 * Initialize plugin settings form
-	 *
-	 * @return void
-	 */
-	public function initData() {
-	}
-
-	/**
 	 * Assign form data to user-submitted data
 	 *
 	 * @return void
