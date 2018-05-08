@@ -91,7 +91,7 @@ class DepositPointDAO extends DAO {
 	 * @return int
 	 */
 	public function insertObject($depositPoint) {
-		$ret = $this->update(
+		$this->update(
 			'INSERT INTO deposit_points
 				(context_id,
 				url,
