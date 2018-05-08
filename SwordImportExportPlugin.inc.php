@@ -218,4 +218,10 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	public function executeCLI($scriptName, &$args) {
 		throw new Exception('SWORD plugin command-line import/export not yet implemented!');
 	}
+
+	/**
+	 * @copydoc PKPImportExportPlugin::usage
+	 */
+	public function usage($scriptName) {
+	}
 }
