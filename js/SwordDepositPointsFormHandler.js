@@ -66,7 +66,8 @@
 				for (dp in content.depositPoints) {
 					var value = dp;
 					var label = content.depositPoints[dp];
-					$("select#swordDepositPoint").append('<option value="'+value+'">'+label+'</option>');
+					var opt = $('<option/>').val(value).text(label);
+					$("select#swordDepositPoint").append(opt);
 					$('span#depositPointsSpinner').removeClass('is_visible');
 				}
 			}, 'json');
