@@ -196,5 +196,3 @@ class OJSSwordDeposit {
 		$fileManager->rmtree($this->_outPath);
 	}
 }
-
-?>
