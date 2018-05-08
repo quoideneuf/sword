@@ -52,6 +52,12 @@ class SwordSettingsTabHandler extends Handler {
 			$form->readInputData();
 			if ($form->validate()) {
 				$form->execute();
+				$notificationManager = new NotificationManager();
+				$notificationManager->createTrivialNotification(
+					$request->getUser()->getId(),
+					NOTIFICATION_TYPE_SUCCESS,
+					array('contents' => __('plugins.generic.sword.settings.saved'))
+				);
 			}
 		} else {
 			$form->initData();

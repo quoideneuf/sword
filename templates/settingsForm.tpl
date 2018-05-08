@@ -8,12 +8,10 @@
  * SWORD plugin settings
  *}
  
- <script src="{$pluginJavaScriptURL}/SwordSettingsFormHandler.js"></script>
- 
- <script type="text/javascript">
+<script type="text/javascript">
 	$(function() {ldelim}
 		$('#swordSettingsForm').pkpHandler(
-			'$.pkp.plugins.sword.js.SwordSettingsFormHandler'
+			'$.pkp.controllers.form.AjaxFormHandler'
 		);
 	{rdelim});
 </script>
