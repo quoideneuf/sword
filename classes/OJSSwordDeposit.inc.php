@@ -166,7 +166,7 @@ class OJSSwordDeposit {
 	 * Build the package.
 	 */
 	public function createPackage() {
-		return $this->_package->create();
+		$this->_package->create();
 	}
 
 	/**
