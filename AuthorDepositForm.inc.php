@@ -69,7 +69,7 @@ class AuthorDepositForm extends Form {
 		$templateMgr = TemplateManager::getManager($request);
 		$depositPoints = $this->_getDepositableDepositPoints($this->_context);
 		$templateMgr->assign('depositPoints', $depositPoints);
-		$templateMgr->assign_by_ref('submission', $this->_submission);
+		$templateMgr->assign('submission', $this->_submission);
 		$templateMgr->assign('allowAuthorSpecify', $this->getSwordPlugin()->getSetting($this->_context->getId(), 'allowAuthorSpecify'));
 		$templateMgr->assign('pluginJavaScriptURL', $this->_plugin->getJsUrl($request));
 		parent::display();
