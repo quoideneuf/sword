@@ -66,10 +66,12 @@ class AuthorDepositForm extends Form {
 		$request = Application::getRequest();
 		$templateMgr = TemplateManager::getManager($request);
 		$depositPoints = $this->_getDepositableDepositPoints($this->_context);
-		$templateMgr->assign('depositPoints', $depositPoints);
-		$templateMgr->assign('submission', $this->_submission);
-		$templateMgr->assign('allowAuthorSpecify', $this->getSwordPlugin()->getSetting($this->_context->getId(), 'allowAuthorSpecify'));
-		$templateMgr->assign('pluginJavaScriptURL', $this->_plugin->getJsUrl($request));
+		$templateMgr->assign(array(
+			'depositPoints' 	=> $depositPoints,
+			'submission'		=> $this->_submission,
+			'allowAuthorSpecify' 	=> $this->getSwordPlugin()->getSetting($this->_context->getId(), 'allowAuthorSpecify'),
+			'pluginJavaScriptURL' 	=> $this->_plugin->getJsUrl($request),
+		));
 		parent::display();
 	}
 
