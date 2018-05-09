@@ -107,13 +107,26 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					array(),
 					'swordSettings'
 				);
+
+				import('lib.pkp.controllers.list.submissions.SelectSubmissionsListHandler');
+				$selectSubmissionsListHandler = new SelectSubmissionsListHandler(array(
+					'title' 	=> 'navigation.submissions',
+					'count' 	=> 100,
+					'inputName' 	=> 'articleId[]',
+					'getParams' => array(
+						'status'	=> STATUS_PUBLISHED,
+					),
+				));
+				$selectSubmissionsConfig = json_encode($selectSubmissionsListHandler->getConfig());
+
 				$templateMgr->assign(array(
-					'selectedDepositPoint' 	=> $request->getUserVar('selectedDepositPoint'),
-					'depositEditorial' 	=> $request->getUserVar('depositEditorial'),
-					'depositGalleys' 	=> $request->getUserVar('depositGalleys'),
-					'swordSettingsPageUrl' 	=> $settingUrl,
-					'depositPoints' 	=> $depositPointsData,
-					'pluginJavaScriptURL' 	=> $this->getSwordPlugin()->getJsUrl($request),
+					'selectedDepositPoint' 		=> $request->getUserVar('selectedDepositPoint'),
+					'depositEditorial' 		=> $request->getUserVar('depositEditorial'),
+					'depositGalleys' 		=> $request->getUserVar('depositGalleys'),
+					'swordSettingsPageUrl' 		=> $settingUrl,
+					'depositPoints' 		=> $depositPointsData,
+					'pluginJavaScriptURL' 		=> $this->getSwordPlugin()->getJsUrl($request),
+					'selectSubmissionsListData' 	=> $selectSubmissionsConfig,
 				));
 				$templateMgr->display($this->getTemplatePath() . 'articles.tpl');
 				break;

@@ -50,8 +50,12 @@
 				{fbvElement type="checkbox" id="depositGalleys" value="1" checked=$depositGalleys label="plugins.importexport.sword.depositGalleys"}
 				{fbvElement type="checkbox" id="depositEditorial" value="1" checked=$depositEditorial label="plugins.importexport.sword.depositEditorial"}
 			{/fbvFormSection}
-			{url|assign:submissionListGridUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.submissionListGridHandler" op="fetchGrid" escape=false}
-			{load_url_in_div id="submissionListGridContainer" url=$submissionListGridUrl}
+			{assign var="uuid" value=""|uniqid|escape}
+			<div id="select-submissions-list-handler-{$uuid}">
+				<script type="text/javascript">
+					pkp.registry.init('select-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$selectSubmissionsListData});
+				</script>
+			</div>
 			{fbvElement type="submit" label="plugins.importexport.sword.deposit" id="depositBtn" inline=true}
 			{fbvElement type="button" label="common.selectAll" id="selectAllBtn" inline=true}
 		</form>

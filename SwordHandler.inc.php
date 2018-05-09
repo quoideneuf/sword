@@ -80,7 +80,7 @@ class SwordHandler extends Handler {
 	}
 
 	/**
-	 * Returns deposit point details
+	 * Returns author deposit points page
 	 * @param $args array
 	 * @param $request PKPRequest
 	 *
