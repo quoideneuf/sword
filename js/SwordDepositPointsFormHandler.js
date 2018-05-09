@@ -81,7 +81,7 @@
 	$.pkp.plugins.sword.js.SwordDepositPointsFormHandler.prototype.
 		selectAllSubmissions = 
 		function() {
-			$('#submissionListGridContainer input[type=checkbox]').prop('checked',true);
+			$('div.pkpListPanel--selectSubmissions input[type=checkbox]').prop('checked',true);
 		}
 
 	/** @param {jQuery} $ jQuery closure. */
