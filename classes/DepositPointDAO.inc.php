@@ -65,7 +65,7 @@ class DepositPointDAO extends DAO {
 	 * @param $row array
 	 * @return DepositPoint
 	 */
-	protected function _fromRow($row) {
+	public function _fromRow($row) {
 		$depositPoint = $this->newDataObject();
 		$depositPoint->setId($row['deposit_point_id']);
 		$depositPoint->setContextId($row['context_id']);
