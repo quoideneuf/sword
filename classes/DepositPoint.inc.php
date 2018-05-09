@@ -77,7 +77,7 @@ class DepositPoint extends DataObject {
 	 * @return string
 	 */
 	public function getSwordUsername() {
-		return $this->getData('sword_username');
+		return $this->getData('swordUsername');
 	}
 
 	/**
@@ -85,7 +85,7 @@ class DepositPoint extends DataObject {
 	 * @param $swordUsername string
 	 */
 	public function setSwordUsername($swordUsername) {
-		return $this->setData('sword_username', $swordUsername);
+		return $this->setData('swordUsername', $swordUsername);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class DepositPoint extends DataObject {
 	 * @return string
 	 */
 	public function getSwordPassword() {
-		return $this->getData('sword_password');
+		return $this->getData('swordPassword');
 	}
 
 	/**
@@ -101,7 +101,7 @@ class DepositPoint extends DataObject {
 	 * @param $swordUsername string
 	 */
 	public function setSwordPassword($swordPassword) {
-		return $this->setData('sword_password', $swordPassword);
+		return $this->setData('swordPassword', $swordPassword);
 	}
 
 	/**
