@@ -66,29 +66,15 @@
 			&nbsp;
 			{if $allowAuthorSpecify}
 				{translate key="plugins.generic.sword.authorCustomDepositDescription" submissionTitle=$submission->getLocalizedTitle()}
-				<table class="data" width="100%">
-					<tr>
-						<td class="value">
-							{fbvFormSection for="authorDepositUrl" title="plugins.importexport.sword.depositUrl"}
-								{fbvElement type="text" id="authorDepositUrl" value=$authorDepositUrl}
-							{/fbvFormSection}
-						</td>
-					</tr>
-					<tr>
-						<td class="value">
-							{fbvFormSection for="authorDepositUsername" title="user.username"}
-								{fbvElement type="text" id="authorDepositUsername" value=$authorDepositUsername}
-							{/fbvFormSection}
-						</td>
-					</tr>
-					<tr>
-						<td class="value">
-							{fbvFormSection for="authorDepositPassword" title="user.password"}
-								{fbvElement type="text" password="true" id="authorDepositPassword"}
-							{/fbvFormSection}
-						</td>
-					</tr>
-				</table>
+				{fbvFormSection for="authorDepositUrl" title="plugins.importexport.sword.depositUrl"}
+					{fbvElement type="text" id="authorDepositUrl" value=$authorDepositUrl}
+				{/fbvFormSection}
+				{fbvFormSection for="authorDepositUsername" title="user.username"}
+					{fbvElement type="text" id="authorDepositUsername" value=$authorDepositUsername}
+				{/fbvFormSection}
+				{fbvFormSection for="authorDepositPassword" title="user.password"}
+					{fbvElement type="text" password="true" id="authorDepositPassword"}
+				{/fbvFormSection}
 			{/if}{* $allowAuthorSpecify *}
 
 			<br/>
