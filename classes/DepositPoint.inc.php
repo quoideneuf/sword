@@ -15,23 +15,6 @@
 
 class DepositPoint extends DataObject {
 	/**
-	 * Get the ID of the deposit point.
-	 * @return int
-	 */
-	public function getId() {
-		return $this->getData('depositPointId');
-	}
-
-	/**
-	 * Set the ID of the deposit point
-	 * @param $feedId int
-	 */
-	public function setId($depositPointId) {
-		$this->setData('id', $depositPointId);
-		return $this->setData('depositPointId', $depositPointId);
-	}
-
-	/**
 	 * Get the context ID of the deposit point.
 	 * @return int
 	 */
