@@ -18,4 +18,3 @@ require_once('SwordPlugin.inc.php');
 
 return new SwordPlugin();
 
-?>
