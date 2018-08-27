@@ -7,14 +7,14 @@
  *
  * Deposit articles in remote repositories
  *}
- {include file="common/header.tpl" pageTitle="plugins.importexport.sword.displayName"}
+{include file="common/header.tpl" pageTitle="plugins.importexport.sword.displayName"}
  
- <script src="{$pluginJavaScriptURL}/SwordDepositPointsFormHandler.js"></script>
- <script type="text/javascript">
+<script src="{$pluginJavaScriptURL}/SwordDepositPointsFormHandler.js"></script>
+<script type="text/javascript">
 	$(function() {ldelim}
 		$('#importExportTabs').pkpHandler('$.pkp.controllers.TabHandler');
 		$('#articlesForm').pkpHandler(
-			'$.pkp.plugins.sword.js.SwordDepositPointsFormHandler',
+			'$.pkp.plugins.sword.js.SwordDepositPointsFormHandler'
 		);
 	{rdelim});
 </script>
