@@ -1,3 +1,4 @@
 sword/exclusions.txt
 sword/lib/swordappv2/examples
 sword/lib/swordappv2/test
+sword/lib/swordappv2/.git
