@@ -13,9 +13,9 @@
  * @brief Class providing a SWORD deposit wrapper for OJS submissions
  */
 
-require_once dirname(__FILE__) . '/../lib/swordappv2/swordappclient.php';
-require_once dirname(__FILE__) . '/../lib/swordappv2/swordappentry.php';
-require_once dirname(__FILE__) . '/../lib/swordappv2/packager_mets_swap.php';
+require_once dirname(__FILE__) . '/../libs/swordappv2/swordappclient.php';
+require_once dirname(__FILE__) . '/../libs/swordappv2/swordappentry.php';
+require_once dirname(__FILE__) . '/../libs/swordappv2/packager_mets_swap.php';
 
 class OJSSwordDeposit {
 	/** @var SWORD deposit METS package */

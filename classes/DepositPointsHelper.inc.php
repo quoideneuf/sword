@@ -13,7 +13,7 @@
  *
  */
 
-require_once dirname(__FILE__) . '/../lib/swordappv2/swordappclient.php';
+require_once dirname(__FILE__) . '/../libs/swordappv2/swordappclient.php';
 
 class DepositPointsHelper {
 	/**
