@@ -54,4 +54,5 @@
 	<message key="plugins.importexport.sword.requiredFieldErrorTitle">Submission required</message>
 	<message key="plugins.importexport.sword.requiredFieldErrorMessage">Please select at least one submission to deposit.</message>
 	<message key="plugins.generic.sword.settings.saved">Settings saved!</message>
+	<message key="plugins.generic.sword.manager.noneCreated">No deposit points have been created.</message>
 </locale>
