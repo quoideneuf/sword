@@ -113,7 +113,7 @@ class OJSSwordDeposit {
 	 * @param $submissionFile SubmissionFile
 	 */
 	public function _addFile($submissionFile) {
-		$targetFilename = $this->_outPath . '/files/' . $submissionFile->getLocalizedName();
+		$targetFilename = $this->_outPath . '/files/' . $submissionFile->getOriginalFileName();
 		copy($submissionFile->getFilePath(), $targetFilename);
 		$this->_package->addFile($submissionFile->getLocalizedName(), $submissionFile->getFileType());
 	}
