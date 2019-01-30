@@ -92,6 +92,7 @@ class SwordPlugin extends GenericPlugin {
 			}
 			catch (Exception $e) {
 				$contents = __('plugins.importexport.sword.depositFailed') . ': ' . $e->getMessage();
+				$notificationMgr = new NotificationManager();
 				$notificationManager->createTrivialNotification(
 					$user->getId(),
 					NOTIFICATION_TYPE_ERROR,
