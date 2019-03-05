@@ -36,8 +36,9 @@ class SwordHandler extends Handler {
 	/**
 	 * @copydoc PKPHandler::authorize()
 	 */
-	public function authorize($request, &$args, $roleAssignments) {
-		$op = $request->getRouter()->getRequestedOp($request);
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.ContextAccessPolicy');
+		$this->addPolicy(new ContextAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

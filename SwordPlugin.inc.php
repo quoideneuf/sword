@@ -24,13 +24,10 @@ define('SWORD_PASSWORD_SLUG', '******');
 
 class SwordPlugin extends GenericPlugin {
 	/**
-	 * Register the plugin, if enabled
-	 * @param $category string
-	 * @param $path string
-	 * @return boolean
+	 * @copydoc Plugin::register()
 	 */
-	public function register($category, $path) {
-		if (parent::register($category, $path)) {
+	public function register($category, $path, $mainContextId = null) {
+		if (parent::register($category, $path, $mainContextId)) {
 			HookRegistry::register('PluginRegistry::loadCategory', array(&$this, 'callbackLoadCategory'));
 			if ($this->getEnabled()) {
 				$this->import('classes.DepositPointDAO');
@@ -257,15 +254,6 @@ class SwordPlugin extends GenericPlugin {
 			):array(),
 			parent::getActions($request, $verb)
 		);
-	}
-
-	/**
-	 * Override the builtin to get the correct template path.
-	 *
-	 * @return string Plugin template path
-	 */
-	public function getTemplatePath() {
-		return parent::getTemplatePath() . 'templates/';
 	}
 
 	/**

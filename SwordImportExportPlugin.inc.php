@@ -75,13 +75,6 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * @copydoc Plugin::getTemplatePath($inCore)
-	 */
-	public function getTemplatePath($inCore = false) {
-		return $this->getSwordPlugin()->getTemplatePath($inCore);
-	}
-
-	/**
 	 * Display the plugin.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -128,7 +121,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					'pluginJavaScriptURL' 		=> $this->getSwordPlugin()->getJsUrl($request),
 					'selectSubmissionsListData' 	=> $selectSubmissionsConfig,
 				));
-				$templateMgr->display($this->getTemplatePath() . 'articles.tpl');
+				$templateMgr->display($this->_parentPlugin->getTemplateResource('articles.tpl'));
 				break;
 
 			case 'deposit':
@@ -215,7 +208,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 						'backLinkLabel' => 'common.continue'
 					));
 				}
-				$messageTemplateFile = $this->getSwordPlugin()->getTemplatePath() . 'message.tpl';
+				$messageTemplateFile = $this->getSwordPlugin()->getTemplateResource('message.tpl');
 				$output = $templateMgr->fetch($messageTemplateFile);
 				return new JSONMessage(true, $output);
 				break;

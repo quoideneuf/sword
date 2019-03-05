@@ -28,7 +28,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{url|assign:swordDepositPointsGridUrl router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler" op="fetchGrid" escape=false}
+	{capture assign="swordDepositPointsGridUrl"}{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.sword.controllers.grid.SwordDepositPointsGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="swordDepositPointsGridContainer" url=$swordDepositPointsGridUrl}
 
 	{fbvFormButtons id="swordSettingsFormSubmit" submitText="common.save" hideCancel=true}

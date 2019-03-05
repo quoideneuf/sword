@@ -35,7 +35,7 @@ class SwordDepositPointForm extends Form {
 	 * @param $depositPointId int Deposit Point (if any)
 	 */
 	public function __construct(SwordPlugin $swordPlugin, $contextId, $depositPointId = null) {
-		parent::__construct($swordPlugin->getTemplatePath() . 'editDepositPointForm.tpl');
+		parent::__construct($swordPlugin->getTemplateResource('editDepositPointForm.tpl'));
 		$this->_contextId = $contextId;
 		$this->_depositPointId = $depositPointId;
 		$this->_plugin = $swordPlugin;
@@ -43,7 +43,7 @@ class SwordDepositPointForm extends Form {
 		// Add form checks
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'plugins.generic.sword.depositPoints.required.field'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'plugins.generic.sword.depositPoints.required.field'));
 		$this->addCheck(new FormValidator($this, 'swordUsername', 'required', 'plugins.generic.sword.depositPoints.required.field'));
 		$this->addCheck(new FormValidator($this, 'swordPassword', 'required', 'plugins.generic.sword.depositPoints.required.field'));
 		$this->addCheck(new FormValidator($this, 'depositPointType', 'required', 'plugins.generic.sword.depositPoints.required.field'));
@@ -58,7 +58,7 @@ class SwordDepositPointForm extends Form {
 			$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 			$depositPoint = $depositPointDao->getById($this->_depositPointId, $this->_contextId);
 			$this->setData('swordUrl', $depositPoint->getSwordUrl());
-			$this->setData('name', $depositPoint->getName(AppLocale::getLocale()));
+			$this->setData('name', $depositPoint->getName(null));
 			$this->selectedType = $depositPoint->getType();
 			$this->setData('type', $this->selectedType);
 			$this->setData('swordUsername', $depositPoint->getSwordUsername());
@@ -83,16 +83,14 @@ class SwordDepositPointForm extends Form {
 	}
 
 	/**
-	 * Fetch the form.
 	 * @copydoc Form::fetch()
 	 */
 	public function fetch($request) {
 		$templateMgr = TemplateManager::getManager($request);
 		$templateMgr->assign(array(
-			'depositPointId'		=> $this->_depositPointId,
-			'formLocale' 		=> AppLocale::getLocale(),
-			'depositPointTypes'	=> $this->_plugin->getTypeMap(),
-			'selectedType'		=> $this->selectedType,
+			'depositPointId' => $this->_depositPointId,
+			'depositPointTypes' => $this->_plugin->getTypeMap(),
+			'selectedType' => $this->selectedType,
 		));
 		return parent::fetch($request);
 	}

@@ -30,7 +30,7 @@ class SwordSettingsForm extends Form {
 	public function __construct(SwordPlugin $plugin, Context $context) {
 		$this->_plugin = $plugin;
 		$this->_context = $context;
-		parent::__construct($plugin->getTemplatePath() . 'settingsForm.tpl');
+		parent::__construct($plugin->getTemplateResource('settingsForm.tpl'));
 	}
 
 	/**

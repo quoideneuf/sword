@@ -14,7 +14,10 @@
 	$(function() {ldelim}
 		$('#importExportTabs').pkpHandler('$.pkp.controllers.TabHandler');
 		$('#articlesForm').pkpHandler(
-			'$.pkp.plugins.sword.js.SwordDepositPointsFormHandler'
+			'$.pkp.plugins.sword.js.SwordDepositPointsFormHandler',
+			{ldelim}
+				depositPointsUrl: {url|json_encode router=$smarty.const.ROUTE_PAGE page='sword' op="depositPoints"}
+			{rdelim}
 		);
 	{rdelim});
 </script>
@@ -24,9 +27,7 @@
 		<li><a href="#importExportDeposits-tab">{translate key="plugins.importexport.sword.displayName"}</a></li>
 	</ul>
 	<div id="importExportDeposits-tab">
-		<form id="articlesForm" class="pkp_form" method="post" 
-			action="{plugin_url path="deposit"}"
-			data-depositpointurl="{url router=$smarty.const.ROUTE_PAGE page='sword' op="depositPoints"}">
+		<form id="articlesForm" class="pkp_form" method="post" action="{plugin_url path="deposit"}">
 			{csrf}
 			{include file="controllers/notification/inPlaceNotification.tpl" notificationId="ArticlesNotification"}
 			{fbvFormSection}

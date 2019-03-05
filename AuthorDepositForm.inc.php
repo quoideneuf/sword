@@ -36,7 +36,7 @@ class AuthorDepositForm extends Form {
 		$this->_context = $context;
 		$this->_submission = $submission;
 		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_USER);
-		parent::__construct($plugin->getTemplatePath() . 'authorDepositForm.tpl');
+		parent::__construct($plugin->getTemplateResource('authorDepositForm.tpl'));
 	}
 
 	/**

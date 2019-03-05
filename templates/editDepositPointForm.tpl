@@ -28,8 +28,7 @@
 
 	{fbvFormSection}
 		{fbvFormSection for="name" title="plugins.generic.sword.depositPoints.name"}
-			{assign var="formLocale" value=$formLocale|escape}
-			{fbvElement type="text" id="name" name=name[$formLocale] value=$name}
+			{fbvElement type="text" id="name" name="name" value=$name multilingual=true}
 		{/fbvFormSection}
 		
 		{fbvFormSection for="swordUrl" title="plugins.importexport.sword.depositUrl"}

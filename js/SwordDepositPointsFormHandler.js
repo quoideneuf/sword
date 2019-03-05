@@ -29,6 +29,7 @@
 			function($form, options) {
 
 		this.parent($form, options);
+		this.depositPointsUrl_ = options.depositPointsUrl;
 
 		$form.find('select#depositPoint').change(this.callbackWrapper(this.loadDepositPointsDetails));
 		$form.find('button#refreshBtn').click(this.callbackWrapper(this.loadDepositPointsDetails));
@@ -36,6 +37,7 @@
 		// fill form if dropdown is set on page load
 		if ($('select#depositPoint').val() != "") {
 			this.loadDepositPointsDetails();
+
 		}
 
 	};
@@ -44,22 +46,26 @@
 			$.pkp.controllers.form.AjaxFormHandler);
 
 	/**
+	 * URL to use when fetching deposit point listings.
+	 * @private
+	 */
+	$.pkp.plugins.sword.js.SwordDepositPointsFormHandler.prototype.depositPointsUrl_ = null;
+
+	/**
 	 * Callback to load deposit points details
 	 *
 	 * @private
 	 */
 	$.pkp.plugins.sword.js.SwordDepositPointsFormHandler.prototype.
-		loadDepositPointsDetails = 
-		function() {
-			var $select = $('select#depositPoint');
-			var selectedDepositPoint = $select.val();
+		loadDepositPointsDetails = function() {
+			var $select = $('select#depositPoint'),
+					selectedDepositPoint = $select.val();
 			if (!selectedDepositPoint) return; 		// stop if no deposit point is selected
 			$('input[name=swordUsername]').val('');
 			$('input[name=swordPassword]').val('');
 			$('#swordDepositPoint').find('option').remove();
 			$('span#depositPointsSpinner').addClass('is_visible');
-			var url = $select.closest('form').data('depositpointurl');
-			$.get(url, {'depositPointId':selectedDepositPoint}, function(data) {
+			$.get(this.depositPointsUrl_, {'depositPointId':selectedDepositPoint}, function(data) {
 				var content = data.content;
 				$('input[name=swordUsername]').val(content.username);
 				$('input[name=swordPassword]').val(content.password);
