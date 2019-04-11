@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * @file plugins/generic/sword/SwordImportExportPlugin.inc.php
@@ -17,12 +17,12 @@ import('lib.pkp.classes.plugins.ImportExportPlugin');
 
 class SwordImportExportPlugin extends ImportExportPlugin {
 	/** @var SwordPlugin Parent plugin */
-	protected $_parentPlugin = null; 
+	protected $_parentPlugin = null;
 
 	/**
 	 * Constructor
 	 * @param $parentPlugin SwordPlugin
-	 * 
+	 *
 	 */
 	public function __construct($parentPlugin) {
 		parent::__construct();
@@ -174,8 +174,18 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
 							$response = $deposit->deposit($swordDepositPoint, $username, $password);
-							$deposit->cleanup();
-							$depositIds[] = $response->sac_id;
+							switch ($response->sac_status) {
+							case 200:
+								$deposit->cleanup();
+								$depositIds[] = $response->sac_id;
+								break;
+							case 401:
+								$errors[] = array(
+									'title' => $publishedArticle->getLocalizedTitle(),
+									'message' => $response->sac_summary,
+								);
+								break;
+							}
 						}
 						catch (Exception $e) {
 							$errors[] = array(
