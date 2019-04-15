@@ -79,7 +79,7 @@ class SwordDepositPointForm extends Form {
 				'depositPointType'
 			)
 		);
-		$this->setData('name', $request->getUserVar('name')[AppLocale::getLocale()]);
+		$this->setData('name', $request->getUserVar('name'));
 	}
 
 	/**
@@ -113,7 +113,7 @@ class SwordDepositPointForm extends Form {
 		}
 
 		$depositPoint->setContextId($this->_contextId);
-		$depositPoint->setName($this->getData('name'), AppLocale::getLocale());
+		$depositPoint->setName($this->getData('name'));
 		$depositPoint->setType($this->getData('depositPointType'));
 		$depositPoint->setSwordUrl($this->getData('swordUrl'));
 		$depositPoint->setSwordUsername($this->getData('swordUsername'));

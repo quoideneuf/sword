@@ -66,9 +66,9 @@ class DepositPoint extends DataObject {
 	/**
 	 * Set deposit point name
 	 * @param $title string
-	 * @param $locale string
+	 * @param $locale string?
 	 */
-	public function setName($name, $locale) {
+	public function setName($name, $locale = null) {
 		return $this->setData('name', $name, $locale);
 	}
 
