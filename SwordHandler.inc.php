@@ -71,11 +71,13 @@ class SwordHandler extends Handler {
 		$collections = DepositPointsHelper::loadCollectionsFromServer(
 			$depositPoint->getSwordUrl(),
 			$depositPoint->getSwordUsername(),
-			$depositPoint->getSwordPassword()
+			$depositPoint->getSwordPassword(),
+			$depositPoint->getSwordApikey()
 		);
 		return new JSONMessage(true, array(
 			'username' => $depositPoint->getSwordUsername(),
 			'password' => SWORD_PASSWORD_SLUG,
+			'apikey' => $depositPoint->getSwordApikey(),
 			'depositPoints' => $collections,
 		));
 	}

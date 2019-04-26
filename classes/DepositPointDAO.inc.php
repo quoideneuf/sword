@@ -74,6 +74,7 @@ class DepositPointDAO extends DAO {
 		$depositPoint->setType($row['type']);
 		$depositPoint->setSwordUsername($row['sword_username']);
 		$depositPoint->setSwordPassword($row['sword_password']);
+		$depositPoint->setSwordApikey($row['sword_apikey']);
 		
 		$this->getDataObjectSettings(
 			'deposit_point_settings',
@@ -98,9 +99,10 @@ class DepositPointDAO extends DAO {
 				seq,
 				type,
 				sword_username,
-				sword_password)
+				sword_password,
+				sword_apikey)
 			VALUES
-				(?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$depositPoint->getContextId(),
 				$depositPoint->getSwordUrl(),
@@ -108,6 +110,7 @@ class DepositPointDAO extends DAO {
 				$depositPoint->getType(),
 				$depositPoint->getSwordUsername(),
 				$depositPoint->getSwordPassword(),
+				$depositPoint->getSwordApikey(),
 			)
 		);
 		$depositPoint->setId($this->getInsertId());
@@ -149,7 +152,8 @@ class DepositPointDAO extends DAO {
 					seq = ?,
 					type = ?,
 					sword_username = ?,
-					sword_password = ?
+					sword_password = ?,
+					sword_apikey = ?
 			WHERE deposit_point_id = ?',
 			array(
 				$depositPoint->getContextId(),
@@ -158,6 +162,7 @@ class DepositPointDAO extends DAO {
 				$depositPoint->getType(),
 				$depositPoint->getSwordUsername(),
 				$depositPoint->getSwordPassword(),
+				$depositPoint->getSwordApikey(),
 				$depositPoint->getId()
 			)
 		);
