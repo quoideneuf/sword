@@ -121,6 +121,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					'pluginJavaScriptURL' 		=> $this->getSwordPlugin()->getJsUrl($request),
 					'selectSubmissionsListData' 	=> $selectSubmissionsConfig,
 				));
+
 				$templateMgr->display($this->_parentPlugin->getTemplateResource('articles.tpl'));
 				break;
 
@@ -145,6 +146,10 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				$username = $request->getUserVar('swordUsername');
 				$depositIds = array();
 
+				if ($request->getUserVar('swordApiKey')) {
+					$swordDepositPoint = $swordDepositPoint . "?apiToken=" . urlencode(
+						$request->getUserVar('swordApiKey'));
+				}
 				$backLink = $request->url(
 					null, null, null,
 					array('plugin', $this->getName()),

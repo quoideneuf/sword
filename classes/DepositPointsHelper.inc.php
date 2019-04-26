@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @file plugins/generic/sword/classes/DepositPointsHelper.inc.php
  *
@@ -23,16 +23,19 @@ class DepositPointsHelper {
 	 * @param $password string
 	 * @return array|null
 	 */
-	public static function loadCollectionsFromServer($url, $username, $password) {
-		if (empty($url) OR empty($username) OR empty($password)) {
-			return null;
+	public static function loadCollectionsFromServer($url, $username, $password, $apikey) {
+		if ($apikey) {
+			$url = $url . "?apiToken=" . urlencode($apikey);
 		}
 		$depositPoints = array();
 		$client = new SWORDAPPClient();
 		$doc = $client->servicedocument($url, $username, $password, '');
+		if ($doc->sac_status != 200) {
+			return array('#' => 'Service Document Unreachable');
+		}
 		if (is_array($doc->sac_workspaces)) {
 			foreach ($doc->sac_workspaces as $workspace) {
-				if (is_array($workspace->sac_collections)) { 
+				if (is_array($workspace->sac_collections)) {
 					foreach ($workspace->sac_collections as $collection) {
 						$depositPoints["$collection->sac_href"] = "$collection->sac_colltitle";
 					}
