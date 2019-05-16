@@ -77,6 +77,10 @@
 					$("select#swordDepositPoint").append(opt);
 				}
 				$('span#depositPointsSpinner').removeClass('is_visible');
+				$.event.trigger({
+					type: "pkp.plugins.sword.loadDepositPoint",
+					depositPointId: selectedDepositPoint
+				});
 			}, 'json');
 		}
 
