@@ -23,9 +23,10 @@ class DepositPointsHelper {
 	 * @param $password string
 	 * @return array|null
 	 */
-	public static function loadCollectionsFromServer($url, $username, $password, $apikey) {
+	public static function loadCollectionsFromServer($url, $username, $password, $apikey = null) {
 		$depositPoints = array();
-		$client = new SWORDAPPClient([CURLOPT_HTTPHEADER => ["X-Ojs-Sword-Api-Token:".$apikey]]);
+		$clientOpts = $apikey ? [CURLOPT_HTTPHEADER => ["X-Ojs-Sword-Api-Token:".$apikey]] : array();
+		$client = new SWORDAPPClient($clientOpts);
 		$doc = $client->servicedocument($url, $username, $password, '');
 		if ($doc->sac_status != 200) {
 			return array('#' => 'Service Document Unreachable');

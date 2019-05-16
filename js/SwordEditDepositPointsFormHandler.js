@@ -38,31 +38,31 @@
 	 * @param {jQueryObject} $form the wrapped HTML form element.
 	 */
 	$.pkp.plugins.sword.js.SwordEditDepositPointsFormHandler =
-		function($form) {
-			$swordUsername = $form.find( "input[name='swordUsername'] ");
-			$swordPassword = $form.find( "input[name='swordPassword'] ");
-			$swordApikey = $form.find( "input[name='swordApikey'] ");
+			function($form) {
+		$swordUsername = $form.find( "input[name='swordUsername'] ");
+		$swordPassword = $form.find( "input[name='swordPassword'] ");
+		$swordApikey = $form.find( "input[name='swordApikey'] ");
 
-			$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
-				$input.change(function(e) {
-					$this = $(this);
-					$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
-						$.each($("label[for='"+$input[0].id+"']").slice(1), function(i, labelDOM) {
-							labelDOM.remove();
-						});
+		$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
+			$input.change(function(e) {
+				$this = $(this);
+				$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
+					$.each($("label[for='"+$input[0].id+"']").slice(1), function(i, labelDOM) {
+						labelDOM.remove();
 					});
-
-					if (invalidFormState($swordUsername, $swordPassword, $swordApikey)) {
-						$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
-							if (!$input[0].value.length) {
-								showFieldError($input);
-							}
-						});
-						$('button.submitFormButton').attr('disabled', true);
-					} else {
-						$('button.submitFormButton').removeAttr('disabled');
-					}
 				});
+
+				if (invalidFormState($swordUsername, $swordPassword, $swordApikey)) {
+					$.each([$swordUsername, $swordPassword, $swordApikey], function(i, $input) {
+						if (!$input[0].value.length) {
+							showFieldError($input);
+						}
+					});
+					$('button.submitFormButton').attr('disabled', true);
+				} else {
+					$('button.submitFormButton').removeAttr('disabled');
+				}
 			});
-		}
+		});
+	}
 }(jQuery));
