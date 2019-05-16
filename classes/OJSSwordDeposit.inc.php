@@ -175,8 +175,12 @@ class OJSSwordDeposit {
 	 * @param $username string SWORD deposit username (i.e. email address for DSPACE)
 	 * @param $password string SWORD deposit password
 	 */
-	public function deposit($url, $username, $password) {
-		$client = new SWORDAPPClient();
+	public function deposit($url, $username, $password, $apikey = '') {
+		$client_opts = array();
+		if (!empty($apikey)) {
+			$client_opts[CURLOPT_HTTPHEADER] = ["X-Ojs-Sword-Api-Token:".$apikey];
+		}
+		$client = new SWORDAPPClient($client_opts);
 		$response = $client->deposit(
 			$url, $username, $password,
 			'',

@@ -24,11 +24,8 @@ class DepositPointsHelper {
 	 * @return array|null
 	 */
 	public static function loadCollectionsFromServer($url, $username, $password, $apikey) {
-		if ($apikey) {
-			$url = $url . "?apiToken=" . urlencode($apikey);
-		}
 		$depositPoints = array();
-		$client = new SWORDAPPClient();
+		$client = new SWORDAPPClient([CURLOPT_HTTPHEADER => ["X-Ojs-Sword-Api-Token:".$apikey]]);
 		$doc = $client->servicedocument($url, $username, $password, '');
 		if ($doc->sac_status != 200) {
 			return array('#' => 'Service Document Unreachable');
