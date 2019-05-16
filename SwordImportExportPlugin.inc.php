@@ -146,10 +146,6 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				$username = $request->getUserVar('swordUsername');
 				$depositIds = array();
 
-				if ($request->getUserVar('swordApiKey')) {
-					$swordDepositPoint = $swordDepositPoint . "?apiToken=" . urlencode(
-						$request->getUserVar('swordApiKey'));
-				}
 				$backLink = $request->url(
 					null, null, null,
 					array('plugin', $this->getName()),
@@ -178,7 +174,11 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							if ($depositGalleys) $deposit->addGalleys();
 							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
-							$response = $deposit->deposit($swordDepositPoint, $username, $password);
+							$response = $deposit->deposit(
+								$swordDepositPoint,
+								$username,
+								$password,
+								$request->getUserVar('swordApiKey'));
 							switch ($response->sac_status) {
 							case 200:
 								$deposit->cleanup();
