@@ -69,15 +69,20 @@
 				var content = data.content;
 				$('input[name=swordUsername]').val(content.username);
 				$('input[name=swordPassword]').val(content.password);
+				$('input[name=swordApiKey]').val(content.apikey);
 				for (dp in content.depositPoints) {
 					var value = dp;
 					var label = content.depositPoints[dp];
 					var opt = $('<option/>').val(value).text(label);
 					$("select#swordDepositPoint").append(opt);
-					$('span#depositPointsSpinner').removeClass('is_visible');
 				}
+				$('span#depositPointsSpinner').removeClass('is_visible');
+				$.event.trigger({
+					type: "pkp.plugins.sword.loadDepositPoint",
+					depositPointId: selectedDepositPoint
+				});
 			}, 'json');
-		} 
+		}
 
 	/**
 	 * Callback to load deposit points details
@@ -85,7 +90,7 @@
 	 * @private
 	 */
 	$.pkp.plugins.sword.js.SwordDepositPointsFormHandler.prototype.
-		selectAllSubmissions = 
+		selectAllSubmissions =
 		function() {
 			$('div.pkpListPanel--selectSubmissions input[type=checkbox]').prop('checked',true);
 		}

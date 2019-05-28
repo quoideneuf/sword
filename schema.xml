@@ -16,7 +16,7 @@
 
 	<!--
 	 *
-	 * TABLE deposit_points 
+	 * TABLE deposit_points
 	 *
 	 -->
 	<table name="deposit_points">
@@ -42,6 +42,9 @@
 			<NOTNULL/>
 		</field>
 		<field name="sword_password" type="C2" size="2047">
+			<NOTNULL/>
+		</field>
+		<field name="sword_apikey" type="C2" size="2047">
 			<NOTNULL/>
 		</field>
 		<descr>Deposit points.</descr>

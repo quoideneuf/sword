@@ -21,6 +21,7 @@
 	<message key="plugins.generic.sword.settings.depositPoints">Deposit Points</message>
 	<message key="plugins.generic.sword.depositPoints.create">Create Deposit Point</message>
 	<message key="plugins.generic.sword.depositPoints.edit">Edit Deposit Point</message>
+	<message key="plugins.generic.sword.depositPoints.apikey">API Key</message>
 	<message key="plugins.generic.sword.depositPoints.type.automatic">Automatic</message>
 	<message key="plugins.generic.sword.depositPoints.type.optionalSelection">Optional; Flexible</message>
 	<message key="plugins.generic.sword.depositPoints.type.optionalFixed">Optional; Fixed</message>
@@ -41,6 +42,7 @@
 	<message key="plugins.importexport.sword.displayName">SWORD Import/Export Deposit Plugin</message>
 	<message key="plugins.importexport.sword.description">Deposit articles in remote repositories using the SWORD deposit protocol</message>
 	<message key="plugins.importexport.sword.deposit">Deposit</message>
+	<message key="plugins.importexport.sword.apikey">API Key</message>
 	<message key="plugins.importexport.sword.serviceDocUrl">Service Document URL</message>
 	<message key="plugins.importexport.sword.depositUrl">Deposit Point URL</message>
 	<message key="plugins.importexport.sword.depositPoint">Deposit Point</message>
@@ -55,4 +57,7 @@
 	<message key="plugins.importexport.sword.requiredFieldErrorMessage">Please select at least one submission to deposit.</message>
 	<message key="plugins.generic.sword.settings.saved">Settings saved!</message>
 	<message key="plugins.generic.sword.manager.noneCreated">No deposit points have been created.</message>
+	<message key="plugins.generic.sword.formErrors.username">Username required if password is present or api key is empty.</message>
+	<message key="plugins.generic.sword.formErrors.password"> Password required if username is present or api key is empty.</message>
+	<message key="plugins.generic.sword.formErrors.apikey">Api key required unless username and password are present.</message>
 </locale>

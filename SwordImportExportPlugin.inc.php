@@ -38,8 +38,21 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	public function register($category, $path) {
 		$success = parent::register($category, $path);
 		$this->addLocaleData();
+		HookRegistry::register('publishedarticledao::getAdditionalFieldNames', array($this, 'getAdditionalFieldNames'));
 		return $success;
 	}
+
+	/**
+	 * Add statementIRI element to the article
+	 * @param $hookName string
+	 * @param $params array
+	 */
+	function getAdditionalFieldNames($hookName, $params) {
+		$fields =& $params[1];
+		$fields[] = 'swordStatementIri';
+		return false;
+	}
+
 
 	/**
 	 * Get reference to the sword plugin
@@ -79,6 +92,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
+
 	public function display($args, $request) {
 		parent::display($args, $request);
 		$templateMgr = TemplateManager::getManager($request);
@@ -110,7 +124,17 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 						'status'	=> STATUS_PUBLISHED,
 					),
 				));
-				$selectSubmissionsConfig = json_encode($selectSubmissionsListHandler->getConfig());
+				$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
+				$selectSubmissionsConfig = $selectSubmissionsListHandler->getConfig();
+				$depositedIds = [];
+				foreach ($selectSubmissionsConfig['items'] as $item) {
+					$publishedArticle = $publishedArticleDao->getByArticleId($item['id']);
+					if ($ssi = $publishedArticle->getData("swordStatementIri")) {
+						$depositedIds[$item['id']] = json_decode($ssi, true);
+					}
+				}
+				$selectSubmissionsConfig = json_encode($selectSubmissionsConfig);
+
 
 				$templateMgr->assign(array(
 					'selectedDepositPoint' 		=> $request->getUserVar('selectedDepositPoint'),
@@ -119,8 +143,14 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 					'swordSettingsPageUrl' 		=> $settingUrl,
 					'depositPoints' 		=> $depositPointsData,
 					'pluginJavaScriptURL' 		=> $this->getSwordPlugin()->getJsUrl($request),
-					'selectSubmissionsListData' 	=> $selectSubmissionsConfig,
+					'selectSubmissionsListData' 	=> $selectSubmissionsConfig
 				));
+				$script = '$(document).data("depositedIdMap", '. json_encode($depositedIds) .');';
+				$templateMgr->addJavaScript('depositedIds', $script, ['inline' => true, 'contexts' => 'backend']);
+				$templateMgr->addJavaScript(
+					'disableDepositedIds',
+					$this->getSwordPlugin()->getJsUrl($request) .'/SwordDisableDepositedItems.js',
+					['contexts' => 'backend']);
 				$templateMgr->display($this->_parentPlugin->getTemplateResource('articles.tpl'));
 				break;
 
@@ -173,9 +203,27 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							if ($depositGalleys) $deposit->addGalleys();
 							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
-							$response = $deposit->deposit($swordDepositPoint, $username, $password);
+							$response = $deposit->deposit(
+								$swordDepositPoint,
+								$username,
+								$password,
+								$request->getUserVar('swordApiKey'));
 							switch ($response->sac_status) {
 							case 200:
+								$stmt_link = array_shift(
+									array_filter($response->sac_links, function($link) {
+										return $link->sac_linkrel == 'http://purl.org/net/sword/terms/statement';
+									}));
+								$stmt_href = $stmt_link->sac_linkhref->__toString();
+								$data = $publishedArticle->getAllData();
+								$ssi = [];
+								if (array_has($data, 'swordStatementIri')) {
+									$ssi = unserialize($data['swordStatementIri'], true);
+								}
+								$ssi[$depositPointId] = $stmt_href;
+								$publishedArticle->setData('swordStatementIri', serialize($ssi));
+								$publishedArticleDao->updateDataObjectSettings(
+									'submission_settings', $publishedArticle, ['submission_id' => $articleId]);
 								$deposit->cleanup();
 								$depositIds[] = $response->sac_id;
 								break;

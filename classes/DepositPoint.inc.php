@@ -105,6 +105,22 @@ class DepositPoint extends DataObject {
 	}
 
 	/**
+	 * Get SWORD api_key
+	 * @return string
+	 */
+	public function getSwordApikey() {
+		return $this->getData('swordApikey');
+	}
+
+	/**
+	 * Set SWORD api_key
+	 * @param $swordApikey string
+	 */
+	public function setSwordApikey($swordApikey) {
+		return $this->setData('swordApikey', $swordApikey);
+	}
+    
+	/**
 	 * Get SWORD url
 	 * @return string
 	 */

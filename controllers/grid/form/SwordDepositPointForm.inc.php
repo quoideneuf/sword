@@ -44,8 +44,13 @@ class SwordDepositPointForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCSRF($this));
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'plugins.generic.sword.depositPoints.required.field'));
-		$this->addCheck(new FormValidator($this, 'swordUsername', 'required', 'plugins.generic.sword.depositPoints.required.field'));
-		$this->addCheck(new FormValidator($this, 'swordPassword', 'required', 'plugins.generic.sword.depositPoints.required.field'));
+		$this->addCheck(new FormValidatorCustom($this, 'swordApikey', 'required_if', 'plugins.generic.sword.depositPoints.required.field', function($apiKey) {
+			if (empty($apiKey) and (empty($this->getData('swordUsername')) or empty($this->getData('swordPassword')))) {
+				return false;
+			}
+			return true;
+		}
+		));
 		$this->addCheck(new FormValidator($this, 'depositPointType', 'required', 'plugins.generic.sword.depositPoints.required.field'));
 		$this->addCheck(new FormValidatorUrl($this, 'swordUrl', 'required', 'plugins.generic.sword.depositPoints.required.field'));
 	}
@@ -63,6 +68,7 @@ class SwordDepositPointForm extends Form {
 			$this->setData('type', $this->selectedType);
 			$this->setData('swordUsername', $depositPoint->getSwordUsername());
 			$this->setData('swordPassword', SWORD_PASSWORD_SLUG);
+			$this->setData('swordApikey', $depositPoint->getSwordApikey());
 		}
 	}
 
@@ -76,6 +82,7 @@ class SwordDepositPointForm extends Form {
 				'swordUrl',
 				'swordUsername',
 				'swordPassword',
+				'swordApikey',
 				'depositPointType'
 			)
 		);
@@ -91,6 +98,7 @@ class SwordDepositPointForm extends Form {
 			'depositPointId' => $this->_depositPointId,
 			'depositPointTypes' => $this->_plugin->getTypeMap(),
 			'selectedType' => $this->selectedType,
+			'pluginJavaScriptURL' 	=> $this->_plugin->getJsUrl($request),
 		));
 		return parent::fetch($request);
 	}
@@ -100,7 +108,7 @@ class SwordDepositPointForm extends Form {
 	 */
 	public function execute() {
 		$plugin = $this->_plugin;
-		
+
 		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 		$plugin->import('classes.DepositPoint');
 
@@ -117,7 +125,7 @@ class SwordDepositPointForm extends Form {
 		$depositPoint->setType($this->getData('depositPointType'));
 		$depositPoint->setSwordUrl($this->getData('swordUrl'));
 		$depositPoint->setSwordUsername($this->getData('swordUsername'));
-
+		$depositPoint->setSwordApikey($this->getData('swordApikey'));
 		$swordPassword = $this->getData('swordPassword');
 		if (($swordPassword == SWORD_PASSWORD_SLUG) && !empty($depositPoint->getId())) {
 			$depositPoint->setSwordPassword($depositPoint->getSwordPassword());

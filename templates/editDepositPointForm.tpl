@@ -7,12 +7,16 @@
  *
  * Form for editing a deposit point
  *}
- 
+
+<script src="{$pluginJavaScriptURL}/SwordEditDepositPointsFormHandler.js"></script>
  <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#depositPointForm').pkpHandler(
 			'$.pkp.controllers.form.AjaxFormHandler'
+		);
+		$('#depositPointForm').pkpHandler(
+			'$.pkp.plugins.sword.js.SwordEditDepositPointsFormHandler'
 		);
 	{rdelim});
 </script>
@@ -30,25 +34,29 @@
 		{fbvFormSection for="name" title="plugins.generic.sword.depositPoints.name"}
 			{fbvElement type="text" id="name" name="name" value=$name multilingual=true}
 		{/fbvFormSection}
-		
+
 		{fbvFormSection for="swordUrl" title="plugins.importexport.sword.depositUrl"}
 			{fbvElement type="text" id="swordUrl" value=$swordUrl}
 		{/fbvFormSection}
-		
+
 		{fbvFormSection for="swordUsername" title="user.username"}
-			{fbvElement type="text" id="swordUsername" value=$swordUsername}
+			{fbvElement type="text" id="swordUsername" value=$swordUsername data-error="{translate key='plugins.generic.sword.formErrors.username'}"}
 		{/fbvFormSection}
-		
+
 		{fbvFormSection for="swordPassword" title="user.password"}
-			{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword}
+			{fbvElement type="text" password="true" id="swordPassword" value=$swordPassword data-error="{translate key='plugins.generic.sword.formErrors.password'}"}
 		{/fbvFormSection}
-		
+
+		{fbvFormSection for="swordApikey" title="plugins.generic.sword.depositPoints.apikey"}
+			{fbvElement type="text" id="swordApikey" value=$swordApikey data-error="{translate key='plugins.generic.sword.formErrors.apikey'}"}
+		{/fbvFormSection}
+
 		{fbvFormSection title="common.type"}
 			{fbvElement type="select" id="depositPointType" from=$depositPointTypes selected=$selectedType translate=false}
 		{/fbvFormSection}
-		
+
 		{fbvFormSection description="plugins.generic.sword.depositPoints.type.description"}{/fbvFormSection}
 	{/fbvFormSection}
-	
+
 	{fbvFormButtons id="depositPointSubmit" submitText="common.save"}
 </form>
