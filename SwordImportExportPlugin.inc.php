@@ -30,13 +30,10 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
-	 * Called as a plugin is registered to the registry
-	 * @param $category String Name of category plugin was registered to
-	 * @return boolean True if plugin initialized successfully; if false,
-	 * 	the plugin will not be registered.
+	 * @copydoc Plugin::register()
 	 */
-	public function register($category, $path) {
-		$success = parent::register($category, $path);
+	public function register($category, $path, $mainContextId = null) {
+		$success = parent::register($category, $path, $mainContextId);
 		$this->addLocaleData();
 		HookRegistry::register('publishedarticledao::getAdditionalFieldNames', array($this, 'getAdditionalFieldNames'));
 		return $success;
