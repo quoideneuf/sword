@@ -130,7 +130,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				foreach ($selectSubmissionsConfig['items'] as $item) {
 					$publishedArticle = $publishedArticleDao->getByArticleId($item['id']);
 					if ($ssi = $publishedArticle->getData("swordStatementIri")) {
-						$depositedIds[$item['id']] = json_decode($ssi, true);
+						$depositedIds[$item['id']] = $ssi;
 					}
 				}
 				$selectSubmissionsConfig = json_encode($selectSubmissionsConfig);

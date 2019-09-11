@@ -81,16 +81,17 @@ class SwordPlugin extends GenericPlugin {
 				$deposit->addEditorial();
 				$deposit->createPackage();
 				$deposit->deposit(
-					$depositPoint->getSwordUrl(), 
-					$depositPoint->getSwordUsername(), 
-					$depositPoint->getSwordPassword()
+					$depositPoint->getSwordUrl(),
+					$depositPoint->getSwordUsername(),
+					$depositPoint->getSwordPassword(),
+					$depositPoint->getSwordApikey()
 				);
 				$deposit->cleanup();
 			}
 			catch (Exception $e) {
 				$contents = __('plugins.importexport.sword.depositFailed') . ': ' . $e->getMessage();
 				$notificationMgr = new NotificationManager();
-				$notificationManager->createTrivialNotification(
+				$notificationMgr->createTrivialNotification(
 					$user->getId(),
 					NOTIFICATION_TYPE_ERROR,
 					array('contents' => $contents)
