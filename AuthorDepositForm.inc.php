@@ -121,7 +121,6 @@ class AuthorDepositForm extends Form {
 		
 		$url = '';
 		$this->getSwordPlugin()->import('classes.DepositPoint');
-		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 		$depositPoints = $this->getData('depositPoint');
 		$depositableDepositPoints = $this->_getDepositableDepositPoints($this->_context);
 		foreach ($depositableDepositPoints as $key => $depositPoint) {
@@ -136,7 +135,8 @@ class AuthorDepositForm extends Form {
 				$deposit->deposit(
 					$url,
 					$depositPoint['username'],
-					$depositPoint['password']
+					$depositPoint['password'],
+					$depositPoint['apikey']
 				);
 				$params = array(
 					'itemTitle' => $this->_submission->getLocalizedTitle(), 
@@ -181,11 +181,13 @@ class AuthorDepositForm extends Form {
 			$list[$depositPoint->getId()]['type'] = $depositPoint->getType();
 			$list[$depositPoint->getId()]['username'] = $depositPoint->getSwordUsername();
 			$list[$depositPoint->getId()]['password'] = $depositPoint->getSwordPassword();
+			$list[$depositPoint->getId()]['apikey'] = $depositPoint->getSwordApikey();
 			if ($depositPoint->getType() == SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION) {
 				$collections = DepositPointsHelper::loadCollectionsFromServer(
 					$depositPoint->getSwordUrl(),
 					$depositPoint->getSwordUsername(),
-					$depositPoint->getSwordPassword()
+					$depositPoint->getSwordPassword(),
+					$depositPoint->getSwordApikey()
 				);
 				$list[$depositPoint->getId()]['depositPoints'] = $collections;
 			}
