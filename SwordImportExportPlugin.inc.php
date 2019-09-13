@@ -127,7 +127,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 				foreach ($selectSubmissionsConfig['items'] as $item) {
 					$publishedArticle = $publishedArticleDao->getByArticleId($item['id']);
 					if ($ssi = $publishedArticle->getData("swordStatementIri")) {
-						$depositedIds[$item['id']] = json_decode($ssi, true);
+						$depositedIds[$item['id']] = $ssi;
 					}
 				}
 				$selectSubmissionsConfig = json_encode($selectSubmissionsConfig);
@@ -200,37 +200,28 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							if ($depositGalleys) $deposit->addGalleys();
 							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
-							$response = $deposit->deposit(
+							$deposit->deposit(
 								$swordDepositPoint,
 								$username,
 								$password,
 								$request->getUserVar('swordApiKey'));
-							switch ($response->sac_status) {
-							case 200:
-								$stmt_link = array_shift(
-									array_filter($response->sac_links, function($link) {
-										return $link->sac_linkrel == 'http://purl.org/net/sword/terms/statement';
-									}));
-								$stmt_href = $stmt_link->sac_linkhref->__toString();
-								$data = $publishedArticle->getAllData();
-								$ssi = [];
-								if (array_has($data, 'swordStatementIri')) {
-									$ssi = unserialize($data['swordStatementIri'], true);
-								}
-								$ssi[$depositPointId] = $stmt_href;
-								$publishedArticle->setData('swordStatementIri', serialize($ssi));
-								$publishedArticleDao->updateDataObjectSettings(
-									'submission_settings', $publishedArticle, ['submission_id' => $articleId]);
-								$deposit->cleanup();
-								$depositIds[] = $response->sac_id;
-								break;
-							case 401:
-								$errors[] = array(
-									'title' => $publishedArticle->getLocalizedTitle(),
-									'message' => $response->sac_summary,
-								);
-								break;
+
+							$stmt_link = array_shift(
+								array_filter($response->sac_links, function($link) {
+									return $link->sac_linkrel == 'http://purl.org/net/sword/terms/statement';
+								}));
+							$stmt_href = $stmt_link->sac_linkhref->__toString();
+							$data = $publishedArticle->getAllData();
+							$ssi = [];
+							if (array_has($data, 'swordStatementIri')) {
+								$ssi = unserialize($data['swordStatementIri'], true);
 							}
+							$ssi[$depositPointId] = $stmt_href;
+							$publishedArticle->setData('swordStatementIri', serialize($ssi));
+							$publishedArticleDao->updateDataObjectSettings(
+								'submission_settings', $publishedArticle, ['submission_id' => $articleId]);
+							$deposit->cleanup();
+							$depositIds[] = $response->sac_id;
 						}
 						catch (Exception $e) {
 							$errors[] = array(
