@@ -207,15 +207,16 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 							if ($depositGalleys) $deposit->addGalleys();
 							if ($depositEditorial) $deposit->addEditorial();
 							$deposit->createPackage();
-							$deposit->deposit(
+							$response = $deposit->deposit(
 								$swordDepositPoint,
 								$username,
 								$password,
 								$request->getUserVar('swordApiKey'));
 
+
 							$stmt_link = array_shift(
 								array_filter($response->sac_links, function($link) {
-									return $link->sac_linkrel == 'http://purl.org/net/sword/terms/statement';
+									return $link->sac_linkrel == 'http://purl.org/net/sword/terms/statement' || $link->sac_linkrel == 'http://purl.org/net/sword/terms/add';
 								}));
 							$stmt_href = $stmt_link->sac_linkhref->__toString();
 							$data = $publishedArticle->getAllData();
