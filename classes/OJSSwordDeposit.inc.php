@@ -185,8 +185,8 @@ class OJSSwordDeposit {
 			'http://purl.org/net/sword/package/METSDSpaceSIP',
 			'application/zip', false, true
 		);
-		if ($response->sac_status != 200)
-			throw new Exception($response->sac_summary);
+		if ($response->sac_status > 299)
+			throw new Exception("Status: $response->sac_status , summary: $response->sac_summary");
 		
 		return $response;
 	}
