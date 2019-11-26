@@ -69,6 +69,13 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	}
 
 	/**
+	 * @copydoc Plugin::getPluginPath()
+	 */
+	function getPluginPath() {
+		return $this->_parentPlugin->getPluginPath();
+	}
+
+	/**
 	 * Get the display name.
 	 * @return string
 	 */
