@@ -35,13 +35,29 @@ class SwordPlugin extends GenericPlugin {
 				DAORegistry::registerDAO('DepositPointDAO', $depositPointDao);
 
 				HookRegistry::register('LoadHandler', array($this, 'callbackSwordLoadHandler'));
-				HookRegistry::register('Templates::Management::Settings::website', array($this, 'callbackSettingsTab'));
+				HookRegistry::register('Template::Settings::website', array($this, 'callbackSettingsTab'));
 				HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 				HookRegistry::register('EditorAction::recordDecision', array($this, 'callbackAuthorDeposits'));
+				// Preprints
+				HookRegistry::register('Publication::publish', array($this, 'callbackPublish'));
 			}
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Performs automatic deposit on publication
+	 * @param $hookName string
+	 * @param $args array
+	 */
+	public function callbackPublish($hookName, $args) {
+		$newPublication =& $args[0];
+
+		if ($newPublication->getData('status') != STATUS_PUBLISHED) return false;
+		$submission = Services::get('submission')->get($newPublication->getData('submissionId'));
+
+		$this->performAutomaticDeposits($submission);
 	}
 
 	/**
@@ -53,30 +69,37 @@ class SwordPlugin extends GenericPlugin {
 		$submission =& $args[0];
 		$editorDecision =& $args[1];
 		$decision = $editorDecision['decision'];
-
 		// Determine if the decision was an "Accept"
 		if ($decision != SUBMISSION_EDITOR_DECISION_ACCEPT) return false;
 
+		$this->performAutomaticDeposits($submission);
+	}
+
+	/**
+	 * Performs automatic deposits and mails authors
+	 * @param $submission Submission
+	 */
+	function performAutomaticDeposits(Submission $submission) {
 		// Perform Automatic deposits
 		$request =& Registry::get('request');
 		$user = $request->getUser();
 		$context = $request->getContext();
 		$dispatcher = $request->getDispatcher();
-		$this->import('classes.OJSSwordDeposit');
+		$this->import('classes.PKPSwordDeposit');
 		$depositPointDao = DAORegistry::getDAO('DepositPointDAO');
 		$depositPoints = $depositPointDao->getByContextId($context->getId());
 		$sendDepositNotification = $this->getSetting($context->getId(), 'allowAuthorSpecify') ? true : false;
 		while ($depositPoint = $depositPoints->next()) {
 			$depositType = $depositPoint->getType();
-			if (($depositType == SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION) 
+			if (($depositType == SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION)
 				|| $depositType == SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED) {
 				$sendDepositNotification = true;
 			}
-			if ($depositType != SWORD_DEPOSIT_TYPE_AUTOMATIC) 
+			if ($depositType != SWORD_DEPOSIT_TYPE_AUTOMATIC)
 				continue;
 
 			try {
-				$deposit = new OJSSwordDeposit($submission);
+				$deposit = new PKPSwordDeposit($submission);
 				$deposit->setMetadata($request);
 				$deposit->addEditorial();
 				$deposit->createPackage();
@@ -101,7 +124,7 @@ class SwordPlugin extends GenericPlugin {
 
 			$user = $request->getUser();
 			$params = array(
-				'itemTitle' => $submission->getLocalizedTitle(), 
+				'itemTitle' => $submission->getLocalizedTitle(),
 				'repositoryName' => $depositPoint->getLocalizedName()
 			);
 			$notificationMgr = new NotificationManager();
@@ -113,23 +136,39 @@ class SwordPlugin extends GenericPlugin {
 		}
 
 		if ($sendDepositNotification) {
-			$submittingUser = $submission->getPrimaryAuthor();  // TODO how to get submission user ?
-			$contactName = $context->getSetting('contactName');
-			$contactEmail = $context->getSetting('contactEmail');
-			import('classes.mail.ArticleMailTemplate');
-			$mail = new ArticleMailTemplate($submission, 'SWORD_DEPOSIT_NOTIFICATION', null, $context, true);
-			$mail->setFrom($contactEmail, $contactName);
-			$mail->addRecipient($submittingUser->getEmail(), $submittingUser->getFullName());
+			$submissionAuthors = [];
+			$dao = new StageAssignmentDAO();
+			$daoResult = $dao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_AUTHOR);
+			while ($record = $daoResult->next()) {
+				$userId = $record->getData('userId');
+				if (!in_array($userId, $submissionAuthors)) {
+					array_push($submissionAuthors, $userId);
+				}
+			}
 
-			$mail->assignParams(array(
-				'journalName' => $context->getLocalizedName(),
-				'articleTitle' => $submission->getLocalizedTitle(),
-				'swordDepositUrl' => $dispatcher->url(
-					$request, ROUTE_PAGE, null, 'sword', 'index', $submission->getId()
-				)
-			));
+			$userDao = new UserDao();
 
-			$mail->send($request);
+			foreach ($submissionAuthors as $userId) {
+				$submittingUser = $userDao->getById($userId);
+				$contactName = $context->getSetting('contactName');
+				$contactEmail = $context->getSetting('contactEmail');
+
+				import('lib.pkp.classes.mail.SubmissionMailTemplate');
+				$mail = new SubmissionMailTemplate($submission, 'SWORD_DEPOSIT_NOTIFICATION', null, $context, true);
+
+				$mail->setFrom($contactEmail, $contactName);
+				$mail->addRecipient($submittingUser->getEmail(), $submittingUser->getFullName());
+
+				$mail->assignParams(array(
+					'contextName' => $context->getLocalizedName(),
+					'submissionTitle' => $submission->getLocalizedTitle(),
+					'swordDepositUrl' => $dispatcher->url(
+						$request, ROUTE_PAGE, null, 'sword', 'index', $submission->getId()
+					)
+				));
+
+				$mail->send($request);
+			}
 		}
 
 		return false;
@@ -189,9 +228,11 @@ class SwordPlugin extends GenericPlugin {
 	public function callbackSettingsTab($hookName, $args) {
 		$output =& $args[2];
 		$request =& Registry::get('request');
+		$templateMgr = TemplateManager::getManager($request);
 		$dispatcher = $request->getDispatcher();
-		$tabLabel = __('plugins.generic.sword.displayName') . ' ' . __('plugins.generic.sword.settings');
-		$output .= '<li><a name="swordSettings" id="swordSettings" href="' . $dispatcher->url($request, ROUTE_PAGE, null, 'sword', 'swordSettings') . '">' . $tabLabel . '</a></li>';
+		$tabLabel = __('plugins.generic.sword.settingsTabLabel');
+		$templateMgr->assign(['sourceUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'sword', 'swordSettings')]);
+		$output .= $templateMgr->fetch($this->getTemplateResource('swordSettingsTab.tpl'));
 		return false;
 	}
 
@@ -268,9 +309,9 @@ class SwordPlugin extends GenericPlugin {
 
 	public function getTypeMap() {
 		return array(
-			SWORD_DEPOSIT_TYPE_AUTOMATIC 		=> __('plugins.generic.sword.depositPoints.type.automatic'),
-			SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION 	=> __('plugins.generic.sword.depositPoints.type.optionalSelection'),
-			SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED 	=> __('plugins.generic.sword.depositPoints.type.optionalFixed'),
+			SWORD_DEPOSIT_TYPE_AUTOMATIC		=> __('plugins.generic.sword.depositPoints.type.automatic'),
+			SWORD_DEPOSIT_TYPE_OPTIONAL_SELECTION	=> __('plugins.generic.sword.depositPoints.type.optionalSelection'),
+			SWORD_DEPOSIT_TYPE_OPTIONAL_FIXED	=> __('plugins.generic.sword.depositPoints.type.optionalFixed'),
 			SWORD_DEPOSIT_TYPE_MANAGER		=> __('plugins.generic.sword.depositPoints.type.manager'),
 		);
 	}
@@ -281,5 +322,31 @@ class SwordPlugin extends GenericPlugin {
 	public function getInstallSchemaFile() {
 		return $this->getPluginPath() . '/' . 'schema.xml';
 	}
-}
 
+	/**
+	 * @see PKPPlugin::getInstallEmailTemplatesFile()
+	 */
+	function getInstallEmailTemplatesFile() {
+		return ($this->getPluginPath() . '/emailTemplates.xml');
+	}
+
+	/**
+	 * @see PKPPlugin::getInstallEmailTemplateDataFile()
+	 */
+	function getInstallEmailTemplateDataFile() {
+		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
+	}
+
+	/**
+	 * Make sure the installedLocales are set when
+	 * Installer->preInstall is not run, i.e., when
+	 * using the install plugin CLI tool
+	 */
+	function installEmailTemplateData($hookName, $args) {
+		$installer =& $args[0]; /* @var $installer Installer */
+		if (!isset($installer->installedLocales)) {
+			$installer->installedLocales = array_keys(AppLocale::getAllLocales());
+		}
+		parent::installEmailTemplateData($hookName, $args);
+	}
+}

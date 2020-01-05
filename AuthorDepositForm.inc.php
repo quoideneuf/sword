@@ -82,9 +82,9 @@ class AuthorDepositForm extends Form {
 	public function execute($request) {
 		$user = $request->getUser();
 		$notificationManager = new NotificationManager();
-		$this->getSwordPlugin()->import('classes.OJSSwordDeposit');
+		$this->getSwordPlugin()->import('classes.PKPSwordDeposit');
 		
-		$deposit = new OJSSwordDeposit($this->_submission);
+		$deposit = new PKPSwordDeposit($this->_submission);
 		$deposit->setMetadata($request);
 		$deposit->addEditorial();
 		$deposit->createPackage();

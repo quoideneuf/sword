@@ -54,11 +54,23 @@
 				{fbvElement type="checkbox" id="depositEditorial" value="1" checked=$depositEditorial label="plugins.importexport.sword.depositEditorial"}
 			{/fbvFormSection}
 			{assign var="uuid" value=""|uniqid|escape}
+			{if $usingApi}
+			<div id="select-submissions-{$uuid}">
+				<select-submissions-list-panel
+					v-bind="components.selectSubmissionsListPanel"
+					@set="set"
+					/>
+			</div>
+			<script type="text/javascript">
+				pkp.registry.init('select-submissions-{$uuid}', 'Container', {$selectSubmissionsListData|json_encode});
+			</script>
+			{else}
 			<div id="select-submissions-list-handler-{$uuid}">
 				<script type="text/javascript">
 					pkp.registry.init('select-submissions-list-handler-{$uuid}', 'SelectSubmissionsListPanel', {$selectSubmissionsListData});
 				</script>
 			</div>
+			{/if}
 			{fbvElement type="submit" label="plugins.importexport.sword.deposit" id="depositBtn" inline=true}
 			{fbvElement type="button" label="common.selectAll" id="selectAllBtn" inline=true}
 		</form>

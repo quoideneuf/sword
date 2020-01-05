@@ -1,23 +1,23 @@
 <?php
 
 /**
- * @file classes/sword/OJSSwordDeposit.inc.php
+ * @file classes/sword/PKPSwordDeposit.inc.php
  *
  * Copyright (c) 2014-2018 Simon Fraser University
  * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OJSSwordDeposit
+ * @class PKPSwordDeposit
  * @ingroup plugins_generic_sword_classes
  *
- * @brief Class providing a SWORD deposit wrapper for OJS submissions
+ * @brief Class providing a SWORD deposit wrapper for submissions
  */
 
 require_once dirname(__FILE__) . '/../libs/swordappv2/swordappclient.php';
 require_once dirname(__FILE__) . '/../libs/swordappv2/swordappentry.php';
 require_once dirname(__FILE__) . '/../libs/swordappv2/packager_mets_swap.php';
 
-class OJSSwordDeposit {
+class PKPSwordDeposit {
 	/** @var SWORD deposit METS package */
 	protected $_package = null;
 
@@ -38,7 +38,7 @@ class OJSSwordDeposit {
 
 	/**
 	 * Constructor.
-	 * Create a SWORD deposit object for an OJS article.
+	 * Create a SWORD deposit object for a submission
 	 * @param $submission Submission
 	 */
 	public function __construct($submission) {
@@ -64,13 +64,9 @@ class OJSSwordDeposit {
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$this->_section = $sectionDao->getById($submission->getSectionId());
 
-		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getByArticleId($submission->getId());
-
-		$issueDao = DAORegistry::getDAO('IssueDAO');
-		if ($publishedArticle) {
-			$this->_issue = $issueDao->getById($publishedArticle->getIssueId());
-			$this->_article = $publishedArticle;
+		if (method_exists($submission, 'getIssueId')) {
+			$issueDao = DAORegistry::getDAO('IssueDAO');
+			$this->_issue = $issueDao->getById($submission->getIssueId());
 		}
 	}
 
@@ -187,7 +183,7 @@ class OJSSwordDeposit {
 		);
 		if ($response->sac_status > 299)
 			throw new Exception("Status: $response->sac_status , summary: $response->sac_summary");
-		
+
 		return $response;
 	}
 
