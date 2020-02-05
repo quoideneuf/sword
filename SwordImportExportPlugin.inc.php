@@ -150,7 +150,7 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 
 			case 'deposit':
 				$context = $request->getContext();
-				$submissionDao = $this->getSubmissionDAO();
+				$submissionDao = Application::getSubmissionDAO();
 				$this->getSwordPlugin()->import('classes.PKPSwordDeposit');
 				$depositPointId = $request->getUserVar('depositPoint');
 				$password = $request->getUserVar('swordPassword');
@@ -276,9 +276,4 @@ class SwordImportExportPlugin extends ImportExportPlugin {
 	 */
 	public function usage($scriptName) {
 	}
-
-	protected function getSubmissionDao() {
-		return DAORegistry::getDAO('SubmissionDAO');
-	}
-
 }
