@@ -13,7 +13,6 @@
  * @brief Tests for the PKPSwordDeposit class.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/PKPSwordDeposit.inc.php';
 
 class MockSessionManager {
@@ -27,7 +26,7 @@ class MockSessionManager {
 }
 
 class MockRequest {
-	function getUserVar($__) {
+	function getUserVar($param) {
 		return null;
 	}
 
@@ -45,6 +44,10 @@ class MockRequest {
 				return 'en_US';
 			}
 		};
+	}
+
+	function getCookieVar($param) {
+		return 'en_US';
 	}
 }
 
