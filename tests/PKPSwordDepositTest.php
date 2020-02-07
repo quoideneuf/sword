@@ -45,6 +45,10 @@ class MockRequest {
 			}
 		};
 	}
+
+	function getCookieVar($foobar) {
+		return 'en_US';
+	}
 }
 
 class TestablePKPSwordDeposit extends PKPSwordDeposit {
