@@ -1,0 +1,8 @@
+language: php
+
+before_install:
+  - ./tests/ci-scripts/prepare-db.sh
+  - ./tests/ci-scripts/install-ojs.sh
+
+script: phpunit plugins/generic/sword/tests/*.php
+  
