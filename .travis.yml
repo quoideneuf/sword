@@ -1,4 +1,6 @@
 language: php
+services:
+  - mysql
 
 before_install:
   - ./tests/ci-scripts/prepare-db.sh
