@@ -13,7 +13,6 @@
  * @brief Tests for the PKPSwordDeposit class.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../classes/PKPSwordDeposit.inc.php';
 
 class MockSessionManager {
@@ -66,6 +65,7 @@ class PKPSwordDepositTest extends PHPUnit\Framework\TestCase {
 	public static function setUpBeforeClass(): void {
 		define('INDEX_FILE_LOCATION', 'foo');
 		define('BASE_SYS_DIR', dirname(INDEX_FILE_LOCATION));
+		
 		require(BASE_SYS_DIR . '/lib/pkp/includes/functions.inc.php');
 		import('classes.core.Application');
 		$application = new Application();
