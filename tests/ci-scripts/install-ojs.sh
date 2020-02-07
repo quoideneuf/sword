@@ -7,5 +7,5 @@ cd ojs
 cp config.TEMPLATE.inc.php config.inc.php
 git submodule update --init --recursive
 ln -s $SWORD_PLUGIN_PATH plugins/generic/
-ls plugins/generic
-ls plugins/generic/sword
+echo `ls plugins/generic`
+echo `ls plugins/generic/sword`
