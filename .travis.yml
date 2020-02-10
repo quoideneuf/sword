@@ -2,9 +2,22 @@ language: php
 services:
   - mysql
 
-before_install:
-  - ./tests/ci-scripts/prepare-db.sh
-  - ./tests/ci-scripts/install-ojs.sh
+php:
+  - 7.2
+  - 7.3
+  - 7.4
 
-script: cd /tmp/ojs && phpunit plugins/generic/sword/tests/*.php
-  
+env:
+  - APPLICATION=ojs BRANCH=master TEST=mysql
+  - APPLICATION=ojs BRANCH=master TEST=pgsql
+
+install:
+  # Prepare OJS/OMP environment
+  - git clone -b ${BRANCH} https://github.com/pkp/${APPLICATION} ~/${APPLICATION}
+  - cd ~/${APPLICATION}
+  - git submodule update --init --recursive
+  - source lib/pkp/tools/travis/prepare-tests.sh
+  - lib/pkp/tools/travis/install-composer-dependencies.sh
+  - cp -r ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/sword
+
+script: cd ~/${APPLICATION} && phpunit plugins/generic/sword/tests/*.php
