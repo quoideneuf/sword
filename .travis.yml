@@ -1,4 +1,9 @@
 language: php
+
+addons:
+  apt:
+    update: true
+
 services:
   - mysql
 
