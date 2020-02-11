@@ -24,7 +24,7 @@ install:
   - lib/pkp/tools/travis/install-composer-dependencies.sh
   - sed -i -e "s/username = ojs/username = $DBUSERNAME/" config.inc.php
   - sed -i -e "s/password = ojs/password = $DBPASSWORD/" config.inc.php
-  - sed -i -e "s/^name = ojs/name = $DNAME/" config.inc.php
+  - sed -i -e "s/^name = ojs/name = $DBNAME/" config.inc.php
   - sed -i -e "s/driver = mysqli/driver = $DBTYPE/" config.inc.php
   - cp -r ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/sword
 
