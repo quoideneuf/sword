@@ -14,6 +14,7 @@
  */
 
 require_once __DIR__ . '/../classes/PKPSwordDeposit.inc.php';
+define("DONT_DIE_ON_ERROR", true);
 
 class MockSessionManager {
 	function getUserSession() {
