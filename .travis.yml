@@ -4,13 +4,12 @@ addons:
   apt:
     update: true
 
-services:
-  - mysql
+sudo: required
 
 php:
   - 7.2
-  - 7.3
-  - 7.4
+  # - 7.3
+  # - 7.4
 
 env:
   - APPLICATION=ojs BRANCH=master TEST=mysql
@@ -23,6 +22,10 @@ install:
   - git submodule update --init --recursive
   - source lib/pkp/tools/travis/prepare-tests.sh
   - lib/pkp/tools/travis/install-composer-dependencies.sh
+  - sed -i -e "s/username = ojs/username = $DBUSERNAME/" config.inc.php
+  - sed -i -e "s/password = ojs/password = $DBPASSWORD/" config.inc.php
+  - sed -i -e "s/name = ojs/name = $DNAME/" config.inc.php
+  - sed -i -e "s/driver = mysqli/driver = $DBTYPE/" config.inc.php
   - cp -r ${TRAVIS_BUILD_DIR} ~/${APPLICATION}/plugins/generic/sword
 
 script: cd ~/${APPLICATION} && phpunit plugins/generic/sword/tests/*.php
