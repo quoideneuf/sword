@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD plugin"
+
+msgid "plugins.generic.sword.description"
+msgstr "Gør det muligt for tidsskriftschefen og (eventuelt) forfatterne at deponere artikler via SWARD protokollen"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "SWARD plugin’et er blevet aktiveret."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Indstillinger"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Tillad forfatteren at specificere deponeringsstedet"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Deponeringssteder"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Opret deponeringssted"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Redigér deponeringssted"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automatisk"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Valgfri; Fleksibel"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Valgfri; Fastlagt"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Kun for tidsskriftschef"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Type deponeringssteder:</h4>\n"
+"<p><strong>Automatisk</strong>: Deponeringsstedet fremkommer automatisk. Hele SWARD deponeringsstedet er specificeret. Brugernavn og adgangskode skal angives. Deponeringsstedet fremkommer efter at godkendelsens forfatter er blevet  underrettet.<br/>\n"
+"<strong>Valgfri; Fleksibel</strong>: Forfatteren kan selv vælge om artiklen skal deponeres. Den angivne  URL  viser hen til et servicedokument, og forfatteren kan, udfra dette dokument, vælge et specifikt deponeringssted. Deponeringsstedet fremkommer efter at godkendelsens forfatter er blevet  underrettet.<br/>\n"
+"<strong>Valgfri; Fastlagt</strong>: Forfatteren kan selv vælge om artiklen skal deponeres. URL’en angiver det specifikke SWARD deponeringssted. Deponeringsstedet fremkommer efter at godkendelsens forfatter er blevet  underrettet.<br/>\n"
+"<strong> Kun for tidsskriftschef</strong>: Kun tidsskriftschefen må anvende dette deponeringssted. Den angivne  URL  viser hen til et servicedokument. Deponeringen foretages manuelt af tidsskriftschefen under anvendelse af Import/Eksport  grænsefladen under ’Administration af tidsskriftet’.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Såfremt adgangskode ikke angives her vil du og/eller forfatteren blive afkrævet en sådan så snart deponeringsstedet fremkommer. Bemærk at denne adgangskode kan aflæses af tidsskriftscheferne og at den vil blive gemt ukrypteret."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Navn"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Artiklen \"{$itemTitle}\" blev automatisk gemt i følgende repository: \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Artiklen \"{$itemTitle}\" blev gemt i følgende repository: \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "Du kan eventuelt anvende følgende formular i forbindelse med deponering af din indsendelse \"{$submissionTitle}\", i en af de anførte repositories."
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "Du kan eventuelt angive et SWORD-kompatibelt deponeringssted i følgende formular. Såfremt det ønskes skal en SWARD URL, brugernavn og adgangskode til dit repository angives. Herefter vil indsendelsen blive deponeret."
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD Import/Export Deposit Plugin"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Deponerede artikler i fjerntliggende repositories, der anvender SWARD deponeringsprotokollen"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Deponér"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "Servicedokument URL"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "Deponeringsstedets URL"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Deponeringssted"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Tilføj/Fjern"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Deponeringssatsskibe"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Den senest deponerede redaktionsfil"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Deponering gennemført"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Den eller de valgte artikler er blevet deponeret."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Deponeringen lykkedes ikke"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Tillad tidsskriftschefen og (eventuelt) forfattere at overføre og deponere artikler via SWORD protokollen. Bemærk, at dette plug-in kræver et zip-udpakningsformat, der endnu IKKE er installeret."

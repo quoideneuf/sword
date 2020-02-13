@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD-Plug-In"
+
+msgid "plugins.generic.sword.description"
+msgstr "Zeitschriftenverwalter/innen und (optional) Autor/innen erlauben, Artikel über das SWORD-Protokoll zu archivieren"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Zeitschriftenverwalter/innen und (optional) Autor/innen erlauben, Artikel über das SWORD-Protokoll zu archivieren. Beachten Sie bitte, dass dieses Plug-In die Zip-Erweiterung benötigt, die momentan NICHT installiert ist."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Das SWORD-Plug-In wurde aktiviert."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Einstellungen"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Autor/in erlauben, einen Ablageort anzugeben"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Ablageorte"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Ablageort anlegen"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Ablageort bearbeiten"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automatisch"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Optional; flexibel"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Optional; fest"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Nur Verwalter/in"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Typen von Ablageorten:</h4>\n"
+"<p><strong>Automatisch</strong>: Das Archivieren geschieht automatisch. Der komplette SWORD-Ablageort ist angegeben, Benutzer/innenname und Passwort müssen angegeben werden. Das Archivieren geschieht nach der Benachrichtigung des Autors/der Autorin über die Annahme.<br />\n"
+"<strong>Optional; flexibel</strong>: Der/die Autor/in kann auswählen, ob archiviert werden soll. Der angegebene URL gibt ein Servicedokument an, und der/die Autor/in kann aus dem Dokument entscheiden, welcher spezifische Ablageort genutzt werden soll.  Die Ablage geschieht nach der Benachrichtigung des Autors/der Autorin über die Annahme.<br />\n"
+"<strong>Optional; fest</strong>: Der/die Autor/in kann auswählen, ob archiviert werden soll. Der URL gibt den genauen SWORD-Ablageort an. Die Ablage geschieht nach der Benachrichtigung des Autors/der Autorin über die Annahme.<br />\n"
+"<strong>Nur Zeitschriftenverwalter/in:</strong> Nur der/die Zeitschriftenverwalter/in kann diesen Ablageort benutzen. Der URL gibt ein Servicedokument. Die Ablage wird manuell durch den/die Zeitschriftenverwalter/in mittels der Import/Export-Schnittstelle in der Zeitschriftenverwaltung durchgeführt.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Wenn Sie hier kein Passwort angeben, werden Sie und/oder der/die Autor/in bei der Einreichung nach einem gefragt. Beachten Sie, dass dieses Passwort für alle Zeitschriftenverwalter/innen sichtbar sein wird und unverschlüsselt in der Datenbank gespeichert werden wird."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Name"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Das Element \"{$itemTitle}\" wurde automatisch in dem Repositorium \"{$repositoryName}\" archiviert."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Das Element \"{$itemTitle}\" wurde in dem Repositorium \"{$repositoryName}\" archiviert."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Sie können optional das folgende Formular nutzen, um Ihren Beitrag \"{$submissionTitle}\" in einem der aufgelisteten Repositorien zu archivieren. Benutzen Sie die Auswahlboxen in der linken Spalte, um auszuwählen, in welchen Repositorien Ihr Beitrag archiviert werden soll; jedes Repositorium kann Ihnen die Auswahl eines spezifischen Ablageorts aus einer Auswahlliste anbieten.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Sie können optional einen SWORD-kompatiblen Ablageort im folgenden Formular angeben. Wenn gewünscht, geben Sie bitte einen SWORD-URL, Benutzer/innenname und Passwort zu Ihrem Repositorium ein, und Ihr Beitrag wird dort archiviert.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD-Import/Export-Archivierungs-Plug-In"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Artikel in entfernten Repositorien mittels des SWORD-Ablageprotokolls archivieren"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Archivieren"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "Service-URL des Dokuments"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL des Ablageorts"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Ablageort"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Hinzufügen/Entfernen"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Fahnen einreichen"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Aktuelle redaktionelle Datei archivieren"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Archivieren erfolgreich"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Die ausgewählten Einträge sind archiviert worden."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Archivierung fehlgeschlagen"

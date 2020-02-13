@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD插件"
+
+msgid "plugins.generic.sword.description"
+msgstr "允许期刊管理员和作者（可选）通过SWORD协议存储文章"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "SWORD 插件已开启。"
+
+msgid "plugins.generic.sword.settings"
+msgstr "设置"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "允许作者制定一个存储点"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "存储点"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "创建一个存储点"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "编辑一个存储点"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "自动"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "可选的; 灵活的"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "可选的; 固定的"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "只允许管理员"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>存储点类型:</h4>\n"
+"<p><strong>自动</strong>:存储自动完成。完整的存储点已指定。需指定一个用户名和密码。通知作者接受后，存储进行。<br/>\n"
+"<strong>可选的; 灵活的</strong>: 作者选择是否存储。指定文档显示一个服务文档，并且作者从文件中选择指定的存储点。通知作者接受后，存储进行。<br/>\n"
+"<strong>可选的; 固定的</strong>:作者选择是否存储。网址指定SWORD存储点。通知作者接受后，存储进行。<br/>\n"
+"<strong>只允许管理员</strong>：只有管理员使用存储点。网址显示服务文档。存储由期刊管理员在期刊管理界面的导入/导出插件完成。"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "如果您没有指定密码，存储进行时，系统将提示您或者作者。注意：密码对所有期刊管理员都是可见的，并且不会以加密的形式存在数据库里。"
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "姓名"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "项目\"{$itemTitle}\"自动存储到资源库 \"{$repositoryName}\"。"
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "项目\"{$itemTitle}\"自动存储到资源库 \"{$repositoryName}\"。"
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>您可以选择以下格式存储您提交的文件, \"{$submissionTitle}\" 在列出的资源库。使用左边的复选框选择资源库；每个资源库实现从下拉列表指定一个存储点。</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>在以下表格中，您可以随意指定一个SWORD兼容存储点。如果需要，请指定一个SWORD网址，用户名和密码到您的资源库，提交文件将被存储。</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD 导入/导出存储插件"
+
+msgid "plugins.importexport.sword.description"
+msgstr "按照SWORD 存储协议在远程资源库存储文章。"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "存储"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "服务文档网址"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "存储点网址"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "存储点"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "增加/删除"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "存储样稿"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "存储最近编辑文件"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "存储成功"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "所选项目已存储。"
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "存储失败"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "所有的期刊管理者和（可选的）作者可以通过SWORD协议后存取文章。注意： 这个插件需要ZIP扩展，但是这个扩展尚未安装。"

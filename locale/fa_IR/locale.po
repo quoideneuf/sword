@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "افزونه سورد"
+
+msgid "plugins.generic.sword.description"
+msgstr "مدیران مجله و بصورت اختیاری نویسندگان اجازه داشته باشند تا از طریق پروتوکل سورد مقاله ارسال کنند."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "اقزونه سورد فعال شد."
+
+msgid "plugins.generic.sword.disable"
+msgstr "اقزونه سورد غیر فعال شد."
+
+msgid "plugins.generic.sword.settings"
+msgstr "تنظیمات"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "اجازه بده که نویسنده نقطه دپوزیت داشته باشد"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "نقاط دپوزیت"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "ایجاد نقطه دپوزیت"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "ویرایش نقطه دپوزیت"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "خودکار"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Optional; Flexible"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "اختیاری، فیکس"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "فقط مدیران"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>انواع نقاط دپوزیت:</h4>\n"
+"<p><strong>خودکار</strong>: دپوزیت بطور خودکار صورت می گیرد. نقطه دپوزیت سورد بطور کامل ارائه می شود. نام کاربری و رمز عبور ارائه می شود. عمل دپوزیت هنگامی انجام می شود که نویسنده رسید دریافت کند.<br/>\n"
+"<strong>اختیاری; قابل انعطاف</strong>: نویسنده میتواند انتخاب کند که آیا دپوزیت بکند یا خیر. آدرس مشخص شده مربرط به یک سرویس سند است, و نویسنده می تواند انتخاب کند که از کدام نقطه دپوزیت در سند مربوطه استفاده کند . دپوزیت تنها پس از مطلع ساختن نویسنده از دریافت روی میدهد.<br/>\n"
+"<strong>اختیاری، فیکس</strong>: نویسنده میتواند انتخاب کند که آیا دپوزیت بکند یا خیر. آدرس مشخص شده مربرط به یک سرویس سند است. دپوزیت تنها پس از مطلع ساختن نویسنده از دریافت روی میدهد.<br/>\n"
+"<strong>فقط مدیران</strong>: فقط مدیر مجله می تواند این دپوزیت را بکار ببرد . آدرس مربوط به یک سرویس سند است. دپوزیت بطورت دستی توسط مدیر مجله با ستفاده از اینترفیس ایمپورت اکسپورت در قسمت اداره مجله انجام می شود.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "اگر رمز عبور را در اینجا تعیین نکنید از شما و یا از نویسنده در هنکام دپوزیت خواسته می شود. توجه داشته باشید که این رمز عبور برای تمام مدیران مجله مرئی بوده و بصورت غیر رمز در بانک اطلاعاتی ذخیره می شود."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "نام"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "The item \"{$itemTitle}\" was automatically deposited into the repository \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "The item \"{$itemTitle}\" was deposited into the repository \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>You may optionally use the following form to deposit your submission, \"{$submissionTitle}\", in one of the repositories listed. Use the checkboxes down the left-hand column to select which repositories you wish to deposit your submission into; each repository may also allow you to specify a deposit point from a pull-down list.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>You may optionally specify a SWORD-compliant deposit point in the following form. If desired, please specify a SWORD URL, username and password to your repository and the submission will be deposited.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "افزونه ایمپورت اکسپورت دپوزیت سورد"
+
+msgid "plugins.importexport.sword.description"
+msgstr "دپوزیت مقالات در مخازن ری موت با استفاده از پورتوکول دپوزیت سورد"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "دپوزیت"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "آدرس سرویس سند"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "آدرس نقطه دپوزیت"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "نقطه دپوزیت"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "اضافه / حذف"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "گالی های دپوزیت"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "دپوزیت آخرین فایل ادیتوریال"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "دپوزیت با موفقیت انجام شد"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "آیتم مورد نظر دپوزیت شد"
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "شکست در دپوزیت"

@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Modul SWORD"
+
+msgid "plugins.generic.sword.description"
+msgstr "Permite managerilor revistei și (opțional) autorilor să-și depoziteze articolele prin intermediul protocolului SWORD"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Modulul SWORD a fost activat."
+
+msgid "plugins.generic.sword.disable"
+msgstr "Modulul SWORD a fost dezactivat."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Setări"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Permite autorului să specifice un punct de depozitare"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Puncte de depozitare"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Creează un punct de depozitare"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Editează punctul de depozitare"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automat"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Opțional; Flexibil"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Opțional; Fix"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Doar managerul"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Tipurile de puncte de depozitare:</h4>\n"
+"<p><strong>Automat</strong>: Depozitarea se face automat. Este specificat punctul de depozitare în forma sa completă. Trebuie specificat un nume de utilizator și o parolă. Depozitarea se face după anunțarea autorului că propunerea i-a fost acceptată.<br/>\n"
+"<strong>Opțional; Flexibil</strong>: Autorul poate alege dacă dorește să depoziteze sau nu. URL-ul specificat indică un serviciu pentru documente iar autorul poate alege un punct specific de depozitare din acel document. Depozitarea se face după anunțarea autorului că propunerea i-a fost acceptată.<br/>\n"
+"<strong>Opțional; Fix</strong>: Autorul poate alege să depoziteze sau nu. URL-ul indică punctul specific de depozitare prin SWORD. Depozitarea se face după anunțarea autorului despre acceptarea propunerii.<br/>\n"
+"<strong>Doar managerii</strong>: Doar managerii revistei pot folosi acest punct de depozitare. URL-ul indică un serviciu pentru documente. Depozitarea se face manual de către managerul revistei folosind interfața de import/export din secțiunea de management a revistei.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Dacă nu introduci o parolă aici, ție și autorului vi se vor cere la momentul depozitării. A se nota faptul că această parolă va fi vizibilă pentru toți managerii revistei și va fi stocată în baza de date fără a fi criptată."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Nume"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Articolul \"{$itemTitle}\" a fost depozitat automat în depozitul \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Articolul \"{$itemTitle}\" a fost depozitat în depozitul \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Opțional, poți folosi următorul formular pentru depozitarea propunerii \"{$submissionTitle}\" într-unul dintre depozitele afișate. Folosește bifele de pe partea dreaptă pentru a selecta care depozite le dorești pentru a face depunerea. Fiecare depozit îți poate permite să specifici un punct de depozitare dintr-un meniu derulant.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Opțional, poți menționa un depozit conform cu standardul SWORD în formularul următor. Dacă se dorește, specifică URL-ul SWORD, numele utilizatorului și parola depozitului iar propunerea va fi depozitată.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Modulul pentru importul/exportul SWORD"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Depoziteazî articolele în depozite la distanță folosid protocolulspecific SWORD"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Depozitează"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL-ul pentru serviciul de documente"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL-ul pentru punctul de depozitare"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Puncte de depozitare"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Adaugă/Elimină"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Asamblări pentru depozitare"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Depozitează cel mai recent fișier editorial"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Depozitare cu succes"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Articolul(ele) selectat a fost depozitat."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Depozitare eșuată"

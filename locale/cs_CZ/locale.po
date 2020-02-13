@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Plugin SWORD"
+
+msgid "plugins.generic.sword.description"
+msgstr "Umožňuje manažerům časopisu a (volitelně) autorům ukládat články pomocí protokolu SWORD."
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Umožňuje manažerům časopisu a (volitelně) autorům ukládat články pomocí protokolu SWORD. Tento plugin vyžaduje rozšíření Zip, které není na vašem serveru v tomto momentě nainstalováno."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Plugin SWORD byl povolen."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Nastavení"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Umožňuje autorům specifikovat bod ukládání"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Bod ukládání"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Vytvořit bod ukládání"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Upravit bod ukládání"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automaticky"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Volitelný; Flexibilní"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Volitelný; Pevný"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Pouze manažer"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Typy bodu ukládání:</h4>\n"
+"<p><strong>Automatický</strong>: Úložiště se objevuje automaticky. Je plně definováno místo SWORD úložiště. Musí být zadány login a heslo. Místo uložení se objeví po upozornění autora o přijetí.<br/>\n"
+"<strong>Volitelné; Flexibilní</strong>: Autor se může rozhodnout, zda uložit, či ne. URL ukazuje servisní dokument a autor se může rozhodnout, které specifické místo uložení použije. Místo uložení se objeví po upozornění autora o přijetí.<br/>\n"
+"<strong>Volitelný; Pevný</strong>: Autor se může rozhodnou, zda uložit, či ne. URL určuje specifické místo SWORD úložiště. Místo uložení se objeví po upozornění autora o přijetí.<br/>\n"
+"<strong>Pouze manažer</strong>: Pouze manažer časopisu může používat toto ukládací místo. URL indikuje servisní dokument. Uložení je prováděno manuálně manažerem časopisu pomocí rozhraní Import/Export interface ve Správě časopisu.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Pokud zde nevložíte heslo, vy a/nebo autor bude tázán na heslo vždy když se objeví místo pro ukládání. Vemte na vědomí, že heslo bude viditelné všem manažerům časopisu a bude uloženo v databázi nezašifrované."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Jméno"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Položka \"{$itemTitle}\" byla automaticky uložena do repozitáře \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Položka \"{$itemTitle}\" byla uložena do repozitáře \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Máte možnost použít následující formulář k uložené vašeho příspěvku, \"{$submissionTitle}\", v jednom z repozitářů z následujícího seznamu. Použijte zatrhávací políčka níže v levém sloupci, abyste si vybrali ve kterém z repozitářů chcete článek uložit; každý z repozitářů vám může také umožnit specifikovat vstupní bod z rozbalovacího seznamu.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Volitelně můžete specifikovat vstupní bod úložiště, který je v souladu s SWORD formátem. Pokud je to žádoucí, specifikujte URL SWORDU, uživatelské jméno a heslo k vašemu repozitáři - váš příspěvek bude uložen.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Plugin pro Import/Export do SWORD repozitářů"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Uložte články do vzdálených repoziřářů s použitím protokolu SWORD"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Úložiště"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL servisního dokumentu"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL místa uložení"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Místo ukládání"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Přidat/odebrat"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Uložit sazebnice"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Uložit nejnovější redakční soubor"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Úspěšné uložení"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Vybrané položky byly uloženy."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Uložení selhalo"

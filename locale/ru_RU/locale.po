@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Плагин «SWORD»"
+
+msgid "plugins.generic.sword.description"
+msgstr "Этот плагин позволяет управляющим журналами и (при необходимости) авторам передавать на хранение статьи по протоколу SWORD"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Этот плагин позволяет управляющим журналами и (при необходимости) авторам передавать на хранение статьи по протоколу SWORD. Обратите внимание, что этот плагин требует PHP-расширения Zip, которое сейчас НЕ установлено."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Плагин «SWORD» был включен."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Настройки"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Разрешить авторам задавать точку хранения"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Точки хранения"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Создать точку хранения"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Редактировать точку хранения"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Автоматическая"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "По желанию (гибкая)"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "По желанию (фиксированная)"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Только управляющий"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Типы точек хранения:</h4>\n"
+"<p><strong>Автоматическая</strong>: Передача на хранение производится автоматически. Указывается полная точка хранения SWORD. Должны быть указаны имя пользователя и пароль. Передача на хранение происходит после уведомления автора о приеме материала к публикации.<br/>\n"
+"<strong>По желанию (гибкая)</strong>: Автор может выбрать передавать на хранение или нет. Заданный адрес (URL) показывает служебный документ и автор может выбрать из этого документа, какую точку хранения использовать. Передача на хранение происходит после уведомления автора о приеме материала к публикации.<br/>\n"
+"<strong>По желанию (фиксированная)</strong>: Автор может выбрать передавать на хранение или нет. Адрес (URL) задает конкретную точку хранения SWORD. Передача на хранение происходит после уведомления автора о приеме материала к публикации.<br/>\n"
+"<strong>Только управляющий</strong>: Эту точку хранения может использовать только управляющий журналом. Адрес (URL) показывает служебный документ. Передача на хранение выполняется вручную управляющим журнала, используя интерфейс импорта/экспорта в разделе «Управление журналом».\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Если вы не укажите здесь пароль, вы и/или автор получат сообщение с просьбой ввести его при передача на хранение. Обратите внимание, что этот пароль будет видим для всех управляющих журналами и будет храниться в незашифрованном виде в базе данных."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Название"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Материал «{$itemTitle}» был автоматически передан на хранение в репозиторий «{$repositoryName}»."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Материал «{$itemTitle}» был передан на хранение в репозиторий «{$repositoryName}»."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>При необходимости вы можете использовать следующую форму для передачи вашего материала «{$submissionTitle}» в один из перечисленных репозиториев. Используйте галочки в левой колонке для выбора тех репозиториев, в которые вы хотите передать вашу статью; каждый репозиторий может также дать вам возможность указать точку хранения, выбрав ее из раскрывающегося списка.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>При необходимости вы можете указать в следующей форме SWORD-совместимую точку хранения. Если хотите, пожалуйста, укажите адрес (URL) SWORD, имя пользователя и пароль для вашего репозитория и материал будет передан туда на хранение.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Плагин «Передача на хранение SWORD: Импорт/Экспорт»"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Этот плагин передает статьи на хранение в удаленные репозитории по протоколу передачи на хранение SWORD"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Передать на хранение"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "Адрес (URL) служебного документа"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "Адрес (URL) точки хранения"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Точка хранения"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Добавить/удалить"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Передать на хранение гранки"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Передать самый свежий редакционный файл"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Передача на хранение: успешно"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Выбранные элементы были переданы на хранение."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Передача на хранение: неудача"

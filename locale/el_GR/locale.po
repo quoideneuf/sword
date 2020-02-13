@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Πρόσθετο SWORD"
+
+msgid "plugins.generic.sword.description"
+msgstr "Επιτρέπει στους διαχειριστές περιοδικού και (προαιρετικά) στους συγγραφείς να καταθέτουν άρθρα μέσω του πρωτοκόλλου SWORD."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Το πρόσθετο SWORD ενεργοποιήθηκε."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Ρυθμίσεις"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Επιτρέπεται στον συγγραφέα να καθορίζει ένα καταθετήριο."
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Καταθετήρια"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Δημιουργία Καταθετηρίου"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Επεξεργασία Καταθετηρίου"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Αυτόματο"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Προαιρετικό - Ευέλικτο"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Προαιρετικό - Καθορισμένο"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Μόνο Διαχειριστές"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Τύποι καταθετηρίων:</h4>\n"
+"<p><strong>Αυτόματο</strong>: Το καταθετήριο δημιουργείται αυτόματα. Καθορίζει το πλήρες καταθετήριο SWORD. Πρέπει να καθοριστεί ένα όνομα χρήστη και ένας κωδικός πρόσβασης. Για να γίνει μια κατάθεση πρέπει πρώτα να ειδοποιηθεί ο συγγραφέας για αποδοχή.<br/>\n"
+"<strong>Προαιρετικό - Ευέλικτο</strong>: Ο συγγραφέας μπορεί να επιλέξει αν θα γίνει ή όχι η κατάθεση. Το ορισμένο URL υποδεικνύει ένα έγγραφο υπηρεσίας και ο συγγραφέας μπορεί να επιλέξει ποιο καταθετήριο θα χρησιμοποιήσει από το αυτό το έγγραφο. Η κατάθεση γίνεται μετά από ειδοποίηση του συγγραφέα για αποδοχή.<br/>\n"
+"<strong>Προαιρετική - Καθορισμένη</strong>: Ο συγγραφέας μπορεί να επιλέξει αν θα γίνει ή όχι η κατάθεση. Το URL ορίζει το συγκεκριμένο καταθετήριο SWORD. Η κατάθεση γίνεται μετά από ειδοποίηση του συγγραφέα για αποδοχή.<br/>\n"
+"<strong>Μόνο Διαχειριστές</strong>: Μόνο ο διαχειριστής περιοδικού μπορεί να χρησιμοποιήσει το συγκεκριμένο καταθετήριο. Only the Journal Manager may use this deposit point. Το URL υποδεικνύει ένα έγγραφο υπηρεσίας. Η κατάθεση γίνεται χειρωνακτικά από τον διαχειριστή περιοδικού χρησιμοποιώντας την διεπαφή \"Εισαγωγή/Εξαγωγή\" στην \"Διαχείριση Περιοδικού\".\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Αν δεν ορίσετε κάποιο κωδικό πρόσβασης εδώ, θα ζητηθεί και από εσάς ή/και τον συγγραφέα ένας κωδικός πρόσβασης κατά τη στιγμή της κατάθεσης. Σημειώστε, ότι αυτός ο κωδικός πρόσβασης θα είναι ορατός από όλους τους διαχειριστές περιοδικού και θα αποθηκευτεί στην βάση δεδομένων χωρίς κρυπτογράφηση."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Όνομα"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Το στοιχείο \"{$itemTitle}\" κατατέθηκε αυτόματα στο καταθετήριο \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Το στοιχείο \"{$itemTitle}\" κατατέθηκε στο καταθετήριο \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Μπορείτε, προαιρετικά, να χρησιμοποιήσετε την ακόλουθη φόρμα για να καταθέσετε την υποβολή σας, \"{$submissionTitle}\", σε μια από τις αποθήκες περιεχομένου που αναφέρονται. Χρησιμοποιήστε τα πλαίσια επιλογής στο κάτω μέρος της αριστερής στήλης για να επιλέξετε σε ποιες αποθήκες περιεχομένου θέλετε να εισάγετε την υποβολή σας. Κάθε αποθήκη περιεχομένου μπορεί να σας δίνει την δυνατότητα επιλογής ενός συγκεκριμένου καταθετηρίου μέσω μιας αναδυόμενης λίστας.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Μπορείτε, προαιρετικάμ να ορίσετε ένα καταθετήριο συμβατό με το SWORD στην ακόλουθη φόρμα. Αν επιθυμείτε, καθορίστε ένα SWORD URL, όνομα χρήστη και κωδικό πρόσβασης στο καταθετήριό σας και θα γίνει η εισαγωγή της υποβολής.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Πρόσθετο Εισαγωγής/Εξαγωγής καταθέσεων SWORD"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Κατάθεση άρθρων σε απομακρυσμένα καταθετήρια μέσω του πρωτοκόλλου SWORD deposit"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Καταθετήριο"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL εγγράφου υπηρεσίας"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL καταθετηρίου"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Επιτρέψτε στους Διαχειριστές Περιοδικού και (προαιρετικά) στους Συγγραφείς να καταθέτουν άρθρα μέσω του πρωτοκόλλου SWORD. Θυμηθείτε ότι αυτό το plugin απαιτεί την επέκταση Zip, η οποίο δεν έχει ακόμα εγκατασταθεί."

@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD dodatak"
+
+msgid "plugins.generic.sword.description"
+msgstr "Omogućuje urednicima i autorima (opciono) da deponuju članke putem SWORD protokola."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "SWORD dodatak je uključen."
+
+msgid "plugins.generic.sword.disable"
+msgstr "SWORD dodatak je iključen."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Podešavanja"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Dozvoli autoru da odredi tačku deponovanja"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Tačke deponovanja"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Napravi tačku deponovanja"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Izmeni tačku deponovanja"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automatski"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Opciono; Fleksibilno"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Opciono; Fiksno"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Samo urednici"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Vrste tačaka deponovanja:</ h4> \n"
+"<p>Automatski</strong>: Deponovanje se vrši automatski. Celokupna SWORD depozit tačka je određena. Korisničko ime i lozinka moraju biti navedeni. Depozit se javlja nakon obaveštavanja autora o prijemu.<br/> <strong>Opciono; Fleksibilna</strong>: autor može odabrati da li da deponuje članak. Naveden URL adresa označava dokument servisa, a autor može odabrati koji depozit da koristi iz tog dokumenta. Depozit se javlja posle obaveštavanja autora o prijemu.<br/> <strong> Opciono; Fiksna</strong>: autor može odabrati da li će deponovati članak. URL određuje specifičnu SWORD depozitnu tačku. Depozit se javlja nakon obaveštavanja autora o prijemu .<br/> <strong> Samo urednik</ strong>: Samo urednik Časopisa može da koristi tačku deponovanja. URL adresa označava dokument servisa servisa. Deponovanje vrši urednik časopisa ručno korišćenjem Uvoz/Izvoz interfejsa. </ p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Ukoliko ne definišete lozinku ovde vi i/ili autor ćete biti zatraženi kada dođe do deponovanja. Imajte na umu da će lozinka biti vidljiva svim urednicima časopisa i da će u bazu biti sačuvana bez šifrovanja podataka."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Ime"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Stavka \"{$itemTitle}\" je automatski deponovana u repozitorijum \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Stavka \"{$itemTitle}\" je deponovana u repozitorijum \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Opciono možete da koristite sledeći formular za predaju radova., \"{$submissionTitle}\", u jednom od navedenih repozitorijuma. Koristite polja za potvrdu u donjoj levoj koloni da biste izabrali repozitorijum u koji želite da deponujete svoj rad; svaki repozitorijum može Vam ponuditi i tačku deponovanja u vidu padajućeg menija.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Opciono možete navesti i usklađenu SWORDtačku deponovanja u sledećoj formi. Ako želite, navedite SWORD URL adresu, korisničko ime i lozinku vašeg repozitorijuma i radovi će biti deponovani.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD Uvoz/Izvoz depo dodatak"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Deopnuje članke u udeljeni repozitorijum korišćenjem SWORD protokola za deponovanje."
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Deposit"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL dokumenta servisa"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL tačke deponovanja"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Tačka deponovanja"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Dodaj/Ukloni"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Deponuj prikaze"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Deponuj skorašnje uredničke fajlove"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Deponuj uspešne"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Odabrane stavke su deponovane."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Deponovanje nije uspelo"

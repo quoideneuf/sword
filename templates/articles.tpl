@@ -1,12 +1,13 @@
 {**
- * plugins/generic/sword/templates/articles.tpl
+ * templates/articles.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * Deposit articles in remote repositories
  *}
+
 {include file="common/header.tpl" pageTitle="plugins.importexport.sword.displayName"}
 <script src="{$pluginJavaScriptURL}/SwordDepositPointsFormHandler.js"></script>
 <script type="text/javascript">

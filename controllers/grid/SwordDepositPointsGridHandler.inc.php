@@ -3,13 +3,11 @@
 /**
  * @file controllers/grid/SwordDepositPointsGridHandler.inc.php
  *
- * Copyright (c) 2013-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * @class SwordDepositPointsGridHandler
- * @ingroup controllers_grid_sword
- *
  * @brief Handle sword deposit points grid requests.
  */
 

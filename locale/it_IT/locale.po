@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD Plugin"
+
+msgid "plugins.generic.sword.description"
+msgstr "Permette all'amministratore della rivista e (facoltativamente) all'autore di depositare articoli attraverso il protocollo SWORD"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Il plugin SWORD è stato abilitato."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Impostazioni"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Permetti agli autori di specificare un punto di deposito"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Punti di deposito"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Crea un punto di deposito"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Modifica un punto di deposito"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automatico"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Facoltativo; Flessibile"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Facoltativo; Fisso"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Solo amministratori"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Tipi di punti di deposito:</h4>\n"
+"<p><strong>Automatico</strong>: Il deposito avviene automaticamente. Sono specificate tutte le impostazioni del punto di deposito. Devono essere specificate username e password. Il deposito avverrà dopo la notifica dell'accettazione all'autore.<br/>\n"
+"<strong>Facoltativo; Flessibile</strong>: L'autore può scegliere se depositare o meno. L'URL specificata indica un documento di servizio e l'autore può scegliere quale specifico punto di deposito utilizzare tra quelli elencati in quel documento. Il deposito avverrà dopo la notifica dell'accettazione all'autore.<br/>\n"
+"<strong>Facoltativo; Fisso</strong>: L'autore può scegliere se depositare o meno. L'URL specificata indica uno specifico punto di deposito SWORD. Il deposito avverrà dopo la notifica dell'accettazione all'autore.<br/>\n"
+"<strong>Solo amministratori</strong>: Solo gli amministratori della rivista possono utilizzare questo punto di deposito. La URL indica un documento di servizio. Il deposito è eseguito manualmente dall'amministratore della rivista, utilizzando l'interfaccia di Import/Export.</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Se non specifichi una password qui, tu e/o l'autore dovranno inserirne una al momento del deposito. Nota che questa password sarà visibile agli amministratori della rivista e verrà conservata in chiaro nel database."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Nome"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "La risorsa \"{$itemTitle}\" è stata automaticamente depositata in \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "La risorsa \"{$itemTitle}\"  è stata depositata in \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Puoi facoltativamente utilizzare questo modulo per depositare la tua proposta, \"{$submissionTitle}\", in uno degli archivi elencati. Usa le caselle a sinistra per selezionare gli archivi nei quali vuoi depositare; ciascun archivio può inoltre permetterti di specificare un punto di deposito attraverso un elenco a tendina.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Puoi facoltativamente specificare un punto di deposito compatibile SWORD attraverso il modulo sottostante. Se lo ritieni opportuno, specifica la SWORD URL, il nome utente e la password per l'archivio e la submission verrà depositata.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Deposito SWORD"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Deposita gli articoli in archivi remoti utilizzando il protocollo SWORD."
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Deposito"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL del documento di servizio"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL del punto di deposito"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Punto di deposito"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Aggiungi/Rimuovi"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Deposita la bozza"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Deposita il più recente file del processo editoriale"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Il deposito è avvenuto con successo."
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "La risorsa selezionata è stata depositata."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Deposito fallito"

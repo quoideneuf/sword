@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "إضافة SWORD"
+
+msgid "plugins.generic.sword.description"
+msgstr "يتيح لرؤساء التحرير و(اختيارياً) المؤلفين، إيداع المؤلفات باستعمال بروتوكول SWORD"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "يتيح لرؤساء التحرير و(اختيارياً) المؤلفين، إيداع المؤلفات باستعمال بروتوكول SWORD. لاحظ أن هذه الإضافة تتطلب وجود إمتداد Zip، والذي هو حالياً غير منصب."
+
+msgid "plugins.generic.sword.enabled"
+msgstr "تم تمكين إضافة SWORD."
+
+msgid "plugins.generic.sword.settings"
+msgstr "الإعدادات"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "يتيح للمؤلف تحديد نقطة الإيداع"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "نقاط الإيداع"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "إنشاء نقطة إيداع"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "تعديل نقطة الإيداع"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "تلقائية"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "إختيارية؛ مرنة"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "إختيارية؛ ثابتة"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "رئيس التحرير حصراً"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>أنواع نقاط الإيداع:</h4>\n"
+"<p><strong>تلقائية</strong>: يحدث الإيداع بشكل آلي. يتم تحديد نقطة الإيداع الكاملة لـ SWORD. ينبغي هنا تحديد اسم الدخول وكلمة المرور. يحصل الإيداع بعد إشعار المؤلف بالقبول.<br/>\n"
+"<strong>إختيارية؛ مرنة</strong>: يمكن للمؤلف التخير بين الإيداع من عدمه. رابط الإنترنت المحدد يشير إلى وثيقة خدمة، ويمكن للمؤلف إختيار أي من نقاط الإيداع المحددة لاستعمالها من تلك الوثيقة. يحصل الإيداع بعد إشعار المؤلف بالقبول.<br/>\n"
+"<strong>إختيارية؛ ثابتة</strong>: يمكن للمؤلف التخير بين الإيداع من عدمه. رابط الإنترنت يحدد نقطة إيداع SWORD. يحصل الإيداع بعد إشعار المؤلف بالقبول.<br/>\n"
+"<strong>رئيس التحرير حصراً</strong>: لرئيس تحرير المجلة حصراً حق استعمال نقطة الإيداع هذه. رابط الإنترنت يحدد وثيقة الخدمة. يحصل الإيداع يدوياً من قبل رئيس التحرير عبر استعماله لواجهة الاستيراد/التصدير في صفحة إدارة المجلة.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "إن لم تحدد كلمة المرور هنا، ستتم مطالبتك و/أو المؤلف بتقديمها عند حصول الإيداع. لاحظ أن تلك الكلمة ستكون مرئية لكل مدراء المجلة وستم حفظها بشكل صريح (غير مشفر) في قاعدة البيانات."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "الاسم"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "الفقرة \"{$itemTitle}\" تم إيداعها تلقائياً في المستودع \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "الفقرة \"{$itemTitle}\" تم إيداعها في المستودع \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>بإمكانك إختيارياً استعمال النموذج الآتي لإيداع طلبك للنشر الموسوم \"{$submissionTitle}\"، في واحد من المستودعات المدرجة. استعمل خانات الاختيار أسفل العمود الأيسر لاختيار أي من تلك المستودعات التي ترغب في حفظ طلبك فيها؛ كل مستودع قد يقدم لك أيضاً قائمة منسدلة بنقاط الإيداع لتختار منها.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>بإمكانك إختيارياً تحديد نقطة إيداع متوافقة مع SWORD في النموذج الآتي. إن رغبت في هذا، لطفاً، حدد رابط الإنترنت، اسم المستخدم، وكلمة المرور لمستودعك ليتم استعمالها عند حفظ طلبك للنشر.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "الاستيراد/التصدير لإضافة الإيداع SWORD"
+
+msgid "plugins.importexport.sword.description"
+msgstr "إيداع المقالات في مستودعات خارجية باستعمال بروتوكول الإيداع SWORD"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "إيداع"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "رابط الإنترنت لوثيقة الخدمة"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "رابط الإنترنت لنقطة الإيداع"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "نقطة الإيداع"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "إضافة/حذف"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "ألواح الإيداع"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "إيداع أحدث ملفات التحرير"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "تم الإيداع بنجاح"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "الفقرات المحددة قد تم إيداعها."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "فشلت عملية الإيداع"

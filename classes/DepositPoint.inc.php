@@ -1,15 +1,13 @@
 <?php
 
 /**
- * @file plugins/generic/sword/classes/DepositPoint.inc.php
+ * @file classes/DepositPoint.inc.php
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * @class DepositPoint
- * @ingroup plugins_generic_sword_classes
- *
  * @brief Deposit point entity.
  */
 

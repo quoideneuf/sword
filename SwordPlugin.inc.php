@@ -1,15 +1,13 @@
 <?php
 
 /**
- * @file plugins/generic/sword/SwordPlugin.inc.php
+ * @file SwordPlugin.inc.php
  *
- * Copyright (c) 2013-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * @class SwordPlugin
- * @ingroup plugins_generic_sword
- *
  * @brief SWORD deposit plugin class
  */
 
@@ -279,7 +277,14 @@ class SwordPlugin extends GenericPlugin {
 	 * Get the filename of the ADODB schema for this plugin.
 	 */
 	public function getInstallSchemaFile() {
-		return $this->getPluginPath() . '/' . 'schema.xml';
+		return $this->getPluginPath() . '/schema.xml';
+	}
+
+	/**
+	 * @copydoc PKPPlugin::getInstallEmailTemplatesFile()
+	 */
+	function getInstallEmailTemplatesFile() {
+		return ($this->getPluginPath() . '/emailTemplates.xml');
 	}
 }
 

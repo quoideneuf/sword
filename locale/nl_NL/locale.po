@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD plugin"
+
+msgid "plugins.generic.sword.description"
+msgstr "Geef tijdschriftbeheerders en (optioneel) auteurs de mogelijkheid om een artikel-deposit via SWORD te doen"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "De SWORD plugin is ingeschakeld"
+
+msgid "plugins.generic.sword.settings"
+msgstr "Instellingen"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Geef de auteur de mogelijkheid om een plaats voor de deposit op te geven"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Plaatsen voor deposit"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Maak een plaats voor deposit aan"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Deposit plaats bewerken"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Automatisch"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Optionel, flexibel"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Optioneel, vast"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Alleen voor de beheerder"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Deposit plaats types:</h4>\n"
+"<p><strong>Automatisch</strong>: De deposit gebeurt automatisch. De volledige SWORD deposit plaats wordt gespecificeerd. Een gebruikersnaam en wachtwoord moeten opgegeven worden. De Deposit gebeurt nadat de auteur van acceptatie op de hoogte is gesteld.<br/>\n"
+"<strong>Optioneel, flexibel</strong>: De auteur kan kiezen wel of niet een deposit te doen. De opgegeven URL wijst naar een service document. De auteur kan kiezen naar welke plaats uit dat document een deposit te doen. De Deposit gebeurt nadat de auteur van acceptatie op de hoogte is gesteld.<br/>\n"
+"<strong>Optionneel, vast</strong>: De auteur kan kiezen wel of niet een deposit te doen. De URL specificeert een sepcifieke SWORD deposit plaats. De Deposit gebeurt nadat de auteur van acceptatie op de hoogte is gesteld.<br/>\n"
+"<strong>Alleen voor de beheerder</strong>: Alleen de tijdschriftbeheerder kan gebruik maken van deze deposit plaats. De opgegeven URL wijst naar een service document. De deposit wordt door de tijdschriftbeheerder met de hand gedaan met de  Import/Export interface in tijdschriftbeheer.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Als u hier geen wachtwoord opgeeft, worden u en/of de auteur om het wachtwoord gevraagd als de deposit plaatsvindt. Merk op de dit wachtwoord zichtbaar is voor alle tijdschriftbeheerders en niet versleuteld wordt opgeslagen in de databank."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Naam"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Het onderdeel \"{$itemTitle}\" is automatisch opgenomen in \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Het onderdeel \"{$itemTitle}\" is opgenomen in \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>U kunt het volgende furmulier gebruiken als u een deposit wilt doen van uw inzending \"{$submissionTitle}\", in een van de getoonde repositories. Gebruik de aankruisvakken links om aan te geven naar welke repositories u uw inzending wilt sturen. Een repository kan u de mogelijkheid geven een plaats te kiezen uit een lijst.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>U kunt optioneel een  SWORD-compatibele deposit-plaats specificeren. Indien gewenst, geef dan een SWORD URL, gebruikersnaam en wachtwoord voor uw repository en de inzending zal naar de repository gestuurd worden.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD Import/Export deposit plugin"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Deposit artikelen in externe repositories met het  SWORD deposit protocol"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Deposit"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "Service Document URL"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "Deposit plaats URL"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Deposit plaats"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Toevoegen/verwijderen"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Deposit proeven"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Deposit laatste redactiebestand"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Deposit succesvol"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "de deposit van de geselecteerde onderdelen is uitgevoerd."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Deposit mislukt"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr "Geef tijdschriftbeheerders en (optioneel) auteurs de mogelijkheid om een deposit van artikelen via het SWORD protocol te doen. Merk op dat deze plugin de ZIP extensie vereist, die momenteel NIET geïnstalleerd is."

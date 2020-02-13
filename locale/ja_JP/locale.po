@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "SWORD プラグイン"
+
+msgid "plugins.generic.sword.description"
+msgstr "雑誌管理者が著者(選択)にSWORDプロトコルを通じた論文のデポジットを許可します。"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "SWORD プラグインは有効です。"
+
+msgid "plugins.generic.sword.disable"
+msgstr "SWORD プラグインは無効です。"
+
+msgid "plugins.generic.sword.settings"
+msgstr "設定"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "著者によるデポジットポイント指定を許可"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "デポジットポイント"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "デポジットポイントの作成"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "デポジットポイントの編集"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "自動"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "オプション; 選択可"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "オプション; 固定"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "管理者のみ"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>デポジットポイント種別:</h4>\n"
+"<p><strong>自動</strong>: デポジットは自動的に行われます。 完全なSWORDデポジットポイントを指定します。ユーザ名とパスワードが入力されていなければなりません。著者への承認通知の後，デポジットがおこなわれます。<br/>\n"
+"<strong>オプション; 選択可</strong>: 著者がデポジットするかどうか選択できます。サービスドキュメントを示すURLが表示され，そのドキュメントからデポジットポイントを選択することができます。著者への承認通知の後，デポジットがおこなわれます。<br/>\n"
+"<strong>オプション; 固定</strong>: 著者がデポジットするかどうか選択できます。特定のSWORD デポジットポイントのURLが表示されます。 著者への承認通知の後，デポジットがおこなわれます。<br/>\n"
+"<strong>管理者のみ</strong>: 雑誌管理者のみがデポジットポイントを使用できます。サービスドキュメントのURLが表示されます。雑誌管理者が雑誌管理のインポート/エクスポートインタフェースを使用して手動でデポジットをおこないます。</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "ここでパスワードを指定しない場合は，デポジットが発生した際にプロンプト画面が表示されます。このパスワードはすべての雑誌管理者から見える，データベースに暗号化されない状態で入力されることに注意して下さい。"
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "名称"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "\"{$itemTitle}\" アイテムは自動的に \"{$repositoryName}\" リポジトリにデポジットされました。"
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "\"{$itemTitle}\" アイテムは \"{$repositoryName}\" リポジトリにデポジットされました。"
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>次のフォームを使用して投稿された \"{$submissionTitle}\" をリストにあるリポジトリにデポジットすることができます。左カラムにあるチェックボックスを使用して，投稿したいリポジトリを選択してください。リポジトリごとにプルダウンリストからデポジットポイントを指定することができます。</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>次のフォームからSWORD準拠のデポジットポイントを選択することができます。必要な場合は，リポジトリのSWORD URL，ユーザ名，パスワードを入力すると投稿論文がデポジットされます。</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "SWORD インポート/エクスポート デポジットプラグイン"
+
+msgid "plugins.importexport.sword.description"
+msgstr "SWORDデポジットプロトコルを使用して遠隔のリポジトリに論文をデポジットする"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "デポジット"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "Service Document URL"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "デポジットポイント URL"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "デポジットポイント"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "追加/削除"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "ゲラをデポジット"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "最新の編集ファイルをデポジット"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "デポジット成功"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "選択されたアイテムはデポジットされました。"
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "デポジット失敗"

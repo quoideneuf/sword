@@ -1,16 +1,14 @@
 <?php
+
 /**
- * @file plugins/generic/sword/classes/DepositPointsHelper.inc.php
+ * @file classes/DepositPointsHelper.inc.php
  *
- * Copyright (c) 2003-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Copyright (c) 2003-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
  * @class DepositPointsHelper
- * @ingroup plugins_generic_sword_classes
- *
  * @brief Deposit points Helper class
- *
  */
 
 require_once dirname(__FILE__) . '/../libs/swordappv2/swordappclient.php';

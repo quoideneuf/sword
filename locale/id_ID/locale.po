@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Plugin SWORD "
+
+msgid "plugins.generic.sword.description"
+msgstr "Memudahkan Manajer Jurnal dan (opsional) Penulis untuk menyimpan artikel melalui protokol SWORD "
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Plugin SWORD telah diaktifkan."
+
+msgid "plugins.generic.sword.disable"
+msgstr "Plugin SWORD telah dinon-aktifkan."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Pengaturan"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Memudahkan penulis untuk menspesifikasikan titik deposit."
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Titik Deposit"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Buat Titik Deposit"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Edit Titik Deposit"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Otomatis"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "Opsional; Fleksibel"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "Opsional; Pasti"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Hanya Manajer"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Tipe Titik Deposit:</h4>\n"
+"<p><strong>Automatic</strong>: Deposit terjadi secara otomatis. Titik deposit SWORD penuh ditentukan. Username dan kata sandi harus ditentukan. Deposit terjadi setelah memberitahu penulis tentang penerimaan. <br/>\n"
+"<strong>Opsional; Fleksibel</strong>: Penulis dapat memilih apakah akan menyimpan atau tidak. URL tertentu menunjukkan dokumen layanan, dan penulis bisa memilih titik deposi spesifik mana yang akan digunakan dari dokumen tersebut. Deposit terjadi setelah memberitahu penulis tentang penerimaan.<br/>\n"
+"<strong>Opsional; Pasti</strong>: Penulis dapat memilih apakah akan menyimpan atau tidak. URL menentukan titik deposit SWORD. Deposit terjadi setelah memberitahu penulis tentang penerimaan.<br/>\n"
+"<strong>Hanya Manajer</strong>: Hanya Manajer Jurnal boleh menggunakan titik deposit ini. URL menunjukkan dokumen layanan. Deposit secara manual dilakukan oleh Manajer Jurnal dengan menggunakan Import/Export interface dalam Manajemen Jurnal.\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Jika Anda tidak menentukan kata sandi di sini, Anda dan/ atay penulis akan diberitahu saat deposit terjadi. Perhatikan, kata sandi akan tampak untuk semua Manajer Jurnal dan akan disimpan tidak dalam bentuk kode di database."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Nama"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Item \"{$itemTitle}\" secara otomatis disimpan ke dalam repositori.  \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Item \"{$itemTitle}\" disimpan ke dalam repositori \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>Anda bisa secara opsional mengikuti formulir untuk menyimpan naskah Anda, \"{$submissionTitle}\", di salah satu repositori yang terdaftar. Gunakan checkboxes di bawah kolom sebelah kiri untuk memilih repositori mana yang Anda inginkan untuk menyimpan naskah; tiap repositori mungkin juga memudahkan Anda untuk menentukan titik deposit dari daftar pull-down.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>Anda bisa menentukan titik deposit SWORD-compliant di sistem berikut. Jika diinginkan, tentukan URL SWORD, username dan kata sandi ke repositori Anda dan naskah akan disimpan.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Plugin Deposit Impor/ Ekspor SWORD"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Simpan artikel di repositori tersendiri dengan menggunakan protokol deposit SWORD."
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Deposit"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL Dokumen Layanan"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL Titik Deposit"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Titik Deposit"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Tambah/Pindahkan"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Deposit Galleys"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Simpan File Editorial Terbaru"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Deposit Berhasil"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Item yang dipilih telah disimpan."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Deposit Gagal"

@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
+"Language: \n"
+
+msgid "plugins.generic.sword.displayName"
+msgstr "Модуль SWORD"
+
+msgid "plugins.generic.sword.description"
+msgstr "Дозволяє менеджерам журналу та (можливо) авторам депонувати статті за протоколом SWORD"
+
+msgid "plugins.generic.sword.enabled"
+msgstr "Модуль SWORD був включений."
+
+msgid "plugins.generic.sword.disable"
+msgstr "Модуль SWORD був відключений."
+
+msgid "plugins.generic.sword.settings"
+msgstr "Налаштування"
+
+msgid "plugins.generic.sword.settings.allowAuthorSpecify"
+msgstr "Дозволити автору вказувати точку депонування"
+
+msgid "plugins.generic.sword.settings.depositPoints"
+msgstr "Точки депонування"
+
+msgid "plugins.generic.sword.depositPoints.create"
+msgstr "Створити точку депонування"
+
+msgid "plugins.generic.sword.depositPoints.edit"
+msgstr "Редагувати точку депонування"
+
+msgid "plugins.generic.sword.depositPoints.type.automatic"
+msgstr "Автоматична"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalSelection"
+msgstr "За вибором; Гнучка"
+
+msgid "plugins.generic.sword.depositPoints.type.optionalFixed"
+msgstr "За вибором; Фіксована"
+
+msgid "plugins.generic.sword.depositPoints.type.manager"
+msgstr "Лише для менеджерів"
+
+msgid "plugins.generic.sword.depositPoints.type.description"
+msgstr ""
+"<h4>Типи точок депонування:</h4>\n"
+"<p><strong>Автоматична</strong>: Депонування проходить автоматично. Вказується повна точка депонування SWORD. Необхідно вказати ім'я користувача та пароль. Депонування відбувається після повідомлення автору про прийняття його рукопису.<br/>\n"
+"<strong>За вибором; Гнучка</strong>: Автор може обирати, депонувати свою роботу чи ні. Вказується адреса URL до документу зі списком служб, з якого автор може обрати окрему точку депонування. Депонування відбувається після повідомлення автору про прийняття його рукопису.<br/>\n"
+"<strong>За вибором; Фіксована</strong>: Автор може обирати, депонувати свою роботу чи ні. Вказується адреса URL до окремої точки депонування SWORD. Депонування відбувається після повідомлення автору про прийняття його рукопису.<br/>\n"
+"<strong>Лише для менеджерів</strong>: Цю точку депонування може використовувати лише менеджер журналу. Вказується адреса URL до документу зі списком служб. Депонування в ручному режимі здійснює менеджер журналу, використовуючи інтерфейс Імпорту/Експорту сторінки \"Менеджмент журналу\".\n"
+"</p>"
+
+msgid "plugins.generic.sword.depositPoints.password.description"
+msgstr "Якщо пароль не вказується тут, під час депонування Ви та/або автор отримуватиме запити на введення паролю. Зауважте, що цей пароль буде відкритим для всіх менеджерів цього журналу та буде зберігатись у базі даних у незашифрованому вигляді."
+
+msgid "plugins.generic.sword.depositPoints.name"
+msgstr "Ім'я"
+
+msgid "plugins.generic.sword.automaticDepositComplete"
+msgstr "Об'єкт \"{$itemTitle}\" був автоматично депонований у сховище \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.depositComplete"
+msgstr "Об'єкт \"{$itemTitle}\" був депонований у сховище \"{$repositoryName}\"."
+
+msgid "plugins.generic.sword.authorDepositDescription"
+msgstr "<p>За бажанням, Ви можете скористатись формою нижче, щоб депонувати Ваше подання \"{$submissionTitle}\" у одне з перерахованих сховищ. Користуйтеся прапорцями у стовпчику ліворуч, щоб обрати сховище, у яке Ви хотіли б депонувати своє подання; кожне сховище може також пропонувати Вам вибір конкретної точки депонування зі списку.</p>"
+
+msgid "plugins.generic.sword.authorCustomDepositDescription"
+msgstr "<p>За бажанням, у формі нижче Ви можете вказати точку депонування, сумісну зі стандартом SWORD. Якщо Ви маєте таке бажання, вкажіть SWORD URL, ім'я користувача та пароль до Вашого сховища, тоді подання буде депоноване у нього.</p>"
+
+msgid "plugins.importexport.sword.displayName"
+msgstr "Модуль імпорту/експорту для SWORD-сумісних сховищ"
+
+msgid "plugins.importexport.sword.description"
+msgstr "Депонує статті у віддалені сховища за протоколом SWORD"
+
+msgid "plugins.importexport.sword.deposit"
+msgstr "Депонувати"
+
+msgid "plugins.importexport.sword.serviceDocUrl"
+msgstr "URL-адреса зі списком служб"
+
+msgid "plugins.importexport.sword.depositUrl"
+msgstr "URL-адреса точки депонування"
+
+msgid "plugins.importexport.sword.depositPoint"
+msgstr "Точка депонування"
+
+msgid "plugins.importexport.sword.depositPoint.addRemove"
+msgstr "Додати/видалити"
+
+msgid "plugins.importexport.sword.depositGalleys"
+msgstr "Депонувати гранки"
+
+msgid "plugins.importexport.sword.depositEditorial"
+msgstr "Депонувати остаточні редакційні версії"
+
+msgid "plugins.importexport.sword.depositSuccessful"
+msgstr "Депонування успішне"
+
+msgid "plugins.importexport.sword.depositSuccessfulDescription"
+msgstr "Об'єкт(и) було депоновано."
+
+msgid "plugins.importexport.sword.depositFailed"
+msgstr "Депонування невдале"
