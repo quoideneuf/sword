@@ -20,7 +20,7 @@ msgstr ""
 "\n"
 "Para proceder, vaya a {$swordDepositUrl}.\n"
 "\n"
-"El módulo de depósito SWORD del Open Journal Systems generó este correo electrónico."
+"El módulo de depósito SWORD de Open Journal Systems generó este correo electrónico."
 
 msgid "emails.swordDepositNotification.description"
 msgstr "Se utiliza esta plantilla de correo electrónico para notificar a un autor/a de los puntos de depósito opcionales para depósitos SWORD."
