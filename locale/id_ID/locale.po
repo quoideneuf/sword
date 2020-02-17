@@ -2,20 +2,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
+"PO-Revision-Date: 2020-02-17 17:49+0000\n"
+"Last-Translator: Ramli Baharuddin <ramli.baharuddin@relawanjurnal.id>\n"
+"Language-Team: Indonesian <http://translate.pkp.sfu.ca/projects/"
+"sword-deposit-plugin/locale-keys/id/>\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-13T22:46:13+00:00\n"
-"PO-Revision-Date: 2020-02-13T22:46:13+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.generic.sword.displayName"
-msgstr "Plugin SWORD "
+msgstr "Plugin SWORD"
 
 msgid "plugins.generic.sword.description"
-msgstr "Memudahkan Manajer Jurnal dan (opsional) Penulis untuk menyimpan artikel melalui protokol SWORD "
+msgstr ""
+"Memungkinkan Manajer Jurnal dan (opsional) Penulis untuk menyimpan artikel "
+"melalui protokol SWORD"
 
 msgid "plugins.generic.sword.enabled"
 msgstr "Plugin SWORD telah diaktifkan."
@@ -27,7 +32,7 @@ msgid "plugins.generic.sword.settings"
 msgstr "Pengaturan"
 
 msgid "plugins.generic.sword.settings.allowAuthorSpecify"
-msgstr "Memudahkan penulis untuk menspesifikasikan titik deposit."
+msgstr "Memudahkan penulis untuk menspesifikasikan titik deposit"
 
 msgid "plugins.generic.sword.settings.depositPoints"
 msgstr "Titik Deposit"
@@ -81,7 +86,9 @@ msgid "plugins.importexport.sword.displayName"
 msgstr "Plugin Deposit Impor/ Ekspor SWORD"
 
 msgid "plugins.importexport.sword.description"
-msgstr "Simpan artikel di repositori tersendiri dengan menggunakan protokol deposit SWORD."
+msgstr ""
+"Simpan artikel di repositori tersendiri dengan menggunakan protokol deposit "
+"SWORD"
 
 msgid "plugins.importexport.sword.deposit"
 msgstr "Deposit"
@@ -112,3 +119,38 @@ msgstr "Item yang dipilih telah disimpan."
 
 msgid "plugins.importexport.sword.depositFailed"
 msgstr "Deposit Gagal"
+
+msgid "plugins.generic.sword.formErrors.apikey"
+msgstr ""
+"Kunci api diperlukan. Kunci Api tidak diperlukan bila terdapat username dan "
+"password."
+
+msgid "plugins.generic.sword.formErrors.password"
+msgstr " Diperlukan password bila memiliki username atau kunci api-nya kosong."
+
+msgid "plugins.generic.sword.formErrors.username"
+msgstr "Diperlukan username bila memiliki password atau kunci api-nya kosong."
+
+msgid "plugins.generic.sword.manager.noneCreated"
+msgstr "Belum ada poin deposit yang dibuat."
+
+msgid "plugins.generic.sword.settings.saved"
+msgstr "Pengaturan telah disimpan!"
+
+msgid "plugins.importexport.sword.requiredFieldErrorMessage"
+msgstr "Pilih minimal satu naskah untuk didepositkan."
+
+msgid "plugins.importexport.sword.requiredFieldErrorTitle"
+msgstr "Naskah diperlukan"
+
+msgid "plugins.importexport.sword.apikey"
+msgstr "Kunci API"
+
+msgid "plugins.generic.sword.depositPoints.apikey"
+msgstr "Kunci API"
+
+msgid "plugins.generic.sword.descriptionUnsupported"
+msgstr ""
+"Ijinkan Manajer Jurnal dan (opsional) Penulis mendepositkan artikel lewat "
+"protokol SWORD. Perlu diingat bahwa plugin ini membutuhkan ekstensi Zip, "
+"yang BELUM terinstal saat ini."
