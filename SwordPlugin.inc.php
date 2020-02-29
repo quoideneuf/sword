@@ -322,36 +322,9 @@ class SwordPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * @copydoc PKPPlugin::getInstallEmailTemplatesFile()
-	 */
-	function getInstallEmailTemplatesFile() {
-		return ($this->getPluginPath() . '/emailTemplates.xml');
-	}
-
-	/**
 	 * @see PKPPlugin::getInstallEmailTemplatesFile()
 	 */
 	function getInstallEmailTemplatesFile() {
 		return ($this->getPluginPath() . '/emailTemplates.xml');
-	}
-
-	/**
-	 * @see PKPPlugin::getInstallEmailTemplateDataFile()
-	 */
-	function getInstallEmailTemplateDataFile() {
-		return ($this->getPluginPath() . '/locale/{$installedLocale}/emailTemplates.xml');
-	}
-
-	/**
-	 * Make sure the installedLocales are set when
-	 * Installer->preInstall is not run, i.e., when
-	 * using the install plugin CLI tool
-	 */
-	function installEmailTemplateData($hookName, $args) {
-		$installer =& $args[0]; /* @var $installer Installer */
-		if (!isset($installer->installedLocales)) {
-			$installer->installedLocales = array_keys(AppLocale::getAllLocales());
-		}
-		parent::installEmailTemplateData($hookName, $args);
 	}
 }
