@@ -1,21 +1,23 @@
 <?php
 
 /**
- * @file classes/OJSSwordDeposit.inc.php
+ * @file classes/sword/PKPSwordDeposit.inc.php
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
  *
- * @class OJSSwordDeposit
- * @brief Class providing a SWORD deposit wrapper for OJS submissions
+ * @class PKPSwordDeposit
+ * @ingroup plugins_generic_sword_classes
+ *
+ * @brief Class providing a SWORD deposit wrapper for submissions
  */
 
 require_once dirname(__FILE__) . '/../libs/swordappv2/swordappclient.php';
 require_once dirname(__FILE__) . '/../libs/swordappv2/swordappentry.php';
-require_once dirname(__FILE__) . '/../libs/swordappv2/packager_mets_swap.php';
+require_once dirname(__FILE__) . '/PKPPackagerMetsSwap.php';
 
-class OJSSwordDeposit {
+class PKPSwordDeposit {
 	/** @var SWORD deposit METS package */
 	protected $_package = null;
 
@@ -36,11 +38,11 @@ class OJSSwordDeposit {
 
 	/**
 	 * Constructor.
-	 * Create a SWORD deposit object for an OJS article.
+	 * Create a SWORD deposit object for a submission
 	 * @param $submission Submission
 	 */
 	public function __construct($submission) {
-		$this->_article = $submission;
+		$this->_submission = $submission;
 
 		// Create a directory for deposit contents
 		$this->_outPath = tempnam('/tmp', 'sword');
@@ -49,7 +51,7 @@ class OJSSwordDeposit {
 		mkdir($this->_outPath . '/files');
 
 		// Create a package
-		$this->_package = new PackagerMetsSwap(
+		$this->_package = new PKPPackagerMetsSwap(
 			$this->_outPath,
 			'files',
 			$this->_outPath,
@@ -62,13 +64,9 @@ class OJSSwordDeposit {
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$this->_section = $sectionDao->getById($submission->getSectionId());
 
-		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle = $publishedArticleDao->getByArticleId($submission->getId());
-
-		$issueDao = DAORegistry::getDAO('IssueDAO');
-		if ($publishedArticle) {
-			$this->_issue = $issueDao->getById($publishedArticle->getIssueId());
-			$this->_article = $publishedArticle;
+		if (method_exists($submission, 'getIssueId')) {
+			$issueDao = DAORegistry::getDAO('IssueDAO');
+			$this->_issue = $issueDao->getById($submission->getIssueId());
 		}
 	}
 
@@ -78,32 +76,23 @@ class OJSSwordDeposit {
 	 */
 	public function setMetadata($request) {
 		$this->_package->setCustodian($this->_context->getContactName());
-		$this->_package->setTitle(html_entity_decode($this->_article->getLocalizedTitle(), ENT_QUOTES, 'UTF-8'));
-		$this->_package->setAbstract(html_entity_decode(strip_tags($this->_article->getLocalizedAbstract()), ENT_QUOTES, 'UTF-8'));
+		$this->_package->setTitle(html_entity_decode($this->_submission->getLocalizedTitle(), ENT_QUOTES, 'UTF-8'));
+		$this->_package->setAbstract(html_entity_decode(strip_tags($this->_submission->getLocalizedAbstract()), ENT_QUOTES, 'UTF-8'));
 		$this->_package->setType($this->_section->getLocalizedIdentifyType());
-
-		// The article can be published or not. Support either.
-		if (is_a($this->_article, 'PublishedArticle')) {
-			$doi = $this->_article->getStoredPubId('doi');
-			if ($doi !== null) $this->_package->setIdentifier($doi);
-		}
-
-		foreach ($this->_article->getAuthors() as $author) {
+		$publication = $this->_submission->getCurrentPublication();
+		foreach ($publication->getData('authors') as $author) {
 			$creator = $author->getFullName(true);
 			$affiliation = $author->getLocalizedAffiliation();
 			if (!empty($affiliation)) $creator .= "; $affiliation";
 			$this->_package->addCreator($creator);
-		}
 
-// 		TODO check with Nate why cistation style plugin is not enabled by default
-// 		also which citation style is DSpace expecting?
-// 		if (is_a($this->_article, 'PublishedArticle')) {
-// 			$plugin = PluginRegistry::getPlugin('generic', 'citationstylelanguageplugin');
-// 			if ($plugin) {
-// 				$citation = $plugin->getCitation($request, $this->_article, 'bibtex');
-// 				$this->_package->setCitation(html_entity_decode(strip_tags($citation), ENT_QUOTES, 'UTF-8'));
-// 			}
-// 		}
+			$this->_package->sac_name_records[] = [
+				'family' => $author->getFamilyName(Locale::getDefault()),
+				'given' => $author->getGivenName(Locale::getDefault()),
+				'email' => $author->getEmail(),
+				'primary_contact' => ($author->getId() === $publication->getData('primaryContactId'))
+			];
+		}
 	}
 
 	/**
@@ -120,7 +109,7 @@ class OJSSwordDeposit {
 	 * Add all article galleys to the deposit package.
 	 */
 	public function addGalleys() {
-		foreach ($this->_article->getGalleys() as $galley) {
+		foreach ($this->_submission->getGalleys() as $galley) {
 			$this->_addFile($galley->getFile());
 		}
 	}
@@ -131,7 +120,7 @@ class OJSSwordDeposit {
 	 */
 	public function addEditorial() {
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-		$submissionFiles = $submissionFileDao->getBySubmissionId($this->_article->getId());
+		$submissionFiles = $submissionFileDao->getBySubmissionId($this->_submission->getId());
 		// getBySubmission orders results by id ASC, let's reverse the array to have recent files first
 		$submissionFiles = array_reverse($submissionFiles, true);
 		$files = array();
@@ -185,7 +174,7 @@ class OJSSwordDeposit {
 		);
 		if ($response->sac_status > 299)
 			throw new Exception("Status: $response->sac_status , summary: $response->sac_summary");
-		
+
 		return $response;
 	}
 

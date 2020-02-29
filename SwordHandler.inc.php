@@ -92,16 +92,29 @@ class SwordHandler extends Handler {
 	public function index($args, $request) {
 		$context = $request->getContext();
 		$user = $request->getUser();
-		$articleId = (int) array_shift($args);
+		$submissionId = (int) array_shift($args);
 		$save = array_shift($args) == 'save';
 
 		$submissionDao = Application::getSubmissionDAO();
-		$submission = $submissionDao->getById($articleId);
+		$submission = $submissionDao->getById($submissionId);
 
 		if (!$submission || !$user || !$context ||
-			($submission->getPrimaryAuthor()->getEmail() != $user->getEmail()) ||	// TODO is this the best way to port ($article->getUserId() != $user->getId()) to OJS3?
 			($submission->getContextId() != $context->getId())) {
 				$request->redirect(null, 'index');
+		}
+
+		$userCanDeposit = false;
+		$stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+		$daoResult = $stageAssignmentDao->getBySubmissionAndRoleId($submission->getId(), ROLE_ID_AUTHOR);
+		while ($record = $daoResult->next()) {
+			if($user->getId() == $record->getData('userId')) {
+				$userCanDeposit = true;
+				break;
+			}
+		}
+
+		if (!userCanDeposit) {
+			$request->redirect(null, 'index');
 		}
 
 		$swordPlugin = $this->getSwordPlugin();
