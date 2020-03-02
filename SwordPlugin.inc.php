@@ -144,7 +144,7 @@ class SwordPlugin extends GenericPlugin {
 				}
 			}
 
-			$userDao = new UserDao();
+			$userDao = DAORegistry::getDAO('UserDAO');
 
 			foreach ($submissionAuthors as $userId) {
 				$submittingUser = $userDao->getById($userId);

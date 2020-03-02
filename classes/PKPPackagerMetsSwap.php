@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * @file PKPPackagerMetsSwap.inc.php
+ *
+ * Copyright (c) 2013-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file LICENSE.
+ *
+ * @class PKPPackagerMetsSwap
+ * @brief Extends the SwordApp client library's PackagerMetsSwap class
+ */
+
 require_once dirname(__FILE__) . '/../libs/swordappv2/packager_mets_swap.php';
 
 class PKPPackagerMetsSwap extends PackagerMetsSwap{
@@ -21,9 +32,9 @@ class PKPPackagerMetsSwap extends PackagerMetsSwap{
 			fwrite($fh, "<mods version=\"3.7\" xmlns=\"http://www.loc.gov/mods/v3\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"https://www.loc.gov/standards/mods/xml.xsd\">\n");
 			foreach($this->sac_name_records as $name_record) {
 				fwrite($fh, "<name type=\"personal\">\n");
-				fwrite($fh, "<namePart type=\"given\">" . $name_record['given'] . "</namePart>");
-				fwrite($fh, "<namePart type=\"family\">" . $name_record['family'] . "</namePart>");
-				fwrite($fh, "<nameIdentifier type=\"email\">" . $name_record['email'] . "</nameIdentifier>");
+				fwrite($fh, "<namePart type=\"given\">" . $this->clean($name_record['given']) . "</namePart>");
+				fwrite($fh, "<namePart type=\"family\">" . $this->clean($name_record['family']) . "</namePart>");
+				fwrite($fh, "<nameIdentifier type=\"email\">" . $this->clean($name_record['email']) . "</nameIdentifier>");
 				fwrite($fh, "<role><roleTerm>author</roleTerm></role>");
 				if ($name_record['primary_contact']){
 					fwrite($fh, "<role><roleTerm>pkp_primary_contact</roleTerm></role>");
