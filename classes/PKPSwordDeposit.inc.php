@@ -85,10 +85,9 @@ class PKPSwordDeposit {
 			$affiliation = $author->getLocalizedAffiliation();
 			if (!empty($affiliation)) $creator .= "; $affiliation";
 			$this->_package->addCreator($creator);
-
 			$this->_package->sac_name_records[] = [
-				'family' => $author->getFamilyName(Locale::getDefault()),
-				'given' => $author->getGivenName(Locale::getDefault()),
+				'family' => $author->getFamilyName($publication->getData('locale')),
+				'given' => $author->getGivenName($publication->getData('locale')),
 				'email' => $author->getEmail(),
 				'primary_contact' => ($author->getId() === $publication->getData('primaryContactId'))
 			];
